@@ -1,0 +1,714 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="BookingModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Banner">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Image" Type="nvarchar(max)" />
+          <Property Name="Status" Type="int" />
+        </EntityType>
+        <EntityType Name="BookTour">
+          <Key>
+            <PropertyRef Name="BookTourID" />
+          </Key>
+          <Property Name="BookTourID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="TourID" Type="int" Nullable="false" />
+          <Property Name="NumberOfAdult" Type="int" />
+          <Property Name="NumberOfChildrent" Type="int" />
+          <Property Name="Amount" Type="real" />
+          <Property Name="PaymentMethod" Type="nvarchar" MaxLength="50" />
+          <Property Name="Status" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Booking.dbo.Comment' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Comment">
+          <Key>
+            <PropertyRef Name="TourID" />
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="TourID" Type="int" Nullable="false" />
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="Comment" Type="text" />
+          <Property Name="DateCreated" Type="datetime" />
+          <Property Name="Status" Type="int" />
+        </EntityType>
+        <EntityType Name="Contact">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Address" Type="nvarchar" MaxLength="50" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="50" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" />
+          <Property Name="Fax" Type="nvarchar" MaxLength="50" />
+          <Property Name="HotLine" Type="nvarchar" MaxLength="50" />
+          <Property Name="Status" Type="int" />
+        </EntityType>
+        <EntityType Name="Feedback">
+          <Key>
+            <PropertyRef Name="FeedbackID" />
+          </Key>
+          <Property Name="FeedbackID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="InfomationType" Type="nvarchar" MaxLength="50" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="50" />
+          <Property Name="Company" Type="nvarchar" MaxLength="50" />
+          <Property Name="Address" Type="nvarchar" MaxLength="50" />
+          <Property Name="Title" Type="nvarchar" MaxLength="50" />
+          <Property Name="Feedback" Type="text" />
+          <Property Name="DateCreated" Type="datetime" />
+          <Property Name="Status" Type="int" />
+        </EntityType>
+        <EntityType Name="Roll">
+          <Key>
+            <PropertyRef Name="RollID" />
+          </Key>
+          <Property Name="RollID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RollName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Status" Type="int" />
+        </EntityType>
+        <EntityType Name="Tour">
+          <Key>
+            <PropertyRef Name="TourID" />
+          </Key>
+          <Property Name="TourID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TourTypeID" Type="int" Nullable="false" />
+          <Property Name="TourLabelID" Type="int" Nullable="false" />
+          <Property Name="TourName" Type="nvarchar(max)" />
+          <Property Name="Departure" Type="nvarchar" MaxLength="50" />
+          <Property Name="Destination" Type="nvarchar" MaxLength="50" />
+          <Property Name="StartDate" Type="date" />
+          <Property Name="Duration" Type="nvarchar" MaxLength="50" />
+          <Property Name="Price" Type="real" />
+          <Property Name="ListedPrice" Type="real" />
+          <Property Name="TotalSeat" Type="int" />
+          <Property Name="SeatAvailability" Type="int" />
+          <Property Name="Image" Type="nvarchar(max)" />
+          <Property Name="TourProgram" Type="text" />
+          <Property Name="TourDetail" Type="text" />
+          <Property Name="Contact" Type="text" />
+          <Property Name="DateCreated" Type="datetime" />
+          <Property Name="IsHot" Type="bit" />
+          <Property Name="OnHomePage" Type="bit" />
+          <Property Name="Status" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'Booking.dbo.Tourist' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="Tourist">
+          <Property Name="BookTourID" Type="int" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Birthday" Type="date" />
+          <Property Name="Gender" Type="nvarchar" MaxLength="50" />
+          <Property Name="TouristType" Type="nvarchar" MaxLength="50" />
+          <Property Name="Nationality" Type="nvarchar" MaxLength="50" />
+          <Property Name="Passport" Type="real" />
+          <Property Name="ExpiredDate" Type="date" />
+          <Property Name="Status" Type="int" />
+        </EntityType>-->
+        <EntityType Name="TourLabel">
+          <Key>
+            <PropertyRef Name="TourLabelID" />
+          </Key>
+          <Property Name="TourLabelID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TourLabelName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Status" Type="int" />
+        </EntityType>
+        <EntityType Name="TourType">
+          <Key>
+            <PropertyRef Name="TourTypeID" />
+          </Key>
+          <Property Name="TourTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TourTypeName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Status" Type="int" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RollID" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Gender" Type="nvarchar" MaxLength="50" />
+          <Property Name="Avarta" Type="nvarchar(max)" />
+          <Property Name="Email" Type="nchar" MaxLength="10" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="50" />
+          <Property Name="Address" Type="nvarchar" MaxLength="50" />
+          <Property Name="Password" Type="nvarchar(max)" />
+          <Property Name="DateCreated" Type="datetime" />
+          <Property Name="Status" Type="int" />
+        </EntityType>
+        <Association Name="FK_BookTour_Tour">
+          <End Role="Tour" Type="Self.Tour" Multiplicity="1" />
+          <End Role="BookTour" Type="Self.BookTour" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tour">
+              <PropertyRef Name="TourID" />
+            </Principal>
+            <Dependent Role="BookTour">
+              <PropertyRef Name="TourID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BookTour_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="BookTour" Type="Self.BookTour" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="BookTour">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Comment_Tour">
+          <End Role="Tour" Type="Self.Tour" Multiplicity="1" />
+          <End Role="Comment" Type="Self.Comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tour">
+              <PropertyRef Name="TourID" />
+            </Principal>
+            <Dependent Role="Comment">
+              <PropertyRef Name="TourID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Comment_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Comment" Type="Self.Comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Comment">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tour_TourLabel">
+          <End Role="TourLabel" Type="Self.TourLabel" Multiplicity="1" />
+          <End Role="Tour" Type="Self.Tour" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TourLabel">
+              <PropertyRef Name="TourLabelID" />
+            </Principal>
+            <Dependent Role="Tour">
+              <PropertyRef Name="TourLabelID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tour_TourType">
+          <End Role="TourType" Type="Self.TourType" Multiplicity="1" />
+          <End Role="Tour" Type="Self.Tour" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TourType">
+              <PropertyRef Name="TourTypeID" />
+            </Principal>
+            <Dependent Role="Tour">
+              <PropertyRef Name="TourTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <!--Errors Found During Generation:
+error 6004: The table 'Booking.dbo.Tourist' is referenced by a relationship, but cannot be found.
+        <Association Name="FK_Tourist_BookTour" />-->
+        <Association Name="FK_User_Roll">
+          <End Role="Roll" Type="Self.Roll" Multiplicity="1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roll">
+              <PropertyRef Name="RollID" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="RollID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="BookingModelStoreContainer">
+          <EntitySet Name="Banner" EntityType="Self.Banner" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BookTour" EntityType="Self.BookTour" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Contact" EntityType="Self.Contact" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Feedback" EntityType="Self.Feedback" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Roll" EntityType="Self.Roll" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tour" EntityType="Self.Tour" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TourLabel" EntityType="Self.TourLabel" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TourType" EntityType="Self.TourType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Comment" EntityType="Self.Comment" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Comment].[TourID] AS [TourID], 
+    [Comment].[UserID] AS [UserID], 
+    [Comment].[Comment] AS [Comment], 
+    [Comment].[DateCreated] AS [DateCreated], 
+    [Comment].[Status] AS [Status]
+    FROM [dbo].[Comment] AS [Comment]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_BookTour_Tour" Association="Self.FK_BookTour_Tour">
+            <End Role="Tour" EntitySet="Tour" />
+            <End Role="BookTour" EntitySet="BookTour" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BookTour_User" Association="Self.FK_BookTour_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="BookTour" EntitySet="BookTour" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Comment_Tour" Association="Self.FK_Comment_Tour">
+            <End Role="Tour" EntitySet="Tour" />
+            <End Role="Comment" EntitySet="Comment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Comment_User" Association="Self.FK_Comment_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Comment" EntitySet="Comment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tour_TourLabel" Association="Self.FK_Tour_TourLabel">
+            <End Role="TourLabel" EntitySet="TourLabel" />
+            <End Role="Tour" EntitySet="Tour" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tour_TourType" Association="Self.FK_Tour_TourType">
+            <End Role="TourType" EntitySet="TourType" />
+            <End Role="Tour" EntitySet="Tour" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Roll" Association="Self.FK_User_Roll">
+            <End Role="Roll" EntitySet="Roll" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="BookingModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Banner">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="Int32" />
+        </EntityType>
+        <EntityType Name="BookTour">
+          <Key>
+            <PropertyRef Name="BookTourID" />
+          </Key>
+          <Property Name="BookTourID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="TourID" Type="Int32" Nullable="false" />
+          <Property Name="NumberOfAdult" Type="Int32" />
+          <Property Name="NumberOfChildrent" Type="Int32" />
+          <Property Name="Amount" Type="Single" />
+          <Property Name="PaymentMethod" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Tour" Relationship="Self.FK_BookTour_Tour" FromRole="BookTour" ToRole="Tour" />
+          <NavigationProperty Name="User" Relationship="Self.FK_BookTour_User" FromRole="BookTour" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Contact">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Fax" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="HotLine" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Feedback">
+          <Key>
+            <PropertyRef Name="FeedbackID" />
+          </Key>
+          <Property Name="FeedbackID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="InfomationType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Company" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Feedback1" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="DateCreated" Type="DateTime" Precision="3" />
+          <Property Name="Status" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Roll">
+          <Key>
+            <PropertyRef Name="RollID" />
+          </Key>
+          <Property Name="RollID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RollName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="Int32" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_User_Roll" FromRole="Roll" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Tour">
+          <Key>
+            <PropertyRef Name="TourID" />
+          </Key>
+          <Property Name="TourID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TourTypeID" Type="Int32" Nullable="false" />
+          <Property Name="TourLabelID" Type="Int32" Nullable="false" />
+          <Property Name="TourName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Departure" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Destination" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="StartDate" Type="DateTime" Precision="0" />
+          <Property Name="Duration" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Price" Type="Single" />
+          <Property Name="ListedPrice" Type="Single" />
+          <Property Name="TotalSeat" Type="Int32" />
+          <Property Name="SeatAvailability" Type="Int32" />
+          <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TourProgram" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="TourDetail" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Contact" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="DateCreated" Type="DateTime" Precision="3" />
+          <Property Name="IsHot" Type="Boolean" />
+          <Property Name="OnHomePage" Type="Boolean" />
+          <Property Name="Status" Type="Int32" />
+          <NavigationProperty Name="BookTours" Relationship="Self.FK_BookTour_Tour" FromRole="Tour" ToRole="BookTour" />
+          <NavigationProperty Name="Comments" Relationship="Self.FK_Comment_Tour" FromRole="Tour" ToRole="Comment" />
+          <NavigationProperty Name="TourLabel" Relationship="Self.FK_Tour_TourLabel" FromRole="Tour" ToRole="TourLabel" />
+          <NavigationProperty Name="TourType" Relationship="Self.FK_Tour_TourType" FromRole="Tour" ToRole="TourType" />
+        </EntityType>
+        <EntityType Name="TourLabel">
+          <Key>
+            <PropertyRef Name="TourLabelID" />
+          </Key>
+          <Property Name="TourLabelID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TourLabelName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="Int32" />
+          <NavigationProperty Name="Tours" Relationship="Self.FK_Tour_TourLabel" FromRole="TourLabel" ToRole="Tour" />
+        </EntityType>
+        <EntityType Name="TourType">
+          <Key>
+            <PropertyRef Name="TourTypeID" />
+          </Key>
+          <Property Name="TourTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TourTypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="Int32" />
+          <NavigationProperty Name="Tours" Relationship="Self.FK_Tour_TourType" FromRole="TourType" ToRole="Tour" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RollID" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Gender" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Avarta" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DateCreated" Type="DateTime" Precision="3" />
+          <Property Name="Status" Type="Int32" />
+          <NavigationProperty Name="BookTours" Relationship="Self.FK_BookTour_User" FromRole="User" ToRole="BookTour" />
+          <NavigationProperty Name="Roll" Relationship="Self.FK_User_Roll" FromRole="User" ToRole="Roll" />
+          <NavigationProperty Name="Comments" Relationship="Self.FK_Comment_User" FromRole="User" ToRole="Comment" />
+        </EntityType>
+        <EntityType Name="Comment">
+          <Key>
+            <PropertyRef Name="TourID" />
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="TourID" Type="Int32" Nullable="false" />
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="Comment1" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="DateCreated" Type="DateTime" Precision="3" />
+          <Property Name="Status" Type="Int32" />
+          <NavigationProperty Name="Tour" Relationship="Self.FK_Comment_Tour" FromRole="Comment" ToRole="Tour" />
+          <NavigationProperty Name="User" Relationship="Self.FK_Comment_User" FromRole="Comment" ToRole="User" />
+        </EntityType>
+        <Association Name="FK_BookTour_Tour">
+          <End Role="Tour" Type="Self.Tour" Multiplicity="1" />
+          <End Role="BookTour" Type="Self.BookTour" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tour">
+              <PropertyRef Name="TourID" />
+            </Principal>
+            <Dependent Role="BookTour">
+              <PropertyRef Name="TourID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BookTour_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="BookTour" Type="Self.BookTour" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="BookTour">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Roll">
+          <End Role="Roll" Type="Self.Roll" Multiplicity="1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roll">
+              <PropertyRef Name="RollID" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="RollID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Comment_Tour">
+          <End Role="Tour" Type="Self.Tour" Multiplicity="1" />
+          <End Role="Comment" Type="Self.Comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tour">
+              <PropertyRef Name="TourID" />
+            </Principal>
+            <Dependent Role="Comment">
+              <PropertyRef Name="TourID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tour_TourLabel">
+          <End Role="TourLabel" Type="Self.TourLabel" Multiplicity="1" />
+          <End Role="Tour" Type="Self.Tour" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TourLabel">
+              <PropertyRef Name="TourLabelID" />
+            </Principal>
+            <Dependent Role="Tour">
+              <PropertyRef Name="TourLabelID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tour_TourType">
+          <End Role="TourType" Type="Self.TourType" Multiplicity="1" />
+          <End Role="Tour" Type="Self.Tour" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TourType">
+              <PropertyRef Name="TourTypeID" />
+            </Principal>
+            <Dependent Role="Tour">
+              <PropertyRef Name="TourTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Comment_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Comment" Type="Self.Comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Comment">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="BookingEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Banners" EntityType="Self.Banner" />
+          <EntitySet Name="BookTours" EntityType="Self.BookTour" />
+          <EntitySet Name="Contacts" EntityType="Self.Contact" />
+          <EntitySet Name="Feedbacks" EntityType="Self.Feedback" />
+          <EntitySet Name="Rolls" EntityType="Self.Roll" />
+          <EntitySet Name="Tours" EntityType="Self.Tour" />
+          <EntitySet Name="TourLabels" EntityType="Self.TourLabel" />
+          <EntitySet Name="TourTypes" EntityType="Self.TourType" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <EntitySet Name="Comments" EntityType="Self.Comment" />
+          <AssociationSet Name="FK_BookTour_Tour" Association="Self.FK_BookTour_Tour">
+            <End Role="Tour" EntitySet="Tours" />
+            <End Role="BookTour" EntitySet="BookTours" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BookTour_User" Association="Self.FK_BookTour_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="BookTour" EntitySet="BookTours" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Roll" Association="Self.FK_User_Roll">
+            <End Role="Roll" EntitySet="Rolls" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Comment_Tour" Association="Self.FK_Comment_Tour">
+            <End Role="Tour" EntitySet="Tours" />
+            <End Role="Comment" EntitySet="Comments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tour_TourLabel" Association="Self.FK_Tour_TourLabel">
+            <End Role="TourLabel" EntitySet="TourLabels" />
+            <End Role="Tour" EntitySet="Tours" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tour_TourType" Association="Self.FK_Tour_TourType">
+            <End Role="TourType" EntitySet="TourTypes" />
+            <End Role="Tour" EntitySet="Tours" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Comment_User" Association="Self.FK_Comment_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Comment" EntitySet="Comments" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="BookingModelStoreContainer" CdmEntityContainer="BookingEntities">
+          <EntitySetMapping Name="Banners">
+            <EntityTypeMapping TypeName="BookingModel.Banner">
+              <MappingFragment StoreEntitySet="Banner">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BookTours">
+            <EntityTypeMapping TypeName="BookingModel.BookTour">
+              <MappingFragment StoreEntitySet="BookTour">
+                <ScalarProperty Name="BookTourID" ColumnName="BookTourID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="TourID" ColumnName="TourID" />
+                <ScalarProperty Name="NumberOfAdult" ColumnName="NumberOfAdult" />
+                <ScalarProperty Name="NumberOfChildrent" ColumnName="NumberOfChildrent" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="PaymentMethod" ColumnName="PaymentMethod" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Contacts">
+            <EntityTypeMapping TypeName="BookingModel.Contact">
+              <MappingFragment StoreEntitySet="Contact">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Fax" ColumnName="Fax" />
+                <ScalarProperty Name="HotLine" ColumnName="HotLine" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Feedbacks">
+            <EntityTypeMapping TypeName="BookingModel.Feedback">
+              <MappingFragment StoreEntitySet="Feedback">
+                <ScalarProperty Name="FeedbackID" ColumnName="FeedbackID" />
+                <ScalarProperty Name="InfomationType" ColumnName="InfomationType" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Company" ColumnName="Company" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Feedback1" ColumnName="Feedback" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Rolls">
+            <EntityTypeMapping TypeName="BookingModel.Roll">
+              <MappingFragment StoreEntitySet="Roll">
+                <ScalarProperty Name="RollID" ColumnName="RollID" />
+                <ScalarProperty Name="RollName" ColumnName="RollName" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tours">
+            <EntityTypeMapping TypeName="BookingModel.Tour">
+              <MappingFragment StoreEntitySet="Tour">
+                <ScalarProperty Name="TourID" ColumnName="TourID" />
+                <ScalarProperty Name="TourTypeID" ColumnName="TourTypeID" />
+                <ScalarProperty Name="TourLabelID" ColumnName="TourLabelID" />
+                <ScalarProperty Name="TourName" ColumnName="TourName" />
+                <ScalarProperty Name="Departure" ColumnName="Departure" />
+                <ScalarProperty Name="Destination" ColumnName="Destination" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="Duration" ColumnName="Duration" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="ListedPrice" ColumnName="ListedPrice" />
+                <ScalarProperty Name="TotalSeat" ColumnName="TotalSeat" />
+                <ScalarProperty Name="SeatAvailability" ColumnName="SeatAvailability" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="TourProgram" ColumnName="TourProgram" />
+                <ScalarProperty Name="TourDetail" ColumnName="TourDetail" />
+                <ScalarProperty Name="Contact" ColumnName="Contact" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="IsHot" ColumnName="IsHot" />
+                <ScalarProperty Name="OnHomePage" ColumnName="OnHomePage" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TourLabels">
+            <EntityTypeMapping TypeName="BookingModel.TourLabel">
+              <MappingFragment StoreEntitySet="TourLabel">
+                <ScalarProperty Name="TourLabelID" ColumnName="TourLabelID" />
+                <ScalarProperty Name="TourLabelName" ColumnName="TourLabelName" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TourTypes">
+            <EntityTypeMapping TypeName="BookingModel.TourType">
+              <MappingFragment StoreEntitySet="TourType">
+                <ScalarProperty Name="TourTypeID" ColumnName="TourTypeID" />
+                <ScalarProperty Name="TourTypeName" ColumnName="TourTypeName" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="BookingModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="RollID" ColumnName="RollID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="Avarta" ColumnName="Avarta" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Comments">
+            <EntityTypeMapping TypeName="BookingModel.Comment">
+              <MappingFragment StoreEntitySet="Comment">
+                <ScalarProperty Name="TourID" ColumnName="TourID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="Comment1" ColumnName="Comment" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
