@@ -1,0 +1,101 @@
++ Tour: 
+	-Mã tour
+	-Mã loại tour
+	-Mã nhãn tour
+	-Tên tour
+	-Nơi khởi hành 
+	-Điểm đến
+	-Ngày khởi hành
+	-Thời gian
+	-Giá 
+	-Giá niêm yết
+	-Số chỗ
+	-Số chỗ đã đặt
+	-Số chỗ còn lại 
+	-Hình ảnh
+	-Chương trình tour
+	-Chi tiết tour
+	-Liên hệ 
+	-Ngày khởi tạo
+	-Status
+	-IsHot
+	-OnHomePage
+
++ Loại tour
+	- Mã loại 
+	- Tên loại
+	- Status
++ Nhãn tour:
+	- Mã nhãn
+	- Tên nhãn
+	- Hình ảnh
+	- Status	
+	
++ User:
+	-Mã khách hàng
+	-Mã Roll
+	-Họ Tên
+	-Giới tính
+	-Hình ảnh
+	-Email
+	-SDT
+	-Địa Chỉ
+	-Mật khẩu
+	-Status
+	-Ngày khởi tạo
+	
++ Roll:
+	-Mã Roll
+	-Tên Roll
+	
++ Ý kiến khách hàng	
+	- Mã tour
+	- Mã khách
+	- Ý kiến
+	- Status	
+	- Ngày khởi tạo
++ Banner
+	-Hình ảnh
+	-Status
++ Book:
+	-Mã book tour
+	-Mã khách hàng
+	-Mã tour
+	-Số người lớn
+	-Số trẻ em 
+	-Tổng tiền
+	-Phương thức thanh toán
+	-Status
+	
++ Người tham gia tour:
+	-Mã book tour
+	-Họ và tên
+	-Ngày sinh 
+	-Giới tính 
+	-Ngày sinh
+	-Loại khách
+	-Quốc tịch
+	-Số passport
+	-Ngày hết hạn passport
+	-Status
+	
++ Liên hệ công ty:
+	- Địa chỉ
+	- SĐT
+	- Fax
+	- Email
+	- HotLine
+	
++ Liên hệ khách hàng
+	-Loại thông tin
+	-Email
+	-Họ tên
+	-Điện thoại 
+	-Tên công ty
+	-Số khách
+	-Địa chỉ
+	-Tiêu đề
+	-Nội dung
+	-Ngày khởi tạo
+	-Status
+	
