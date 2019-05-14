@@ -1,0 +1,30 @@
+﻿@model TopTravel.TourLabel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h1 class="h3 mb-2 text-gray-800">Details</h1>
+
+<div>
+    <h4>TourLabel</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TourLabelName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TourLabelName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Status)
+        </dt>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.TourLabelID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

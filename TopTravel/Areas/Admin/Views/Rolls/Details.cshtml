@@ -1,0 +1,30 @@
+﻿@model TopTravel.Roll
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h1 class="h3 mb-2 text-gray-800">Details</h1>
+
+<div>
+    <h4>Roll</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.RollName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RollName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Status)
+        </dt>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.RollID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

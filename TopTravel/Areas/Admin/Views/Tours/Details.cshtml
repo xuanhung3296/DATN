@@ -1,0 +1,162 @@
+﻿@model TopTravel.Tour
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h1 class="h3 mb-2 text-gray-800">Details</h1>
+
+<div>
+    <h4>Tour</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TourName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TourName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Departure)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Departure)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Destination)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Destination)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StartDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StartDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Duration)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Duration)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ListedPrice)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ListedPrice)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TotalSeat)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TotalSeat)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SeatAvailability)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SeatAvailability)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Image)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Image)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TourProgram)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TourProgram)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TourDetail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TourDetail)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Contact)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Contact)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateCreated)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateCreated)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsHot)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsHot)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OnHomePage)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OnHomePage)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TourLabel.TourLabelName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TourLabel.TourLabelName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TourType.TourTypeName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TourType.TourTypeName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.TourID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

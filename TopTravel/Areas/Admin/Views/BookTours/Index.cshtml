@@ -1,0 +1,63 @@
+﻿@model IEnumerable<TopTravel.BookTour>
+
+@{
+    ViewBag.Title = "BookTours";
+}
+
+<h1 class="h3 mb-2 text-gray-800">BookTours</h1>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table table-bordered dataTable">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.NumberOfAdult)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NumberOfChildrent)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Amount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PaymentMethod)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Tour.TourName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.User.Name)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.NumberOfAdult)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NumberOfChildrent)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Amount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PaymentMethod)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Tour.TourName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.User.Name)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.BookTourID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.BookTourID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.BookTourID })
+        </td>
+    </tr>
+}
+
+</table>

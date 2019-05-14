@@ -1,0 +1,33 @@
+﻿@model IEnumerable<TopTravel.Roll>
+
+@{
+    ViewBag.Title = "Rolls";
+}
+
+<h1 class="h3 mb-2 text-gray-800">Rolls</h1>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table table-bordered dataTable">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.RollName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.RollName)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.RollID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.RollID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.RollID })
+        </td>
+    </tr>
+}
+
+</table>
