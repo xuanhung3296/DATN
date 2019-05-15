@@ -9,127 +9,132 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table table-bordered dataTable">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.TourName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Departure)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Destination)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.StartDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Duration)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Price)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ListedPrice)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TotalSeat)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.SeatAvailability)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Image)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TourProgram)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TourDetail)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Contact)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DateCreated)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.IsHot)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.OnHomePage)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TourLabel.TourLabelName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TourType.TourTypeName)
-        </th>
-        <th></th>
-    </tr>
+<div class="card shadow mb-4">
+    <div class="card-body">
+        <table class="table table-bordered dataTable">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.TourName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Departure)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Destination)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.StartDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Duration)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Price)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ListedPrice)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.TotalSeat)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.SeatAvailability)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Image)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.TourProgram)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.TourDetail)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Contact)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DateCreated)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.IsHot)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.OnHomePage)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.TourLabel.TourLabelName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.TourType.TourTypeName)
+                </th>
+                <th></th>
+            </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.TourName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Departure)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Destination)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.StartDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Duration)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Price)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ListedPrice)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TotalSeat)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.SeatAvailability)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Image)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TourProgram)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TourDetail)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Contact)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DateCreated)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.IsHot)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.OnHomePage)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TourLabel.TourLabelName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TourType.TourTypeName)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.TourID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.TourID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.TourID })
-        </td>
-    </tr>
-}
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TourName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Departure)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Destination)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.StartDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Duration)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Price)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ListedPrice)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TotalSeat)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SeatAvailability)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Image)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TourProgram)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TourDetail)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Contact)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DateCreated)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IsHot)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.OnHomePage)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TourLabel.TourLabelName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TourType.TourTypeName)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.TourID }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.TourID }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.TourID })
+                    </td>
+                </tr>
+            }
 
-</table>
+        </table>
+    </div>
+</div>

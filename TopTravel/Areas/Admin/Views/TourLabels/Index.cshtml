@@ -9,25 +9,30 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table table-bordered dataTable">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.TourLabelName)
-        </th>
-        <th></th>
-    </tr>
+<div class="card shadow mb-4">
+    <div class="card-body">
+        <table class="table table-bordered dataTable">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.TourLabelName)
+                </th>
+                <th></th>
+            </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.TourLabelName)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.TourLabelID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.TourLabelID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.TourLabelID })
-        </td>
-    </tr>
-}
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TourLabelName)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.TourLabelID }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.TourLabelID }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.TourLabelID })
+                    </td>
+                </tr>
+            }
 
-</table>
+        </table>
+    </div>
+</div>

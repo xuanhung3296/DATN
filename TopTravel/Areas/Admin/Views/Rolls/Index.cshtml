@@ -9,25 +9,33 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table table-bordered dataTable">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.RollName)
-        </th>
-        <th></th>
-    </tr>
+<div class="card shadow mb-4">
+    <div class="card-body">
+        <table class="table table-bordered dataTable">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.RollName)
+                </th>
+                <th></th>
+            </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.RollName)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.RollID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.RollID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.RollID })
-        </td>
-    </tr>
-}
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.RollName)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new {id = item.RollID}) |
+                        @Html.ActionLink("Details", "Details", new {id = item.RollID}) |
+                        @Html.ActionLink("Delete", "Delete", new {id = item.RollID})
+                    </td>
+                </tr>
+            }
 
-</table>
+        </table>
+    </div>
+   
+
+</div>
+

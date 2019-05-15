@@ -23,6 +23,8 @@ namespace TopTravel
             "~/Content/SB_Admin/js/demo/datatables-demo.js"));
 
 
+            bundles.Add(new ScriptBundle("~/bundles/ckeditor").Include(
+                "~/Content/ckeditor/ckeditor.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
