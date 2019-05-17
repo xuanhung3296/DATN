@@ -22,6 +22,7 @@
     <Property Name="Status" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
     <NavigationProperty Name="Tour" Relationship="Self.FK_BookTour_Tour" FromRole="BookTour" ToRole="Tour" />
     <NavigationProperty Name="User" Relationship="Self.FK_BookTour_User" FromRole="BookTour" ToRole="User" />
+    <NavigationProperty Name="Tourists" Relationship="BookingModel.FK_Tourist_BookTour" FromRole="BookTour" ToRole="Tourist" />
   </EntityType>
   <EntityType Name="Contact">
     <Key>
@@ -47,9 +48,9 @@
     <Property Name="Company" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="Feedback1" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
     <Property Name="DateCreated" Type="DateTime" Precision="3" />
     <Property Name="Status" Type="Int32" />
+    <Property Name="FeedbackContent" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
   </EntityType>
   <EntityType Name="Roll">
     <Key>
@@ -133,11 +134,11 @@
     </Key>
     <Property Name="TourID" Type="Int32" Nullable="false" />
     <Property Name="UserID" Type="Int32" Nullable="false" />
-    <Property Name="Comment1" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
     <Property Name="DateCreated" Type="DateTime" Precision="3" />
     <Property Name="Status" Type="Int32" />
     <NavigationProperty Name="Tour" Relationship="Self.FK_Comment_Tour" FromRole="Comment" ToRole="Tour" />
     <NavigationProperty Name="User" Relationship="Self.FK_Comment_User" FromRole="Comment" ToRole="User" />
+    <Property Name="CommentContent" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
   </EntityType>
   <Association Name="FK_BookTour_Tour">
     <End Role="Tour" Type="Self.Tour" Multiplicity="1" />
@@ -262,5 +263,39 @@
       <End Role="User" EntitySet="Users" />
       <End Role="Comment" EntitySet="Comments" />
     </AssociationSet>
+    <EntitySet Name="Tourists" EntityType="BookingModel.Tourist" />
+    <AssociationSet Name="FK_Tourist_BookTour" Association="BookingModel.FK_Tourist_BookTour">
+      <End Role="BookTour" EntitySet="BookTours" />
+      <End Role="Tourist" EntitySet="Tourists" />
+    </AssociationSet>
   </EntityContainer>
+  <EntityType Name="Tourist">
+    <Key>
+      <PropertyRef Name="TouristID" />
+      <PropertyRef Name="BookTourID" />
+    </Key>
+    <Property Name="TouristID" Type="Int32" Nullable="false" />
+    <Property Name="BookTourID" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Birthday" Type="DateTime" Precision="0" />
+    <Property Name="Gender" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="TouristType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Nationality" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Passport" Type="Single" />
+    <Property Name="ExpiredDate" Type="DateTime" Precision="0" />
+    <Property Name="Status" Type="Int32" />
+    <NavigationProperty Name="BookTour" Relationship="BookingModel.FK_Tourist_BookTour" FromRole="Tourist" ToRole="BookTour" />
+  </EntityType>
+  <Association Name="FK_Tourist_BookTour">
+    <End Type="BookingModel.BookTour" Role="BookTour" Multiplicity="1" />
+    <End Type="BookingModel.Tourist" Role="Tourist" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BookTour">
+        <PropertyRef Name="BookTourID" />
+      </Principal>
+      <Dependent Role="Tourist">
+        <PropertyRef Name="BookTourID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

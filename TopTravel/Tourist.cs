@@ -12,15 +12,19 @@ namespace TopTravel
     using System;
     using System.Collections.Generic;
     
-    public partial class Comment
+    public partial class Tourist
     {
-        public int TourID { get; set; }
-        public int UserID { get; set; }
-        public Nullable<System.DateTime> DateCreated { get; set; }
+        public int TouristID { get; set; }
+        public int BookTourID { get; set; }
+        public string Name { get; set; }
+        public Nullable<System.DateTime> Birthday { get; set; }
+        public string Gender { get; set; }
+        public string TouristType { get; set; }
+        public string Nationality { get; set; }
+        public Nullable<float> Passport { get; set; }
+        public Nullable<System.DateTime> ExpiredDate { get; set; }
         public Nullable<int> Status { get; set; }
-        public string CommentContent { get; set; }
     
-        public virtual Tour Tour { get; set; }
-        public virtual User User { get; set; }
+        public virtual BookTour BookTour { get; set; }
     }
 }

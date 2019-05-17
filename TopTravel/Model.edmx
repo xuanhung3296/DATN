@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="BookingModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="BookingModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Banner">
           <Key>
             <PropertyRef Name="ID" />
@@ -35,7 +35,7 @@ warning 6002: The table/view 'Booking.dbo.Comment' does not have a primary key d
           </Key>
           <Property Name="TourID" Type="int" Nullable="false" />
           <Property Name="UserID" Type="int" Nullable="false" />
-          <Property Name="Comment" Type="text" />
+          <Property Name="CommentContent" Type="text" />
           <Property Name="DateCreated" Type="datetime" />
           <Property Name="Status" Type="int" />
         </EntityType>
@@ -63,7 +63,7 @@ warning 6002: The table/view 'Booking.dbo.Comment' does not have a primary key d
           <Property Name="Company" Type="nvarchar" MaxLength="50" />
           <Property Name="Address" Type="nvarchar" MaxLength="50" />
           <Property Name="Title" Type="nvarchar" MaxLength="50" />
-          <Property Name="Feedback" Type="text" />
+          <Property Name="FeedbackContent" Type="text" />
           <Property Name="DateCreated" Type="datetime" />
           <Property Name="Status" Type="int" />
         </EntityType>
@@ -101,9 +101,14 @@ warning 6002: The table/view 'Booking.dbo.Comment' does not have a primary key d
           <Property Name="Status" Type="int" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6013: The table/view 'Booking.dbo.Tourist' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+warning 6002: The table/view 'Booking.dbo.Tourist' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="Tourist">
-          <Property Name="BookTourID" Type="int" />
+          <Key>
+            <PropertyRef Name="TouristID" />
+            <PropertyRef Name="BookTourID" />
+          </Key>
+          <Property Name="TouristID" Type="int" Nullable="false" />
+          <Property Name="BookTourID" Type="int" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" />
           <Property Name="Birthday" Type="date" />
           <Property Name="Gender" Type="nvarchar" MaxLength="50" />
@@ -112,7 +117,7 @@ warning 6013: The table/view 'Booking.dbo.Tourist' does not have a primary key d
           <Property Name="Passport" Type="real" />
           <Property Name="ExpiredDate" Type="date" />
           <Property Name="Status" Type="int" />
-        </EntityType>-->
+        </EntityType>
         <EntityType Name="TourLabel">
           <Key>
             <PropertyRef Name="TourLabelID" />
@@ -217,9 +222,18 @@ warning 6013: The table/view 'Booking.dbo.Tourist' does not have a primary key d
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <!--Errors Found During Generation:
-error 6004: The table 'Booking.dbo.Tourist' is referenced by a relationship, but cannot be found.
-        <Association Name="FK_Tourist_BookTour" />-->
+        <Association Name="FK_Tourist_BookTour">
+          <End Role="BookTour" Type="Self.BookTour" Multiplicity="1" />
+          <End Role="Tourist" Type="Self.Tourist" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BookTour">
+              <PropertyRef Name="BookTourID" />
+            </Principal>
+            <Dependent Role="Tourist">
+              <PropertyRef Name="BookTourID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_User_Roll">
           <End Role="Roll" Type="Self.Roll" Multiplicity="1" />
           <End Role="User" Type="Self.User" Multiplicity="*" />
@@ -246,10 +260,24 @@ error 6004: The table 'Booking.dbo.Tourist' is referenced by a relationship, but
             <DefiningQuery>SELECT 
     [Comment].[TourID] AS [TourID], 
     [Comment].[UserID] AS [UserID], 
-    [Comment].[Comment] AS [Comment], 
+    [Comment].[CommentContent] AS [CommentContent], 
     [Comment].[DateCreated] AS [DateCreated], 
     [Comment].[Status] AS [Status]
     FROM [dbo].[Comment] AS [Comment]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Tourist" EntityType="Self.Tourist" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Tourist].[TouristID] AS [TouristID], 
+    [Tourist].[BookTourID] AS [BookTourID], 
+    [Tourist].[Name] AS [Name], 
+    [Tourist].[Birthday] AS [Birthday], 
+    [Tourist].[Gender] AS [Gender], 
+    [Tourist].[TouristType] AS [TouristType], 
+    [Tourist].[Nationality] AS [Nationality], 
+    [Tourist].[Passport] AS [Passport], 
+    [Tourist].[ExpiredDate] AS [ExpiredDate], 
+    [Tourist].[Status] AS [Status]
+    FROM [dbo].[Tourist] AS [Tourist]</DefiningQuery>
           </EntitySet>
           <AssociationSet Name="FK_BookTour_Tour" Association="Self.FK_BookTour_Tour">
             <End Role="Tour" EntitySet="Tour" />
@@ -275,13 +303,16 @@ error 6004: The table 'Booking.dbo.Tourist' is referenced by a relationship, but
             <End Role="TourType" EntitySet="TourType" />
             <End Role="Tour" EntitySet="Tour" />
           </AssociationSet>
+          <AssociationSet Name="FK_Tourist_BookTour" Association="Self.FK_Tourist_BookTour">
+            <End Role="BookTour" EntitySet="BookTour" />
+            <End Role="Tourist" EntitySet="Tourist" />
+          </AssociationSet>
           <AssociationSet Name="FK_User_Roll" Association="Self.FK_User_Roll">
             <End Role="Roll" EntitySet="Roll" />
             <End Role="User" EntitySet="User" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="BookingModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -307,6 +338,7 @@ error 6004: The table 'Booking.dbo.Tourist' is referenced by a relationship, but
           <Property Name="Status" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
           <NavigationProperty Name="Tour" Relationship="Self.FK_BookTour_Tour" FromRole="BookTour" ToRole="Tour" />
           <NavigationProperty Name="User" Relationship="Self.FK_BookTour_User" FromRole="BookTour" ToRole="User" />
+          <NavigationProperty Name="Tourists" Relationship="BookingModel.FK_Tourist_BookTour" FromRole="BookTour" ToRole="Tourist" />
         </EntityType>
         <EntityType Name="Contact">
           <Key>
@@ -332,9 +364,9 @@ error 6004: The table 'Booking.dbo.Tourist' is referenced by a relationship, but
           <Property Name="Company" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Feedback1" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="DateCreated" Type="DateTime" Precision="3" />
           <Property Name="Status" Type="Int32" />
+          <Property Name="FeedbackContent" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Roll">
           <Key>
@@ -418,11 +450,11 @@ error 6004: The table 'Booking.dbo.Tourist' is referenced by a relationship, but
           </Key>
           <Property Name="TourID" Type="Int32" Nullable="false" />
           <Property Name="UserID" Type="Int32" Nullable="false" />
-          <Property Name="Comment1" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="DateCreated" Type="DateTime" Precision="3" />
           <Property Name="Status" Type="Int32" />
           <NavigationProperty Name="Tour" Relationship="Self.FK_Comment_Tour" FromRole="Comment" ToRole="Tour" />
           <NavigationProperty Name="User" Relationship="Self.FK_Comment_User" FromRole="Comment" ToRole="User" />
+          <Property Name="CommentContent" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
         <Association Name="FK_BookTour_Tour">
           <End Role="Tour" Type="Self.Tour" Multiplicity="1" />
@@ -547,7 +579,41 @@ error 6004: The table 'Booking.dbo.Tourist' is referenced by a relationship, but
             <End Role="User" EntitySet="Users" />
             <End Role="Comment" EntitySet="Comments" />
           </AssociationSet>
-        </EntityContainer>
+          <EntitySet Name="Tourists" EntityType="BookingModel.Tourist" />
+          <AssociationSet Name="FK_Tourist_BookTour" Association="BookingModel.FK_Tourist_BookTour">
+            <End Role="BookTour" EntitySet="BookTours" />
+            <End Role="Tourist" EntitySet="Tourists" />
+          </AssociationSet>
+          </EntityContainer>
+        <EntityType Name="Tourist">
+          <Key>
+            <PropertyRef Name="TouristID" />
+            <PropertyRef Name="BookTourID" />
+          </Key>
+          <Property Name="TouristID" Type="Int32" Nullable="false" />
+          <Property Name="BookTourID" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Birthday" Type="DateTime" Precision="0" />
+          <Property Name="Gender" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TouristType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Nationality" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Passport" Type="Single" />
+          <Property Name="ExpiredDate" Type="DateTime" Precision="0" />
+          <Property Name="Status" Type="Int32" />
+          <NavigationProperty Name="BookTour" Relationship="BookingModel.FK_Tourist_BookTour" FromRole="Tourist" ToRole="BookTour" />
+        </EntityType>
+        <Association Name="FK_Tourist_BookTour">
+          <End Type="BookingModel.BookTour" Role="BookTour" Multiplicity="1" />
+          <End Type="BookingModel.Tourist" Role="Tourist" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BookTour">
+              <PropertyRef Name="BookTourID" />
+            </Principal>
+            <Dependent Role="Tourist">
+              <PropertyRef Name="BookTourID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -593,6 +659,7 @@ error 6004: The table 'Booking.dbo.Tourist' is referenced by a relationship, but
           <EntitySetMapping Name="Feedbacks">
             <EntityTypeMapping TypeName="BookingModel.Feedback">
               <MappingFragment StoreEntitySet="Feedback">
+                <ScalarProperty Name="FeedbackContent" ColumnName="FeedbackContent" />
                 <ScalarProperty Name="FeedbackID" ColumnName="FeedbackID" />
                 <ScalarProperty Name="InfomationType" ColumnName="InfomationType" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
@@ -601,7 +668,6 @@ error 6004: The table 'Booking.dbo.Tourist' is referenced by a relationship, but
                 <ScalarProperty Name="Company" ColumnName="Company" />
                 <ScalarProperty Name="Address" ColumnName="Address" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
-                <ScalarProperty Name="Feedback1" ColumnName="Feedback" />
                 <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
                 <ScalarProperty Name="Status" ColumnName="Status" />
               </MappingFragment>
@@ -680,15 +746,31 @@ error 6004: The table 'Booking.dbo.Tourist' is referenced by a relationship, but
           <EntitySetMapping Name="Comments">
             <EntityTypeMapping TypeName="BookingModel.Comment">
               <MappingFragment StoreEntitySet="Comment">
+                <ScalarProperty Name="CommentContent" ColumnName="CommentContent" />
                 <ScalarProperty Name="TourID" ColumnName="TourID" />
                 <ScalarProperty Name="UserID" ColumnName="UserID" />
-                <ScalarProperty Name="Comment1" ColumnName="Comment" />
                 <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
                 <ScalarProperty Name="Status" ColumnName="Status" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-        </EntityContainerMapping>
+          <EntitySetMapping Name="Tourists">
+            <EntityTypeMapping TypeName="IsTypeOf(BookingModel.Tourist)">
+              <MappingFragment StoreEntitySet="Tourist">
+                <ScalarProperty Name="BookTourID" ColumnName="BookTourID" />
+                <ScalarProperty Name="TouristID" ColumnName="TouristID" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="ExpiredDate" ColumnName="ExpiredDate" />
+                <ScalarProperty Name="Passport" ColumnName="Passport" />
+                <ScalarProperty Name="Nationality" ColumnName="Nationality" />
+                <ScalarProperty Name="TouristType" ColumnName="TouristType" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="Birthday" ColumnName="Birthday" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>

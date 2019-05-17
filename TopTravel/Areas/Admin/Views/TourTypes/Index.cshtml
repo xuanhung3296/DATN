@@ -14,7 +14,9 @@
         <table class="table table-bordered dataTable">
             <tr>
                 <th>
-                    @Html.DisplayNameFor(model => model.TourTypeName)
+                    @*@Html.DisplayNameFor(model => model.TourTypeName)*@
+
+                    @Html.ActionLink("Last Name", "Index", new { sortOrder = ViewBag.NameSortParm })
                 </th>
                 <th></th>
             </tr>

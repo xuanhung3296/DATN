@@ -1,0 +1,101 @@
+﻿@model TopTravel.Tourist
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+<body>
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h4>Tourist</h4>
+        </div>
+        <div class="card-body">
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.Name)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Name)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Birthday)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Birthday)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Gender)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Gender)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.TouristType)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.TouristType)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Nationality)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Nationality)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Passport)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Passport)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.ExpiredDate)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.ExpiredDate)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Status)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Status)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.BookTour.PaymentMethod)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.BookTour.PaymentMethod)
+                </dd>
+
+            </dl>
+        </div>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</body>
+</html>

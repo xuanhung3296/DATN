@@ -40,6 +40,7 @@
     <EntitySetMapping Name="Feedbacks">
       <EntityTypeMapping TypeName="BookingModel.Feedback">
         <MappingFragment StoreEntitySet="Feedback">
+          <ScalarProperty Name="FeedbackContent" ColumnName="FeedbackContent" />
           <ScalarProperty Name="FeedbackID" ColumnName="FeedbackID" />
           <ScalarProperty Name="InfomationType" ColumnName="InfomationType" />
           <ScalarProperty Name="Email" ColumnName="Email" />
@@ -48,7 +49,6 @@
           <ScalarProperty Name="Company" ColumnName="Company" />
           <ScalarProperty Name="Address" ColumnName="Address" />
           <ScalarProperty Name="Title" ColumnName="Title" />
-          <ScalarProperty Name="Feedback1" ColumnName="Feedback" />
           <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
           <ScalarProperty Name="Status" ColumnName="Status" />
         </MappingFragment>
@@ -127,11 +127,27 @@
     <EntitySetMapping Name="Comments">
       <EntityTypeMapping TypeName="BookingModel.Comment">
         <MappingFragment StoreEntitySet="Comment">
+          <ScalarProperty Name="CommentContent" ColumnName="CommentContent" />
           <ScalarProperty Name="TourID" ColumnName="TourID" />
           <ScalarProperty Name="UserID" ColumnName="UserID" />
-          <ScalarProperty Name="Comment1" ColumnName="Comment" />
           <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
           <ScalarProperty Name="Status" ColumnName="Status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tourists">
+      <EntityTypeMapping TypeName="IsTypeOf(BookingModel.Tourist)">
+        <MappingFragment StoreEntitySet="Tourist">
+          <ScalarProperty Name="BookTourID" ColumnName="BookTourID" />
+          <ScalarProperty Name="TouristID" ColumnName="TouristID" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="ExpiredDate" ColumnName="ExpiredDate" />
+          <ScalarProperty Name="Passport" ColumnName="Passport" />
+          <ScalarProperty Name="Nationality" ColumnName="Nationality" />
+          <ScalarProperty Name="TouristType" ColumnName="TouristType" />
+          <ScalarProperty Name="Gender" ColumnName="Gender" />
+          <ScalarProperty Name="Birthday" ColumnName="Birthday" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

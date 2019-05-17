@@ -10,119 +10,112 @@ using TopTravel;
 
 namespace TopTravel.Areas.Admin.Controllers
 {
-    public class TourTypesController : Controller
+    public class TouristsController : Controller
     {
         private BookingEntities db = new BookingEntities();
 
-        // GET: Admin/TourTypes
-        public ActionResult Index(string sortOrder)
+        // GET: Admin/Tourists
+        public ActionResult Index()
         {
-            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
-            var tourTypes = from s in db.TourTypes
-                select s;
-            switch (sortOrder)
-            {
-                case "name_desc":
-                    tourTypes = tourTypes.OrderByDescending(s => s.TourTypeName);
-                    break;
-                default:
-                    tourTypes = tourTypes.OrderBy(s => s.TourTypeName);
-                    break;
-            }
-            return View(tourTypes.ToList());
+            var tourists = db.Tourists.Include(t => t.BookTour);
+            return View(tourists.ToList());
         }
 
-        // GET: Admin/TourTypes/Details/5
+        // GET: Admin/Tourists/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            TourType tourType = db.TourTypes.Find(id);
-            if (tourType == null)
+            Tourist tourist = db.Tourists.Find(id);
+            if (tourist == null)
             {
                 return HttpNotFound();
             }
-            return View(tourType);
+            return View(tourist);
         }
 
-        // GET: Admin/TourTypes/Create
+        // GET: Admin/Tourists/Create
         public ActionResult Create()
         {
+            ViewBag.BookTourID = new SelectList(db.BookTours, "BookTourID", "PaymentMethod");
             return View();
         }
 
-        // POST: Admin/TourTypes/Create
+        // POST: Admin/Tourists/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "TourTypeID,TourTypeName,Status")] TourType tourType)
+        public ActionResult Create([Bind(Include = "TouristID,BookTourID,Name,Birthday,Gender,TouristType,Nationality,Passport,ExpiredDate,Status")] Tourist tourist)
         {
             if (ModelState.IsValid)
             {
-                db.TourTypes.Add(tourType);
+                db.Tourists.Add(tourist);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(tourType);
+            ViewBag.BookTourID = new SelectList(db.BookTours, "BookTourID", "PaymentMethod", tourist.BookTourID);
+            return View(tourist);
         }
 
-        // GET: Admin/TourTypes/Edit/5
+        // GET: Admin/Tourists/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            TourType tourType = db.TourTypes.Find(id);
-            if (tourType == null)
+            Tourist tourist = db.Tourists.Find(id);
+            if (tourist == null)
             {
                 return HttpNotFound();
             }
-            return View(tourType);
+            ViewBag.BookTourID = new SelectList(db.BookTours, "BookTourID", "PaymentMethod", tourist.BookTourID);
+            return View(tourist);
         }
 
-        // POST: Admin/TourTypes/Edit/5
+        // POST: Admin/Tourists/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "TourTypeID,TourTypeName,Status")] TourType tourType)
+        public ActionResult Edit([Bind(Include = "TouristID,BookTourID,Name,Birthday,Gender,TouristType,Nationality,Passport,ExpiredDate,Status")] Tourist tourist)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(tourType).State = EntityState.Modified;
+                db.Entry(tourist).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(tourType);
+            ViewBag.BookTourID = new SelectList(db.BookTours, "BookTourID", "PaymentMethod", tourist.BookTourID);
+            return View(tourist);
         }
 
-        // GET: Admin/TourTypes/Delete/5
+        // GET: Admin/Tourists/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            TourType tourType = db.TourTypes.Find(id);
-            if (tourType == null)
+            Tourist tourist = db.Tourists.Find(id);
+            if (tourist == null)
             {
                 return HttpNotFound();
             }
-            return View(tourType);
+            return View(tourist);
         }
 
-        // POST: Admin/TourTypes/Delete/5
+        // POST: Admin/Tourists/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            TourType tourType = db.TourTypes.Find(id);
-            db.TourTypes.Remove(tourType);
+            Tourist tourist = db.Tourists.Find(id);
+            db.Tourists.Remove(tourist);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

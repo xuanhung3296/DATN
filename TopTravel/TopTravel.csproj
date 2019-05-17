@@ -141,6 +141,7 @@
     <Compile Include="Areas\Admin\Controllers\ContactsController.cs" />
     <Compile Include="Areas\Admin\Controllers\FeedbacksController.cs" />
     <Compile Include="Areas\Admin\Controllers\RollsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\TouristsController.cs" />
     <Compile Include="Areas\Admin\Controllers\TourLabelsController.cs" />
     <Compile Include="Areas\Admin\Controllers\ToursController.cs" />
     <Compile Include="Areas\Admin\Controllers\TourTypesController.cs" />
@@ -184,6 +185,9 @@
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Tour.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Tourist.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="TourLabel.cs">
@@ -2439,6 +2443,11 @@
     <Content Include="Content\ckeditor\samples\toolbarconfigurator\font\fontello.woff" />
     <Content Include="Content\ckeditor\samples\toolbarconfigurator\lib\codemirror\LICENSE" />
     <Content Include="Content\ckeditor\skins\moono-lisa\readme.md" />
+    <Content Include="Areas\Admin\Views\Tourists\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Tourists\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Tourists\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Tourists\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Tourists\Index.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />

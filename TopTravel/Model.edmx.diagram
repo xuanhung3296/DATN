@@ -14,7 +14,7 @@
         <EntityTypeShape EntityType="BookingModel.TourLabel" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="BookingModel.TourType" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="BookingModel.User" Width="1.5" PointX="3" PointY="8.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="BookingModel.Comment" Width="1.5" PointX="8.25" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="BookingModel.Comment" Width="1.5" PointX="10.5" PointY="3.625" IsExpanded="true" />
         <AssociationConnector Association="BookingModel.FK_BookTour_Tour" ManuallyRouted="false" />
         <AssociationConnector Association="BookingModel.FK_BookTour_User" ManuallyRouted="false" />
         <AssociationConnector Association="BookingModel.FK_User_Roll" ManuallyRouted="false" />
@@ -22,6 +22,8 @@
         <AssociationConnector Association="BookingModel.FK_Tour_TourLabel" ManuallyRouted="false" />
         <AssociationConnector Association="BookingModel.FK_Tour_TourType" ManuallyRouted="false" />
         <AssociationConnector Association="BookingModel.FK_Comment_User" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="BookingModel.Tourist" Width="1.5" PointX="8.25" PointY="0.75" />
+        <AssociationConnector Association="BookingModel.FK_Tourist_BookTour" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

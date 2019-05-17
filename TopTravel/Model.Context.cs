@@ -35,5 +35,6 @@ namespace TopTravel
         public virtual DbSet<TourType> TourTypes { get; set; }
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<Comment> Comments { get; set; }
+        public virtual DbSet<Tourist> Tourists { get; set; }
     }
 }

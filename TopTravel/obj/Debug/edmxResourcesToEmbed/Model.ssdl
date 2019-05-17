@@ -30,7 +30,7 @@ warning 6002: The table/view 'Booking.dbo.Comment' does not have a primary key d
     </Key>
     <Property Name="TourID" Type="int" Nullable="false" />
     <Property Name="UserID" Type="int" Nullable="false" />
-    <Property Name="Comment" Type="text" />
+    <Property Name="CommentContent" Type="text" />
     <Property Name="DateCreated" Type="datetime" />
     <Property Name="Status" Type="int" />
   </EntityType>
@@ -58,7 +58,7 @@ warning 6002: The table/view 'Booking.dbo.Comment' does not have a primary key d
     <Property Name="Company" Type="nvarchar" MaxLength="50" />
     <Property Name="Address" Type="nvarchar" MaxLength="50" />
     <Property Name="Title" Type="nvarchar" MaxLength="50" />
-    <Property Name="Feedback" Type="text" />
+    <Property Name="FeedbackContent" Type="text" />
     <Property Name="DateCreated" Type="datetime" />
     <Property Name="Status" Type="int" />
   </EntityType>
@@ -96,18 +96,23 @@ warning 6002: The table/view 'Booking.dbo.Comment' does not have a primary key d
     <Property Name="Status" Type="int" />
   </EntityType>
   <!--Errors Found During Generation:
-warning 6013: The table/view 'Booking.dbo.Tourist' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
-        <EntityType Name="Tourist">
-          <Property Name="BookTourID" Type="int" />
-          <Property Name="Name" Type="nvarchar" MaxLength="50" />
-          <Property Name="Birthday" Type="date" />
-          <Property Name="Gender" Type="nvarchar" MaxLength="50" />
-          <Property Name="TouristType" Type="nvarchar" MaxLength="50" />
-          <Property Name="Nationality" Type="nvarchar" MaxLength="50" />
-          <Property Name="Passport" Type="real" />
-          <Property Name="ExpiredDate" Type="date" />
-          <Property Name="Status" Type="int" />
-        </EntityType>-->
+warning 6002: The table/view 'Booking.dbo.Tourist' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="Tourist">
+    <Key>
+      <PropertyRef Name="TouristID" />
+      <PropertyRef Name="BookTourID" />
+    </Key>
+    <Property Name="TouristID" Type="int" Nullable="false" />
+    <Property Name="BookTourID" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="Birthday" Type="date" />
+    <Property Name="Gender" Type="nvarchar" MaxLength="50" />
+    <Property Name="TouristType" Type="nvarchar" MaxLength="50" />
+    <Property Name="Nationality" Type="nvarchar" MaxLength="50" />
+    <Property Name="Passport" Type="real" />
+    <Property Name="ExpiredDate" Type="date" />
+    <Property Name="Status" Type="int" />
+  </EntityType>
   <EntityType Name="TourLabel">
     <Key>
       <PropertyRef Name="TourLabelID" />
@@ -212,9 +217,18 @@ warning 6013: The table/view 'Booking.dbo.Tourist' does not have a primary key d
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <!--Errors Found During Generation:
-error 6004: The table 'Booking.dbo.Tourist' is referenced by a relationship, but cannot be found.
-        <Association Name="FK_Tourist_BookTour" />-->
+  <Association Name="FK_Tourist_BookTour">
+    <End Role="BookTour" Type="Self.BookTour" Multiplicity="1" />
+    <End Role="Tourist" Type="Self.Tourist" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BookTour">
+        <PropertyRef Name="BookTourID" />
+      </Principal>
+      <Dependent Role="Tourist">
+        <PropertyRef Name="BookTourID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_User_Roll">
     <End Role="Roll" Type="Self.Roll" Multiplicity="1" />
     <End Role="User" Type="Self.User" Multiplicity="*" />
@@ -241,10 +255,24 @@ error 6004: The table 'Booking.dbo.Tourist' is referenced by a relationship, but
       <DefiningQuery>SELECT 
     [Comment].[TourID] AS [TourID], 
     [Comment].[UserID] AS [UserID], 
-    [Comment].[Comment] AS [Comment], 
+    [Comment].[CommentContent] AS [CommentContent], 
     [Comment].[DateCreated] AS [DateCreated], 
     [Comment].[Status] AS [Status]
     FROM [dbo].[Comment] AS [Comment]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Tourist" EntityType="Self.Tourist" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Tourist].[TouristID] AS [TouristID], 
+    [Tourist].[BookTourID] AS [BookTourID], 
+    [Tourist].[Name] AS [Name], 
+    [Tourist].[Birthday] AS [Birthday], 
+    [Tourist].[Gender] AS [Gender], 
+    [Tourist].[TouristType] AS [TouristType], 
+    [Tourist].[Nationality] AS [Nationality], 
+    [Tourist].[Passport] AS [Passport], 
+    [Tourist].[ExpiredDate] AS [ExpiredDate], 
+    [Tourist].[Status] AS [Status]
+    FROM [dbo].[Tourist] AS [Tourist]</DefiningQuery>
     </EntitySet>
     <AssociationSet Name="FK_BookTour_Tour" Association="Self.FK_BookTour_Tour">
       <End Role="Tour" EntitySet="Tour" />
@@ -269,6 +297,10 @@ error 6004: The table 'Booking.dbo.Tourist' is referenced by a relationship, but
     <AssociationSet Name="FK_Tour_TourType" Association="Self.FK_Tour_TourType">
       <End Role="TourType" EntitySet="TourType" />
       <End Role="Tour" EntitySet="Tour" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Tourist_BookTour" Association="Self.FK_Tourist_BookTour">
+      <End Role="BookTour" EntitySet="BookTour" />
+      <End Role="Tourist" EntitySet="Tourist" />
     </AssociationSet>
     <AssociationSet Name="FK_User_Roll" Association="Self.FK_User_Roll">
       <End Role="Roll" EntitySet="Roll" />

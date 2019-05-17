@@ -14,6 +14,12 @@ namespace TopTravel
     
     public partial class BookTour
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public BookTour()
+        {
+            this.Tourists = new HashSet<Tourist>();
+        }
+    
         public int BookTourID { get; set; }
         public int UserID { get; set; }
         public int TourID { get; set; }
@@ -25,5 +31,7 @@ namespace TopTravel
     
         public virtual Tour Tour { get; set; }
         public virtual User User { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Tourist> Tourists { get; set; }
     }
 }
