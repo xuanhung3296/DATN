@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using TopTravel;
+using PagedList;
 
 namespace TopTravel.Areas.Admin.Controllers
 {
@@ -15,11 +16,28 @@ namespace TopTravel.Areas.Admin.Controllers
         private BookingEntities db = new BookingEntities();
 
         // GET: Admin/TourTypes
-        public ActionResult Index(string sortOrder)
+        public ActionResult Index(string sortOrder, string currentFilter, string searchString, int? page)
         {
+            ViewBag.CurrentSort = sortOrder;
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+            ViewBag.CurrentFilter = searchString;
+
             var tourTypes = from s in db.TourTypes
                 select s;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                tourTypes = tourTypes.Where(s => s.TourTypeName.Contains(searchString));
+            }
             switch (sortOrder)
             {
                 case "name_desc":
@@ -29,7 +47,9 @@ namespace TopTravel.Areas.Admin.Controllers
                     tourTypes = tourTypes.OrderBy(s => s.TourTypeName);
                     break;
             }
-            return View(tourTypes.ToList());
+            int pageSize = 3;
+            int pageNumber = (page ?? 1);
+            return View(tourTypes.ToPagedList(pageNumber, pageSize));
         }
 
         // GET: Admin/TourTypes/Details/5
