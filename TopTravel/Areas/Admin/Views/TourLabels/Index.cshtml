@@ -1,4 +1,6 @@
-﻿@model IEnumerable<TopTravel.TourLabel>
+﻿@model PagedList.IPagedList<TopTravel.TourLabel>
+@using PagedList.Mvc;
+@using PagedList;
 
 @{
     ViewBag.Title = "TourLabels";
@@ -11,28 +13,58 @@
 </p>
 <div class="card shadow mb-4">
     <div class="card-body">
-        <table class="table table-bordered dataTable">
-            <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.TourLabelName)
-                </th>
-                <th></th>
-            </tr>
+        <div class="dataTables_wrapper dt-bootstrap4">
+            <div class="row">
+                <div class="col-sm-12 col-md-6">
+                </div>
+                <div class="col-sm-12 col-md-6">
 
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.TourLabelName)
-                    </td>
-                    <td>
-                        @Html.ActionLink("Edit", "Edit", new { id = item.TourLabelID }) |
-                        @Html.ActionLink("Details", "Details", new { id = item.TourLabelID }) |
-                        @Html.ActionLink("Delete", "Delete", new { id = item.TourLabelID })
-                    </td>
-                </tr>
-            }
+                    @using (Html.BeginForm("Index", "TourLabels", FormMethod.Get))
+                    {
+                        <div id="dataTable_filter" class="dataTables_filter">
+                            <label>Search:@Html.TextBox("SearchString", null, new { @class = "form-control form-control-sm", @type = "search" })</label>
+                        </div>
+                    }
 
-        </table>
+                </div>
+            </div>
+            <div class="row">
+                <table class="table table-bordered dataTable">
+                    <tr>
+                        <th>
+                            @*@Html.DisplayNameFor(model => model.TourLabelName)*@
+                            @Html.ActionLink("TourLabelName", "Index", new { sortOrder = ViewBag.NameSortParm })
+                        </th>
+                        <th></th>
+                    </tr>
+
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TourLabelName)
+                            </td>
+                            <td>
+                                @Html.ActionLink("Edit", "Edit", new { id = item.TourLabelID }) |
+                                @Html.ActionLink("Details", "Details", new { id = item.TourLabelID }) |
+                                @Html.ActionLink("Delete", "Delete", new { id = item.TourLabelID })
+                            </td>
+                        </tr>
+                    }
+
+                </table>
+            </div>
+            <div class="row">
+                <div class=" col-sm-12 col-md-5">
+                </div>
+                <div class=" col-sm-12 col-md-7">
+                    <div class="dataTables_paginate">
+                        @Html.PagedListPager(Model, page => Url.Action("Index",
+                            new {page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter}))
+                    </div>
+                </div>
+
+            </div>
+        </div>
     </div>
 </div>

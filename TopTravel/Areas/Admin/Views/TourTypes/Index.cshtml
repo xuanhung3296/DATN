@@ -1,5 +1,6 @@
 ﻿@model PagedList.IPagedList<TopTravel.TourType>
 @using PagedList.Mvc;
+@using PagedList;
 @{
     ViewBag.Title = "TourTypes";
 }
@@ -32,7 +33,7 @@
                         <th>
                             @*@Html.DisplayNameFor(model => model.TourTypeName)*@
 
-                            @Html.ActionLink("Last Name", "Index", new { sortOrder = ViewBag.NameSortParm })
+                            @Html.ActionLink("TourTypeName", "Index", new { sortOrder = ViewBag.NameSortParm })
                         </th>
                         <th></th>
                     </tr>
@@ -54,11 +55,23 @@
                 </table>
                 
                 <br />
-                Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
-
-                @Html.PagedListPager(Model, page => Url.Action("Index", 
-                    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+              
             </div>
+            <div class="row">
+                <div class=" col-sm-12 col-md-5">                
+                </div>
+                <div class=" col-sm-12 col-md-7">
+                    <div class="dataTables_paginate">
+                        @Html.PagedListPager(Model, page => Url.Action("Index",
+                            new {page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter}))
+                    </div>
+                    </div>
+                   
+            </div>
+           
+
+            
+
         </div>
     </div>
 </div>

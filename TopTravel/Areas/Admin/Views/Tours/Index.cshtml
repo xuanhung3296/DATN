@@ -1,5 +1,6 @@
-﻿@model IEnumerable<TopTravel.Tour>
-
+﻿@model PagedList.IPagedList<TopTravel.Tour>
+@using PagedList.Mvc;
+@using PagedList;
 @{
     ViewBag.Title = "Tours";
 }
@@ -11,88 +12,117 @@
 </p>
 <div class="card shadow mb-4">
     <div class="card-body">
-        <table class="table table-bordered dataTable">
-            <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.TourName)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Departure)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Destination)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.StartDate)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Duration)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Price)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.ListedPrice)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.IsHot)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.OnHomePage)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.TourLabel.TourLabelName)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.TourType.TourTypeName)
-                </th>
-                <th></th>
-            </tr>
+        <div class="dataTables_wrapper dt-bootstrap4">
+            <div class="row">
+                <div class="col-sm-12 col-md-6">
+                </div>
+                <div class="col-sm-12 col-md-6">
 
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.TourName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Departure)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Destination)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.StartDate)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Duration)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Price)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.ListedPrice)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.IsHot)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.OnHomePage)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.TourLabel.TourLabelName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.TourType.TourTypeName)
-                    </td>
-                    <td>
-                        @Html.ActionLink("Edit", "Edit", new { id = item.TourID }) |
-                        @Html.ActionLink("Details", "Details", new { id = item.TourID }) |
-                        @Html.ActionLink("Delete", "Delete", new { id = item.TourID })
-                    </td>
-                </tr>
-            }
+                    @using (Html.BeginForm("Index", "TourLabels", FormMethod.Get))
+                    {
+                        <div id="dataTable_filter" class="dataTables_filter">
+                            <label>Search:@Html.TextBox("SearchString", null, new { @class = "form-control form-control-sm", @type = "search" })</label>
+                        </div>
+                    }
 
-        </table>
+                </div>
+            </div>
+            <div class="row">
+                <table class="table table-bordered dataTable">
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.TourName)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Departure)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Destination)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.StartDate)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Duration)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Price)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.ListedPrice)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.IsHot)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.OnHomePage)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.TourLabel.TourLabelName)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.TourType.TourTypeName)
+                        </th>
+                        <th></th>
+                    </tr>
+
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TourName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Departure)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Destination)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.StartDate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Duration)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Price)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ListedPrice)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.IsHot)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.OnHomePage)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TourLabel.TourLabelName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TourType.TourTypeName)
+                            </td>
+                            <td>
+                                @Html.ActionLink("Edit", "Edit", new { id = item.TourID }) |
+                                @Html.ActionLink("Details", "Details", new { id = item.TourID }) |
+                                @Html.ActionLink("Delete", "Delete", new { id = item.TourID })
+                            </td>
+                        </tr>
+                    }
+
+                </table>
+            </div>
+            <div class="row">
+                <div class=" col-sm-12 col-md-5">
+                </div>
+                <div class=" col-sm-12 col-md-7">
+                    <div class="dataTables_paginate">
+                        @Html.PagedListPager(Model, page => Url.Action("Index",
+                            new {page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter}))
+                    </div>
+                </div>
+
+            </div>
+        </div>
     </div>
 </div>

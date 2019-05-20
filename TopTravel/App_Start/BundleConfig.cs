@@ -41,6 +41,9 @@ namespace TopTravel
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
 
+            bundles.Add(new ScriptBundle("~/Content/PagedList").Include(
+                "~/Content/PagedList.css"));
+
             bundles.Add(new StyleBundle("~/Content/sb_admin").Include(
             "~/Content/SB_Admin/vendor/fontawesome-free/css/all.min.css",
             "~/Content/SB_Admin/css/sb-admin-2.min.css",
