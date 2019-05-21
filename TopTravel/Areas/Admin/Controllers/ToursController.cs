@@ -17,7 +17,7 @@ namespace TopTravel.Areas.Admin.Controllers
 
         // GET: Admin/Tours
         public ActionResult Index(string currentFilter, string searchString, int? page)
-        {          
+        {
 
             if (searchString != null)
             {
@@ -31,12 +31,13 @@ namespace TopTravel.Areas.Admin.Controllers
             ViewBag.CurrentFilter = searchString;
 
             var tours = from s in db.Tours.Include(t => t.TourLabel).Include(t => t.TourType)
-            select s;
+                        select s;
             if (!String.IsNullOrEmpty(searchString))
             {
-                tours = tours.Where(s => s.TourName.Contains(searchString)|| s.TourLabel.TourLabelName.Contains(searchString) || s.Destination.Contains(searchString)||s.TourType.TourTypeName.Contains(searchString)||s.Destination.Contains(searchString));
+                tours = tours.Where(s => s.TourName.Contains(searchString) || s.TourLabel.TourLabelName.Contains(searchString) || s.Destination.Contains(searchString) || s.TourType.TourTypeName.Contains(searchString) || s.Destination.Contains(searchString));
             }
 
+            tours=tours.OrderBy(s => s.TourID);
             int pageSize = 10;
             int pageNumber = (page ?? 1);
             return View(tours.ToPagedList(pageNumber, pageSize));

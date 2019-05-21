@@ -1,4 +1,5 @@
-﻿@model IEnumerable<TopTravel.Comment>
+﻿@using PagedList.Mvc
+@model PagedList.IPagedList<TopTravel.Comment>
 
 @{
     ViewBag.Title = "Comments";
@@ -11,46 +12,75 @@
 </p>
 <div class="card shadow mb-4">
     <div class="card-body">
-        <table class="table table-bordered dataTable">
-            <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.CommentContent)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.DateCreated)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Tour.TourName)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.User.Name)
-                </th>
-                <th></th>
-            </tr>
+        <div class="dataTables_wrapper dt-bootstrap4">
+            <div class="row">
+                <div class="col-sm-12 col-md-6">
+                </div>
+                <div class="col-sm-12 col-md-6">
 
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.CommentContent)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.DateCreated)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Tour.TourName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.User.Name)
-                    </td>
-                    <td>
-                        @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                        @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                        @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-                    </td>
-                </tr>
-            }
+                    @using (Html.BeginForm("Index", "Comments", FormMethod.Get))
+                    {
+                        <div id="dataTable_filter" class="dataTables_filter">
+                            <label>Search:@Html.TextBox("SearchString", null, new { @class = "form-control form-control-sm", @type = "search" })</label>
+                        </div>
+                    }
 
-        </table>
+                </div>
+            </div>
+            <div class="row">
+                <table class="table table-bordered dataTable">
+                    <tr>
+                        <th>
+                            @Html.Label("CommentContent")
+                        </th>
+                        <th>
+                            @Html.Label("DateCreated")
+                        </th>
+                        <th>
+                            @Html.Label("TourName")
+                        </th>
+                        <th>
+                            @Html.Label("UserName")
+                        </th>
+                        <th></th>
+                    </tr>
+
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CommentContent)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DateCreated)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Tour.TourName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.User.Name)
+                            </td>
+                            <td>
+                                @Html.ActionLink("Edit", "Edit", new {/* id=item.PrimaryKey */}) |
+                                @Html.ActionLink("Details", "Details", new {/* id=item.PrimaryKey */}) |
+                                @Html.ActionLink("Delete", "Delete", new {/* id=item.PrimaryKey */})
+                            </td>
+                        </tr>
+                    }
+
+                </table>
+            </div>
+            <div class="row">
+                <div class=" col-sm-12 col-md-5">
+                </div>
+                <div class=" col-sm-12 col-md-7">
+                    <div class="dataTables_paginate">
+                        @Html.PagedListPager(Model, page => Url.Action("Index",
+                            new {page, currentFilter = ViewBag.CurrentFilter}))
+                    </div>
+                </div>
+
+            </div>
+        </div>
     </div>
 </div>

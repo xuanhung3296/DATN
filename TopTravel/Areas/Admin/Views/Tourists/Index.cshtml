@@ -1,4 +1,5 @@
-﻿@model IEnumerable<TopTravel.Tourist>
+﻿@using PagedList.Mvc
+@model PagedList.IPagedList<TopTravel.Tourist>
 
 @{
     ViewBag.Title = "Tourist";
@@ -18,77 +19,106 @@
     </p>
     <div class="card shadow mb-4">
         <div class="card-body">
-            <table class="table table-bordered dataTable">
-                <tr>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Name)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Birthday)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Gender)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.TouristType)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Nationality)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Passport)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.ExpiredDate)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Status)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.BookTour.PaymentMethod)
-                    </th>
-                    <th></th>
-                </tr>
+            <div class="dataTables_wrapper dt-bootstrap4">
+                <div class="row">
+                    <div class="col-sm-12 col-md-6">
+                    </div>
+                    <div class="col-sm-12 col-md-6">
 
-                @foreach (var item in Model)
-                {
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Name)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Birthday)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Gender)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.TouristType)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Nationality)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Passport)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.ExpiredDate)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Status)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.BookTour.PaymentMethod)
-                        </td>
-                        <td>
-                            @Html.ActionLink("Edit", "Edit", new {/* id=item.PrimaryKey */}) |
-                            @Html.ActionLink("Details", "Details", new {/* id=item.PrimaryKey */}) |
-                            @Html.ActionLink("Delete", "Delete", new {/* id=item.PrimaryKey */})
-                        </td>
-                    </tr>
-                }
+                        @using (Html.BeginForm("Index", "Tourists", FormMethod.Get))
+                        {
+                            <div id="dataTable_filter" class="dataTables_filter">
+                                <label>Search:@Html.TextBox("SearchString", null, new { @class = "form-control form-control-sm", @type = "search" })</label>
+                            </div>
+                        }
 
-            </table>
+                    </div>
+                </div>
+                <div class="row">
+                    <table class="table table-bordered dataTable">
+                        <tr>
+                            <th>
+                                @Html.Label("Name")
+                            </th>
+                            <th>
+                                @Html.Label("Birthday")
+                            </th>
+                            <th>
+                                @Html.Label("Gender")
+                            </th>
+                            <th>
+                                @Html.Label("TouristType")
+                            </th>
+                            <th>
+                                @Html.Label("Nationality")
+                            </th>
+                            <th>
+                                @Html.Label("Passport")
+                            </th>
+                            <th>
+                                @Html.Label("ExpiredDate")
+                            </th>
+                            <th>
+                                @Html.Label("Status")
+                            </th>
+                            <th>
+                                @Html.Label("PaymentMethod")
+                            </th>
+                            <th></th>
+                        </tr>
+
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Name)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Birthday)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Gender)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.TouristType)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Nationality)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Passport)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ExpiredDate)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Status)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.BookTour.PaymentMethod)
+                                </td>
+                                <td>
+                                    @Html.ActionLink("Edit", "Edit", new {/* id=item.PrimaryKey */}) |
+                                    @Html.ActionLink("Details", "Details", new {/* id=item.PrimaryKey */}) |
+                                    @Html.ActionLink("Delete", "Delete", new {/* id=item.PrimaryKey */})
+                                </td>
+                            </tr>
+                        }
+
+                    </table>
+                    <div class="row">
+                        <div class=" col-sm-12 col-md-5">
+                        </div>
+                        <div class=" col-sm-12 col-md-7">
+                            <div class="dataTables_paginate">
+                                @Html.PagedListPager(Model, page => Url.Action("Index",
+                                    new {page, currentFilter = ViewBag.CurrentFilter}))
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </body>

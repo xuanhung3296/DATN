@@ -1,4 +1,5 @@
-﻿@model IEnumerable<TopTravel.Feedback>
+﻿@using PagedList.Mvc
+@model PagedList.IPagedList<TopTravel.Feedback>
 
 @{
     ViewBag.Title = "Feedbacks";
@@ -11,76 +12,105 @@
 </p>
 <div class="card shadow mb-4">
     <div class="card-body">
-        <table class="table table-bordered dataTable">
-            <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.InfomationType)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Email)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Name)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Phone)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Company)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Address)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Title)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.FeedbackContent)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.DateCreated)
-                </th>
-                <th></th>
-            </tr>
+        <div class="dataTables_wrapper dt-bootstrap4">
+            <div class="row">
+                <div class="col-sm-12 col-md-6">
+                </div>
+                <div class="col-sm-12 col-md-6">
 
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.InfomationType)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Email)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Name)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Phone)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Company)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Address)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Title)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.FeedbackContent)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.DateCreated)
-                    </td>
-                    <td>
-                        @Html.ActionLink("Edit", "Edit", new { id = item.FeedbackID }) |
-                        @Html.ActionLink("Details", "Details", new { id = item.FeedbackID }) |
-                        @Html.ActionLink("Delete", "Delete", new { id = item.FeedbackID })
-                    </td>
-                </tr>
-            }
+                    @using (Html.BeginForm("Index", "Feedbacks", FormMethod.Get))
+                    {
+                        <div id="dataTable_filter" class="dataTables_filter">
+                            <label>Search:@Html.TextBox("SearchString", null, new { @class = "form-control form-control-sm", @type = "search" })</label>
+                        </div>
+                    }
 
-        </table>
+                </div>
+            </div>
+            <div class="row">
+                <table class="table table-bordered dataTable">
+                    <tr>
+                        <th>
+                            @Html.Label("InformationType")
+                        </th>
+                        <th>
+                            @Html.Label("Email")
+                        </th>
+                        <th>
+                            @Html.Label("Name")
+                        </th>
+                        <th>
+                            @Html.Label("Phone")
+                        </th>
+                        <th>
+                            @Html.Label("Company")
+                        </th>
+                        <th>
+                            @Html.Label("Address")
+                        </th>
+                        <th>
+                            @Html.Label("Title")
+                        </th>
+                        <th>
+                            @Html.Label("FeedbackContent")
+                        </th>
+                        <th>
+                            @Html.Label("DateCreated")
+                        </th>
+                        <th></th>
+                    </tr>
+
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.InfomationType)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Email)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Phone)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Company)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Address)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Title)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.FeedbackContent)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DateCreated)
+                            </td>
+                            <td>
+                                @Html.ActionLink("Edit", "Edit", new { id = item.FeedbackID }) |
+                                @Html.ActionLink("Details", "Details", new { id = item.FeedbackID }) |
+                                @Html.ActionLink("Delete", "Delete", new { id = item.FeedbackID })
+                            </td>
+                        </tr>
+                    }
+
+                </table>
+            </div>
+            <div class="row">
+                <div class=" col-sm-12 col-md-5">
+                </div>
+                <div class=" col-sm-12 col-md-7">
+                    <div class="dataTables_paginate">
+                        @Html.PagedListPager(Model, page => Url.Action("Index",
+                            new {page, currentFilter = ViewBag.CurrentFilter}))
+                    </div>
+                </div>
+
+            </div>
+        </div>
     </div>
 </div>

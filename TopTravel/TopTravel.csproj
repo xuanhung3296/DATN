@@ -146,6 +146,7 @@
     <Compile Include="Areas\Admin\Controllers\CommentsController.cs" />
     <Compile Include="Areas\Admin\Controllers\ContactsController.cs" />
     <Compile Include="Areas\Admin\Controllers\FeedbacksController.cs" />
+    <Compile Include="Areas\Admin\Controllers\LoginController.cs" />
     <Compile Include="Areas\Admin\Controllers\RollsController.cs" />
     <Compile Include="Areas\Admin\Controllers\TouristsController.cs" />
     <Compile Include="Areas\Admin\Controllers\TourLabelsController.cs" />
@@ -2455,6 +2456,7 @@
     <Content Include="Areas\Admin\Views\Tourists\Details.cshtml" />
     <Content Include="Areas\Admin\Views\Tourists\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Tourists\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Login\Index.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />

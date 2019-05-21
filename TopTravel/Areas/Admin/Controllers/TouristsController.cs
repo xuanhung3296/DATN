@@ -6,6 +6,8 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.Ajax.Utilities;
+using PagedList;
 using TopTravel;
 
 namespace TopTravel.Areas.Admin.Controllers
@@ -15,10 +17,32 @@ namespace TopTravel.Areas.Admin.Controllers
         private BookingEntities db = new BookingEntities();
 
         // GET: Admin/Tourists
-        public ActionResult Index()
+        public ActionResult Index(string currentFilter, string searchString, int? page)
         {
-            var tourists = db.Tourists.Include(t => t.BookTour);
-            return View(tourists.ToList());
+
+
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+            ViewBag.CurrentFilter = searchString;
+
+            var tourists = from s in db.Tourists.Include(t => t.BookTour)
+                        select s;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                tourists = tourists.Where(s => s.Name.Contains(searchString) || s.Gender.Contains(searchString) || s.Nationality.Contains(searchString) || s.TouristType.Contains(searchString) || s.Passport.ToString().Contains(searchString)|| s.BookTour.BookTourID.ToString().Contains(searchString)||s.BookTour.PaymentMethod.Contains(searchString));
+            }
+
+            tourists = tourists.OrderBy(s => s.TouristID);
+            int pageSize = 10;
+            int pageNumber = (page ?? 1);
+            return View(tourists.ToPagedList(pageNumber, pageSize));
         }
 
         // GET: Admin/Tourists/Details/5

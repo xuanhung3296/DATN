@@ -18,7 +18,7 @@
                 </div>
                 <div class="col-sm-12 col-md-6">
 
-                    @using (Html.BeginForm("Index", "TourLabels", FormMethod.Get))
+                    @using (Html.BeginForm("Index", "Tours", FormMethod.Get))
                     {
                         <div id="dataTable_filter" class="dataTables_filter">
                             <label>Search:@Html.TextBox("SearchString", null, new { @class = "form-control form-control-sm", @type = "search" })</label>
@@ -31,37 +31,37 @@
                 <table class="table table-bordered dataTable">
                     <tr>
                         <th>
-                            @Html.DisplayNameFor(model => model.TourName)
+                            @Html.Label("TourName")
                         </th>
                         <th>
-                            @Html.DisplayNameFor(model => model.Departure)
+                            @Html.Label("Departure")
                         </th>
                         <th>
-                            @Html.DisplayNameFor(model => model.Destination)
+                            @Html.Label("Destination")
                         </th>
                         <th>
-                            @Html.DisplayNameFor(model => model.StartDate)
+                            @Html.Label("StartDate")
                         </th>
                         <th>
-                            @Html.DisplayNameFor(model => model.Duration)
+                            @Html.Label("Duration")
                         </th>
                         <th>
-                            @Html.DisplayNameFor(model => model.Price)
+                            @Html.Label("Price")
                         </th>
                         <th>
-                            @Html.DisplayNameFor(model => model.ListedPrice)
+                            @Html.Label("ListedPrice")
                         </th>
                         <th>
-                            @Html.DisplayNameFor(model => model.IsHot)
+                            @Html.Label("IsHot")
                         </th>
                         <th>
-                            @Html.DisplayNameFor(model => model.OnHomePage)
+                            @Html.Label("OnHomePage")
                         </th>
                         <th>
-                            @Html.DisplayNameFor(model => model.TourLabel.TourLabelName)
+                            @Html.Label("TourLabelName")
                         </th>
                         <th>
-                            @Html.DisplayNameFor(model => model.TourType.TourTypeName)
+                            @Html.Label("TourTypeName")
                         </th>
                         <th></th>
                     </tr>
@@ -118,7 +118,7 @@
                 <div class=" col-sm-12 col-md-7">
                     <div class="dataTables_paginate">
                         @Html.PagedListPager(Model, page => Url.Action("Index",
-                            new {page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter}))
+                            new {page, currentFilter = ViewBag.CurrentFilter}))
                     </div>
                 </div>
 
