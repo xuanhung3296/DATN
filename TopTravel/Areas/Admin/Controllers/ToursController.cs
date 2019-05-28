@@ -70,6 +70,7 @@ namespace TopTravel.Areas.Admin.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
+        [ValidateInput(false)]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "TourID,TourTypeID,TourLabelID,TourName,Departure,Destination,StartDate,Duration,Price,ListedPrice,TotalSeat,SeatAvailability,Image,TourProgram,TourDetail,Contact,DateCreated,IsHot,OnHomePage,Status")] Tour tour)
         {
@@ -106,6 +107,7 @@ namespace TopTravel.Areas.Admin.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
+        [ValidateInput(false)]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "TourID,TourTypeID,TourLabelID,TourName,Departure,Destination,StartDate,Duration,Price,ListedPrice,TotalSeat,SeatAvailability,Image,TourProgram,TourDetail,Contact,DateCreated,IsHot,OnHomePage,Status")] Tour tour)
         {

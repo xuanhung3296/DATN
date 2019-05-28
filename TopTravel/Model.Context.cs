@@ -7,6 +7,8 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System.Linq;
+
 namespace TopTravel
 {
     using System;
@@ -36,5 +38,18 @@ namespace TopTravel
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<Comment> Comments { get; set; }
         public virtual DbSet<Tourist> Tourists { get; set; }
+
+        public bool userIsValid(User user)
+        {
+           var check = Users.Count(u => u.Email.Equals(user.Email) && u.Password.Equals(user.Password));
+            if (check != 0 )
+            {
+                return true;
+            }
+            else
+            {
+               return false;
+            }
+        }
     }
 }

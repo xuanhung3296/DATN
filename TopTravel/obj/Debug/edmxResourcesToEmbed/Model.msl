@@ -110,6 +110,8 @@
     <EntitySetMapping Name="Users">
       <EntityTypeMapping TypeName="BookingModel.User">
         <MappingFragment StoreEntitySet="User">
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="RememberMe" ColumnName="RememberMe" />
           <ScalarProperty Name="UserID" ColumnName="UserID" />
           <ScalarProperty Name="RollID" ColumnName="RollID" />
           <ScalarProperty Name="Name" ColumnName="Name" />

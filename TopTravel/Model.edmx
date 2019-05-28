@@ -149,6 +149,8 @@ warning 6002: The table/view 'Booking.dbo.Tourist' does not have a primary key d
           <Property Name="Password" Type="nvarchar(max)" />
           <Property Name="DateCreated" Type="datetime" />
           <Property Name="Status" Type="int" />
+          <Property Name="RememberMe" Type="bit" />
+          <Property Name="IsActive" Type="bit" />
         </EntityType>
         <Association Name="FK_BookTour_Tour">
           <End Role="Tour" Type="Self.Tour" Multiplicity="1" />
@@ -442,6 +444,8 @@ warning 6002: The table/view 'Booking.dbo.Tourist' does not have a primary key d
           <NavigationProperty Name="BookTours" Relationship="Self.FK_BookTour_User" FromRole="User" ToRole="BookTour" />
           <NavigationProperty Name="Roll" Relationship="Self.FK_User_Roll" FromRole="User" ToRole="Roll" />
           <NavigationProperty Name="Comments" Relationship="Self.FK_Comment_User" FromRole="User" ToRole="Comment" />
+          <Property Name="RememberMe" Type="Boolean" />
+          <Property Name="IsActive" Type="Boolean" />
         </EntityType>
         <EntityType Name="Comment">
           <Key>
@@ -729,6 +733,8 @@ warning 6002: The table/view 'Booking.dbo.Tourist' does not have a primary key d
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="BookingModel.User">
               <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="RememberMe" ColumnName="RememberMe" />
                 <ScalarProperty Name="UserID" ColumnName="UserID" />
                 <ScalarProperty Name="RollID" ColumnName="RollID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />

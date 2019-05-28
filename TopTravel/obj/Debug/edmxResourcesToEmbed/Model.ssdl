@@ -144,6 +144,8 @@ warning 6002: The table/view 'Booking.dbo.Tourist' does not have a primary key d
     <Property Name="Password" Type="nvarchar(max)" />
     <Property Name="DateCreated" Type="datetime" />
     <Property Name="Status" Type="int" />
+    <Property Name="RememberMe" Type="bit" />
+    <Property Name="IsActive" Type="bit" />
   </EntityType>
   <Association Name="FK_BookTour_Tour">
     <End Role="Tour" Type="Self.Tour" Multiplicity="1" />

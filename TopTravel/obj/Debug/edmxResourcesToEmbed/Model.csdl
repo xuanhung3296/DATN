@@ -126,6 +126,8 @@
     <NavigationProperty Name="BookTours" Relationship="Self.FK_BookTour_User" FromRole="User" ToRole="BookTour" />
     <NavigationProperty Name="Roll" Relationship="Self.FK_User_Roll" FromRole="User" ToRole="Roll" />
     <NavigationProperty Name="Comments" Relationship="Self.FK_Comment_User" FromRole="User" ToRole="Comment" />
+    <Property Name="RememberMe" Type="Boolean" />
+    <Property Name="IsActive" Type="Boolean" />
   </EntityType>
   <EntityType Name="Comment">
     <Key>

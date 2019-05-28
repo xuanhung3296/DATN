@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Data.Entity.Validation;
 using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using PagedList;
 using TopTravel;
+using TopTravel.Common;
 
 namespace TopTravel.Areas.Admin.Controllers
 {
@@ -71,12 +73,38 @@ namespace TopTravel.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "UserID,RollID,Name,Gender,Avarta,Email,Phone,Address,Password,DateCreated,Status")] User user)
+        public ActionResult Create([Bind(Include = "RollID,Name,Gender,Avarta,Email,Phone,Address,Password,DateCreated,Status")] User user)
         {
             if (ModelState.IsValid)
             {
+                if (user.UserID==0)
+                {
+                    user.UserID = 1;
+                }
+                user.Password = Encrypt.Encode(user.Password);
                 db.Users.Add(user);
-                db.SaveChanges();
+                ;
+                try
+                {
+                    // Your code...
+                    // Could also be before try if you know the exception occurs in SaveChanges
+
+                    db.SaveChanges();
+                }
+                catch (DbEntityValidationException e)
+                {
+                    foreach (var eve in e.EntityValidationErrors)
+                    {
+                        Console.WriteLine("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:",
+                            eve.Entry.Entity.GetType().Name, eve.Entry.State);
+                        foreach (var ve in eve.ValidationErrors)
+                        {
+                            Console.WriteLine("- Property: \"{0}\", Error: \"{1}\"",
+                                ve.PropertyName, ve.ErrorMessage);
+                        }
+                    }
+                    throw;
+                }
                 return RedirectToAction("Index");
             }
 
