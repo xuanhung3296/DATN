@@ -25,7 +25,7 @@ namespace TopTravel.Areas.Admin.Controllers
                 if (db.userIsValid(user))
                 {
                     FormsAuthentication.SetAuthCookie(user.Email,Convert.ToBoolean(user.RememberMe));
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Index", "Rolls");
                 }
                 else
                 {
@@ -38,7 +38,7 @@ namespace TopTravel.Areas.Admin.Controllers
         public ActionResult Logout()
         {
             FormsAuthentication.SignOut();
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Login");
         }
     }
 }

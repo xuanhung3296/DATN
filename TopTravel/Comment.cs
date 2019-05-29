@@ -15,10 +15,10 @@ namespace TopTravel
     public partial class Comment
     {
         public int TourID { get; set; }
-        public int UserID { get; set; }
+        public string CommentContent { get; set; }
         public Nullable<System.DateTime> DateCreated { get; set; }
         public Nullable<int> Status { get; set; }
-        public string CommentContent { get; set; }
+        public Nullable<int> UserID { get; set; }
     
         public virtual Tour Tour { get; set; }
         public virtual User User { get; set; }

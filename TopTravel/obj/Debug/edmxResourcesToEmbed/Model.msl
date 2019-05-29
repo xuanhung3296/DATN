@@ -14,13 +14,13 @@
       <EntityTypeMapping TypeName="BookingModel.BookTour">
         <MappingFragment StoreEntitySet="BookTour">
           <ScalarProperty Name="BookTourID" ColumnName="BookTourID" />
-          <ScalarProperty Name="UserID" ColumnName="UserID" />
           <ScalarProperty Name="TourID" ColumnName="TourID" />
           <ScalarProperty Name="NumberOfAdult" ColumnName="NumberOfAdult" />
           <ScalarProperty Name="NumberOfChildrent" ColumnName="NumberOfChildrent" />
           <ScalarProperty Name="Amount" ColumnName="Amount" />
           <ScalarProperty Name="PaymentMethod" ColumnName="PaymentMethod" />
           <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -40,7 +40,6 @@
     <EntitySetMapping Name="Feedbacks">
       <EntityTypeMapping TypeName="BookingModel.Feedback">
         <MappingFragment StoreEntitySet="Feedback">
-          <ScalarProperty Name="FeedbackContent" ColumnName="FeedbackContent" />
           <ScalarProperty Name="FeedbackID" ColumnName="FeedbackID" />
           <ScalarProperty Name="InfomationType" ColumnName="InfomationType" />
           <ScalarProperty Name="Email" ColumnName="Email" />
@@ -49,6 +48,7 @@
           <ScalarProperty Name="Company" ColumnName="Company" />
           <ScalarProperty Name="Address" ColumnName="Address" />
           <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="FeedbackContent" ColumnName="FeedbackContent" />
           <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
           <ScalarProperty Name="Status" ColumnName="Status" />
         </MappingFragment>
@@ -110,8 +110,6 @@
     <EntitySetMapping Name="Users">
       <EntityTypeMapping TypeName="BookingModel.User">
         <MappingFragment StoreEntitySet="User">
-          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-          <ScalarProperty Name="RememberMe" ColumnName="RememberMe" />
           <ScalarProperty Name="UserID" ColumnName="UserID" />
           <ScalarProperty Name="RollID" ColumnName="RollID" />
           <ScalarProperty Name="Name" ColumnName="Name" />
@@ -123,33 +121,35 @@
           <ScalarProperty Name="Password" ColumnName="Password" />
           <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
           <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="RememberMe" ColumnName="RememberMe" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Comments">
       <EntityTypeMapping TypeName="BookingModel.Comment">
         <MappingFragment StoreEntitySet="Comment">
-          <ScalarProperty Name="CommentContent" ColumnName="CommentContent" />
           <ScalarProperty Name="TourID" ColumnName="TourID" />
-          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="CommentContent" ColumnName="CommentContent" />
           <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
           <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Tourists">
-      <EntityTypeMapping TypeName="IsTypeOf(BookingModel.Tourist)">
+      <EntityTypeMapping TypeName="BookingModel.Tourist">
         <MappingFragment StoreEntitySet="Tourist">
-          <ScalarProperty Name="BookTourID" ColumnName="BookTourID" />
           <ScalarProperty Name="TouristID" ColumnName="TouristID" />
-          <ScalarProperty Name="Status" ColumnName="Status" />
-          <ScalarProperty Name="ExpiredDate" ColumnName="ExpiredDate" />
-          <ScalarProperty Name="Passport" ColumnName="Passport" />
-          <ScalarProperty Name="Nationality" ColumnName="Nationality" />
-          <ScalarProperty Name="TouristType" ColumnName="TouristType" />
-          <ScalarProperty Name="Gender" ColumnName="Gender" />
-          <ScalarProperty Name="Birthday" ColumnName="Birthday" />
+          <ScalarProperty Name="BookTourID" ColumnName="BookTourID" />
           <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Birthday" ColumnName="Birthday" />
+          <ScalarProperty Name="Gender" ColumnName="Gender" />
+          <ScalarProperty Name="TouristType" ColumnName="TouristType" />
+          <ScalarProperty Name="Nationality" ColumnName="Nationality" />
+          <ScalarProperty Name="Passport" ColumnName="Passport" />
+          <ScalarProperty Name="ExpiredDate" ColumnName="ExpiredDate" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

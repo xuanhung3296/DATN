@@ -8,6 +8,7 @@
 //------------------------------------------------------------------------------
 
 using System.Linq;
+using TopTravel.Common;
 
 namespace TopTravel
 {
@@ -41,14 +42,14 @@ namespace TopTravel
 
         public bool userIsValid(User user)
         {
-           var check = Users.Count(u => u.Email.Equals(user.Email) && u.Password.Equals(user.Password));
-            if (check != 0 )
+            user.Password = Encrypt.Encode(user.Password);
+            if (Users.Count(u=>u.Email.Equals(user.Email) && u.Password.Equals(user.Password))==0)
             {
-                return true;
+                return false;
             }
             else
             {
-               return false;
+                return true;
             }
         }
     }

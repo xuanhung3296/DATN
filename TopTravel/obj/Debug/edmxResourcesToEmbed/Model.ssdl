@@ -13,26 +13,25 @@
       <PropertyRef Name="BookTourID" />
     </Key>
     <Property Name="BookTourID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="UserID" Type="int" Nullable="false" />
     <Property Name="TourID" Type="int" Nullable="false" />
     <Property Name="NumberOfAdult" Type="int" />
     <Property Name="NumberOfChildrent" Type="int" />
     <Property Name="Amount" Type="real" />
     <Property Name="PaymentMethod" Type="nvarchar" MaxLength="50" />
     <Property Name="Status" Type="nchar" MaxLength="10" />
+    <Property Name="UserID" Type="int" />
   </EntityType>
   <!--Errors Found During Generation:
 warning 6002: The table/view 'Booking.dbo.Comment' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="Comment">
     <Key>
       <PropertyRef Name="TourID" />
-      <PropertyRef Name="UserID" />
     </Key>
     <Property Name="TourID" Type="int" Nullable="false" />
-    <Property Name="UserID" Type="int" Nullable="false" />
     <Property Name="CommentContent" Type="text" />
     <Property Name="DateCreated" Type="datetime" />
     <Property Name="Status" Type="int" />
+    <Property Name="UserID" Type="int" />
   </EntityType>
   <EntityType Name="Contact">
     <Key>
@@ -134,11 +133,11 @@ warning 6002: The table/view 'Booking.dbo.Tourist' does not have a primary key d
       <PropertyRef Name="UserID" />
     </Key>
     <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="RollID" Type="int" Nullable="false" />
+    <Property Name="RollID" Type="int" />
     <Property Name="Name" Type="nvarchar" MaxLength="50" />
     <Property Name="Gender" Type="nvarchar" MaxLength="50" />
     <Property Name="Avarta" Type="nvarchar(max)" />
-    <Property Name="Email" Type="nchar" MaxLength="10" />
+    <Property Name="Email" Type="nvarchar" MaxLength="50" />
     <Property Name="Phone" Type="nvarchar" MaxLength="50" />
     <Property Name="Address" Type="nvarchar" MaxLength="50" />
     <Property Name="Password" Type="nvarchar(max)" />
@@ -160,7 +159,7 @@ warning 6002: The table/view 'Booking.dbo.Tourist' does not have a primary key d
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_BookTour_User">
-    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="User" Type="Self.User" Multiplicity="0..1" />
     <End Role="BookTour" Type="Self.BookTour" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="User">
@@ -173,7 +172,7 @@ warning 6002: The table/view 'Booking.dbo.Tourist' does not have a primary key d
   </Association>
   <Association Name="FK_Comment_Tour">
     <End Role="Tour" Type="Self.Tour" Multiplicity="1" />
-    <End Role="Comment" Type="Self.Comment" Multiplicity="*" />
+    <End Role="Comment" Type="Self.Comment" Multiplicity="0..1" />
     <ReferentialConstraint>
       <Principal Role="Tour">
         <PropertyRef Name="TourID" />
@@ -184,7 +183,7 @@ warning 6002: The table/view 'Booking.dbo.Tourist' does not have a primary key d
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Comment_User">
-    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="User" Type="Self.User" Multiplicity="0..1" />
     <End Role="Comment" Type="Self.Comment" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="User">
@@ -232,7 +231,7 @@ warning 6002: The table/view 'Booking.dbo.Tourist' does not have a primary key d
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_User_Roll">
-    <End Role="Roll" Type="Self.Roll" Multiplicity="1" />
+    <End Role="Roll" Type="Self.Roll" Multiplicity="0..1" />
     <End Role="User" Type="Self.User" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Roll">
@@ -256,10 +255,10 @@ warning 6002: The table/view 'Booking.dbo.Tourist' does not have a primary key d
     <EntitySet Name="Comment" EntityType="Self.Comment" store:Type="Tables" store:Schema="dbo">
       <DefiningQuery>SELECT 
     [Comment].[TourID] AS [TourID], 
-    [Comment].[UserID] AS [UserID], 
     [Comment].[CommentContent] AS [CommentContent], 
     [Comment].[DateCreated] AS [DateCreated], 
-    [Comment].[Status] AS [Status]
+    [Comment].[Status] AS [Status], 
+    [Comment].[UserID] AS [UserID]
     FROM [dbo].[Comment] AS [Comment]</DefiningQuery>
     </EntitySet>
     <EntitySet Name="Tourist" EntityType="Self.Tourist" store:Type="Tables" store:Schema="dbo">

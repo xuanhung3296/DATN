@@ -21,13 +21,13 @@ namespace TopTravel
         }
     
         public int BookTourID { get; set; }
-        public int UserID { get; set; }
         public int TourID { get; set; }
         public Nullable<int> NumberOfAdult { get; set; }
         public Nullable<int> NumberOfChildrent { get; set; }
         public Nullable<float> Amount { get; set; }
         public string PaymentMethod { get; set; }
         public string Status { get; set; }
+        public Nullable<int> UserID { get; set; }
     
         public virtual Tour Tour { get; set; }
         public virtual User User { get; set; }

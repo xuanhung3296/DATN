@@ -76,7 +76,7 @@
                                 @Html.DisplayFor(modelItem => item.Address)
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.Password)
+                                @Html.DisplayFor(modelItem => item.Password,new{Type="password"})
                             </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.DateCreated)
@@ -93,17 +93,18 @@
                     }
 
                 </table>
-                <div class="row">
-                    <div class=" col-sm-12 col-md-5">
-                    </div>
-                    <div class=" col-sm-12 col-md-7">
-                        <div class="dataTables_paginate">
-                            @Html.PagedListPager(Model, page => Url.Action("Index",
-                                new {page, currentFilter = ViewBag.CurrentFilter}))
-                        </div>
-                    </div>
-
+                
+            </div>
+            <div class="row">
+                <div class=" col-sm-12 col-md-5">
                 </div>
+                <div class=" col-sm-12 col-md-7">
+                    <div class="dataTables_paginate">
+                        @Html.PagedListPager(Model, page => Url.Action("Index",
+                            new {page, currentFilter = ViewBag.CurrentFilter}))
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
