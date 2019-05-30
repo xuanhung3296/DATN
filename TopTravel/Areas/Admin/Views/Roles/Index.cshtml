@@ -1,7 +1,7 @@
-﻿@model IEnumerable<TopTravel.Roll>
+﻿@model IEnumerable<TopTravel.Role>
 
 @{
-    ViewBag.Title = "Rolls";
+    ViewBag.Title = "Roles";
 }
 
 <h1 class="h3 mb-2 text-gray-800">Rolls</h1>
@@ -14,7 +14,7 @@
         <table class="table table-bordered dataTable">
             <tr>
                 <th>
-                    @Html.DisplayNameFor(model => model.RollName)
+                    @Html.DisplayNameFor(model => model.RoleName)
                 </th>
                 <th></th>
             </tr>
@@ -23,12 +23,12 @@
             {
                 <tr>
                     <td>
-                        @Html.DisplayFor(modelItem => item.RollName)
+                        @Html.DisplayFor(modelItem => item.RoleName)
                     </td>
                     <td>
-                        @Html.ActionLink("Edit", "Edit", new {id = item.RollID}) |
-                        @Html.ActionLink("Details", "Details", new {id = item.RollID}) |
-                        @Html.ActionLink("Delete", "Delete", new {id = item.RollID})
+                        @Html.ActionLink("Edit", "Edit", new {id = item.RoleID}) |
+                        @Html.ActionLink("Details", "Details", new {id = item.RoleID}) |
+                        @Html.ActionLink("Delete", "Delete", new {id = item.RoleID})
                     </td>
                 </tr>
             }

@@ -82,6 +82,8 @@ D:\DATN\TopTravel\obj\Debug\TopTravel.csproj.CoreCompileInputs.cache
 D:\DATN\TopTravel\obj\Debug\TopTravel.csproj.CopyComplete
 D:\DATN\TopTravel\obj\Debug\TopTravel.dll
 D:\DATN\TopTravel\obj\Debug\TopTravel.pdb
+D:\DATN2019\TopTravel\obj\Debug\TopTravel.csprojAssemblyReference.cache
+D:\DATN2019\TopTravel\obj\Debug\TopTravel.csproj.CoreCompileInputs.cache
 D:\DATN2019\TopTravel\bin\TopTravel.dll.config
 D:\DATN2019\TopTravel\bin\TopTravel.dll
 D:\DATN2019\TopTravel\bin\TopTravel.pdb
@@ -168,8 +170,6 @@ D:\DATN2019\TopTravel\bin\Newtonsoft.Json.xml
 D:\DATN2019\TopTravel\bin\Antlr3.Runtime.pdb
 D:\DATN2019\TopTravel\bin\System.Diagnostics.DiagnosticSource.xml
 D:\DATN2019\TopTravel\bin\Microsoft.AspNet.TelemetryCorrelation.xml
-D:\DATN2019\TopTravel\obj\Debug\TopTravel.csproj.CoreCompileInputs.cache
 D:\DATN2019\TopTravel\obj\Debug\TopTravel.csproj.CopyComplete
 D:\DATN2019\TopTravel\obj\Debug\TopTravel.dll
 D:\DATN2019\TopTravel\obj\Debug\TopTravel.pdb
-D:\DATN2019\TopTravel\obj\Debug\TopTravel.csprojAssemblyReference.cache

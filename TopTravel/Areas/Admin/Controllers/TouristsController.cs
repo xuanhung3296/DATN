@@ -9,9 +9,11 @@ using System.Web.Mvc;
 using Microsoft.Ajax.Utilities;
 using PagedList;
 using TopTravel;
+using TopTravel.Areas.Admin.FilterAuthentication;
 
 namespace TopTravel.Areas.Admin.Controllers
 {
+    [CustomAuthenticationFilter]
     public class TouristsController : Controller
     {
         private BookingEntities db = new BookingEntities();

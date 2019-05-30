@@ -12,16 +12,16 @@ namespace TopTravel
     using System;
     using System.Collections.Generic;
     
-    public partial class Roll
+    public partial class Role
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Roll()
+        public Role()
         {
             this.Users = new HashSet<User>();
         }
     
-        public int RollID { get; set; }
-        public string RollName { get; set; }
+        public int RoleID { get; set; }
+        public string RoleName { get; set; }
         public Nullable<int> Status { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

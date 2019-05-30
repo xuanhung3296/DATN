@@ -7,9 +7,11 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using TopTravel;
+using TopTravel.Areas.Admin.FilterAuthentication;
 
 namespace TopTravel.Areas.Admin.Controllers
 {
+    [CustomAuthenticationFilter]
     public class ContactsController : Controller
     {
         private BookingEntities db = new BookingEntities();

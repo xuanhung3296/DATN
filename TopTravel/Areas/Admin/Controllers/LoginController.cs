@@ -24,8 +24,11 @@ namespace TopTravel.Areas.Admin.Controllers
             {
                 if (db.userIsValid(user))
                 {
+                    user = db.Users.First(u => u.Email.Equals(user.Email));
                     FormsAuthentication.SetAuthCookie(user.Email,Convert.ToBoolean(user.RememberMe));
-                    return RedirectToAction("Index", "Rolls");
+                    Session["Email"] = user.Email;
+                    Session["Role"] = user.Role.RoleName;
+                    return RedirectToAction("Index", "Roles");
                 }
                 else
                 {
@@ -35,9 +38,20 @@ namespace TopTravel.Areas.Admin.Controllers
             
             return View("Index",user);
         }
+
+        public string getAvarta()
+        {
+            var email = Convert.ToString(HttpContext.Session["Email"]);
+            var user = db.Users.First(u => u.Email.Equals(email));
+            return user.Avarta;
+
+
+        }
         public ActionResult Logout()
         {
             FormsAuthentication.SignOut();
+            Session["Email"] = null;
+            Session["Role"] = null;
             return RedirectToAction("Index", "Login");
         }
     }

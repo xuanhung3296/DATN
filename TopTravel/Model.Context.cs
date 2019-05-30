@@ -8,14 +8,14 @@
 //------------------------------------------------------------------------------
 
 using System.Linq;
-using TopTravel.Common;
 
 namespace TopTravel
 {
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
-    
+    using TopTravel.Common;
+
     public partial class BookingEntities : DbContext
     {
         public BookingEntities()
@@ -32,7 +32,7 @@ namespace TopTravel
         public virtual DbSet<BookTour> BookTours { get; set; }
         public virtual DbSet<Contact> Contacts { get; set; }
         public virtual DbSet<Feedback> Feedbacks { get; set; }
-        public virtual DbSet<Roll> Rolls { get; set; }
+        public virtual DbSet<Role> Roles { get; set; }
         public virtual DbSet<Tour> Tours { get; set; }
         public virtual DbSet<TourLabel> TourLabels { get; set; }
         public virtual DbSet<TourType> TourTypes { get; set; }
@@ -43,7 +43,7 @@ namespace TopTravel
         public bool userIsValid(User user)
         {
             user.Password = Encrypt.Encode(user.Password);
-            if (Users.Count(u=>u.Email.Equals(user.Email) && u.Password.Equals(user.Password))==0)
+            if (Users.Count(u => u.Email.Equals(user.Email) && u.Password.Equals(user.Password)) == 0)
             {
                 return false;
             }

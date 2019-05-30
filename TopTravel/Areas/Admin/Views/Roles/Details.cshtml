@@ -1,4 +1,4 @@
-﻿@model TopTravel.Roll
+﻿@model TopTravel.Role
 
 @{
     ViewBag.Title = "Details";
@@ -13,11 +13,11 @@
     <div class="card-body">
         <dl class="dl-horizontal">
             <dt>
-                @Html.DisplayNameFor(model => model.RollName)
+                @Html.DisplayNameFor(model => model.RoleName)
             </dt>
 
             <dd>
-                @Html.DisplayFor(model => model.RollName)
+                @Html.DisplayFor(model => model.RoleName)
             </dd>
 
 
@@ -25,6 +25,6 @@
     </div>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.RollID }) |
+    @Html.ActionLink("Edit", "Edit", new { id = Model.RoleID }) |
     @Html.ActionLink("Back to List", "Index")
 </p>

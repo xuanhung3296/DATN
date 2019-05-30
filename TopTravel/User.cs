@@ -22,7 +22,7 @@ namespace TopTravel
         }
     
         public int UserID { get; set; }
-        public Nullable<int> RollID { get; set; }
+        public Nullable<int> RoleID { get; set; }
         public string Name { get; set; }
         public string Gender { get; set; }
         public string Avarta { get; set; }
@@ -37,7 +37,7 @@ namespace TopTravel
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BookTour> BookTours { get; set; }
-        public virtual Roll Roll { get; set; }
+        public virtual Role Role { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Comment> Comments { get; set; }
     }

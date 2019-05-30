@@ -61,12 +61,12 @@ warning 6002: The table/view 'Booking.dbo.Comment' does not have a primary key d
     <Property Name="DateCreated" Type="datetime" />
     <Property Name="Status" Type="int" />
   </EntityType>
-  <EntityType Name="Roll">
+  <EntityType Name="Role">
     <Key>
-      <PropertyRef Name="RollID" />
+      <PropertyRef Name="RoleID" />
     </Key>
-    <Property Name="RollID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="RollName" Type="nvarchar" MaxLength="50" />
+    <Property Name="RoleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RoleName" Type="nvarchar" MaxLength="50" />
     <Property Name="Status" Type="int" />
   </EntityType>
   <EntityType Name="Tour">
@@ -133,7 +133,7 @@ warning 6002: The table/view 'Booking.dbo.Tourist' does not have a primary key d
       <PropertyRef Name="UserID" />
     </Key>
     <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="RollID" Type="int" />
+    <Property Name="RoleID" Type="int" />
     <Property Name="Name" Type="nvarchar" MaxLength="50" />
     <Property Name="Gender" Type="nvarchar" MaxLength="50" />
     <Property Name="Avarta" Type="nvarchar(max)" />
@@ -231,14 +231,14 @@ warning 6002: The table/view 'Booking.dbo.Tourist' does not have a primary key d
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_User_Roll">
-    <End Role="Roll" Type="Self.Roll" Multiplicity="0..1" />
+    <End Role="Role" Type="Self.Role" Multiplicity="0..1" />
     <End Role="User" Type="Self.User" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="Roll">
-        <PropertyRef Name="RollID" />
+      <Principal Role="Role">
+        <PropertyRef Name="RoleID" />
       </Principal>
       <Dependent Role="User">
-        <PropertyRef Name="RollID" />
+        <PropertyRef Name="RoleID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -247,7 +247,7 @@ warning 6002: The table/view 'Booking.dbo.Tourist' does not have a primary key d
     <EntitySet Name="BookTour" EntityType="Self.BookTour" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Contact" EntityType="Self.Contact" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Feedback" EntityType="Self.Feedback" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="Roll" EntityType="Self.Roll" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Tour" EntityType="Self.Tour" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TourLabel" EntityType="Self.TourLabel" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TourType" EntityType="Self.TourType" Schema="dbo" store:Type="Tables" />
@@ -304,7 +304,7 @@ warning 6002: The table/view 'Booking.dbo.Tourist' does not have a primary key d
       <End Role="Tourist" EntitySet="Tourist" />
     </AssociationSet>
     <AssociationSet Name="FK_User_Roll" Association="Self.FK_User_Roll">
-      <End Role="Roll" EntitySet="Roll" />
+      <End Role="Role" EntitySet="Role" />
       <End Role="User" EntitySet="User" />
     </AssociationSet>
   </EntityContainer>

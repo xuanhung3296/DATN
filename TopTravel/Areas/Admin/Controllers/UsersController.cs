@@ -9,10 +9,12 @@ using System.Web;
 using System.Web.Mvc;
 using PagedList;
 using TopTravel;
+using TopTravel.Areas.Admin.FilterAuthentication;
 using TopTravel.Common;
 
 namespace TopTravel.Areas.Admin.Controllers
 {
+    [CustomAuthenticationFilter]
     public class UsersController : Controller
     {
         private BookingEntities db = new BookingEntities();
@@ -33,11 +35,11 @@ namespace TopTravel.Areas.Admin.Controllers
 
             ViewBag.CurrentFilter = searchString;
 
-            var users = from s in db.Users.Include(u => u.Roll)
+            var users = from s in db.Users.Include(u => u.Role)
                         select s;
             if (!String.IsNullOrEmpty(searchString))
             {
-                users = users.Where(s => s.Name.Contains(searchString) || s.Address.Contains(searchString) || s.Email.Contains(searchString) || s.Gender.Contains(searchString) || s.Phone.Contains(searchString) || s.Roll.RollName.Contains(searchString));
+                users = users.Where(s => s.Name.Contains(searchString) || s.Address.Contains(searchString) || s.Email.Contains(searchString) || s.Gender.Contains(searchString) || s.Phone.Contains(searchString) || s.Role.RoleName.Contains(searchString));
             }
 
             users=users.OrderBy(s => s.UserID);
@@ -64,7 +66,7 @@ namespace TopTravel.Areas.Admin.Controllers
         // GET: Admin/Users/Create
         public ActionResult Create()
         {
-            ViewBag.RollID = new SelectList(db.Rolls, "RollID", "RollName");
+            ViewBag.RoleID = new SelectList(db.Roles, "RoleID", "RoleName");
             return View();
         }
 
@@ -73,7 +75,7 @@ namespace TopTravel.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "RollID,Name,Gender,Avarta,Email,Phone,Address,Password,DateCreated,Status")] User user)
+        public ActionResult Create([Bind(Include = "RoleID,Name,Gender,Avarta,Email,Phone,Address,Password,DateCreated,Status")] User user)
         {
             if (ModelState.IsValid)
             {
@@ -108,7 +110,7 @@ namespace TopTravel.Areas.Admin.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.RollID = new SelectList(db.Rolls, "RollID", "RollName", user.RollID);
+            ViewBag.RollID = new SelectList(db.Roles, "RoleID", "RoleName", user.RoleID);
             return View(user);
         }
 
@@ -124,7 +126,7 @@ namespace TopTravel.Areas.Admin.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.RollID = new SelectList(db.Rolls, "RollID", "RollName", user.RollID);
+            ViewBag.RoleID = new SelectList(db.Roles, "RoleID", "RoleName", user.RoleID);
             return View(user);
         }
 
@@ -133,7 +135,7 @@ namespace TopTravel.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "UserID,RollID,Name,Gender,Avarta,Email,Phone,Address,Password,DateCreated,Status")] User user)
+        public ActionResult Edit([Bind(Include = "UserID,RoleID,Name,Gender,Avarta,Email,Phone,Address,Password,DateCreated,Status")] User user)
         {
             if (ModelState.IsValid)
             {
@@ -141,7 +143,7 @@ namespace TopTravel.Areas.Admin.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.RollID = new SelectList(db.Rolls, "RollID", "RollName", user.RollID);
+            ViewBag.RoleID = new SelectList(db.Roles, "RoleID", "RoleName", user.RoleID);
             return View(user);
         }
 

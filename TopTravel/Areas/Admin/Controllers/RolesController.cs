@@ -6,111 +6,115 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 using TopTravel;
+using TopTravel.Areas.Admin.FilterAuthentication;
 
-namespace TopTravel.Areas.Admin.Controllers
+namespace TopTravel.Areas.Admin.Controleers
 {
-    public class RollsController : Controller
+    [CustomAuthenticationFilter]
+    public class RolesController : Controller
     {
         private BookingEntities db = new BookingEntities();
 
-        // GET: Admin/Rolls
+        // GET: Admin/Roles
+       
         public ActionResult Index()
         {
-            return View(db.Rolls.ToList());
+            return View(db.Roles.ToList());
         }
 
-        // GET: Admin/Rolls/Details/5
+        // GET: Admin/Roles/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Roll roll = db.Rolls.Find(id);
-            if (roll == null)
+            Role role = db.Roles.Find(id);
+            if (role == null)
             {
                 return HttpNotFound();
             }
-            return View(roll);
+            return View(role);
         }
 
-        // GET: Admin/Rolls/Create
+        // GET: Admin/Roles/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Admin/Rolls/Create
+        // POST: Admin/Roles/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "RollID,RollName,Status")] Roll roll)
+        public ActionResult Create([Bind(Include = "RoleID,RoleName,Status")] Role role)
         {
             if (ModelState.IsValid)
             {
-                db.Rolls.Add(roll);
+                db.Roles.Add(role);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(roll);
+            return View(role);
         }
 
-        // GET: Admin/Rolls/Edit/5
+        // GET: Admin/Roles/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Roll roll = db.Rolls.Find(id);
-            if (roll == null)
+            Role role = db.Roles.Find(id);
+            if (role == null)
             {
                 return HttpNotFound();
             }
-            return View(roll);
+            return View(role);
         }
 
-        // POST: Admin/Rolls/Edit/5
+        // POST: Admin/Roles/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "RollID,RollName,Status")] Roll roll)
+        public ActionResult Edit([Bind(Include = "RoleID,RoleName,Status")] Role role)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(roll).State = EntityState.Modified;
+                db.Entry(role).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(roll);
+            return View(role);
         }
 
-        // GET: Admin/Rolls/Delete/5
+        // GET: Admin/Roles/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Roll roll = db.Rolls.Find(id);
-            if (roll == null)
+            Role role = db.Roles.Find(id);
+            if (role == null)
             {
                 return HttpNotFound();
             }
-            return View(roll);
+            return View(role);
         }
 
-        // POST: Admin/Rolls/Delete/5
+        // POST: Admin/Roles/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Roll roll = db.Rolls.Find(id);
-            db.Rolls.Remove(roll);
+            Role role = db.Roles.Find(id);
+            db.Roles.Remove(role);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

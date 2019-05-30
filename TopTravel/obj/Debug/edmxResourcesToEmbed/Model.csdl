@@ -52,14 +52,14 @@
     <Property Name="DateCreated" Type="DateTime" Precision="3" />
     <Property Name="Status" Type="Int32" />
   </EntityType>
-  <EntityType Name="Roll">
+  <EntityType Name="Role">
     <Key>
-      <PropertyRef Name="RollID" />
+      <PropertyRef Name="RoleID" />
     </Key>
-    <Property Name="RollID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="RollName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="RoleID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RoleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Status" Type="Int32" />
-    <NavigationProperty Name="Users" Relationship="Self.FK_User_Roll" FromRole="Roll" ToRole="User" />
+    <NavigationProperty Name="Users" Relationship="Self.FK_User_Roll" FromRole="Role" ToRole="User" />
   </EntityType>
   <EntityType Name="Tour">
     <Key>
@@ -113,7 +113,7 @@
       <PropertyRef Name="UserID" />
     </Key>
     <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="RollID" Type="Int32" />
+    <Property Name="RoleID" Type="Int32" />
     <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Gender" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Avarta" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
@@ -126,7 +126,7 @@
     <Property Name="RememberMe" Type="Boolean" />
     <Property Name="IsActive" Type="Boolean" />
     <NavigationProperty Name="BookTours" Relationship="Self.FK_BookTour_User" FromRole="User" ToRole="BookTour" />
-    <NavigationProperty Name="Roll" Relationship="Self.FK_User_Roll" FromRole="User" ToRole="Roll" />
+    <NavigationProperty Name="Role" Relationship="Self.FK_User_Roll" FromRole="User" ToRole="Role" />
     <NavigationProperty Name="Comments" Relationship="Self.FK_Comment_User" FromRole="User" ToRole="Comment" />
   </EntityType>
   <EntityType Name="Comment">
@@ -195,14 +195,14 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_User_Roll">
-    <End Role="Roll" Type="Self.Roll" Multiplicity="0..1" />
+    <End Role="Role" Type="Self.Role" Multiplicity="0..1" />
     <End Role="User" Type="Self.User" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="Roll">
-        <PropertyRef Name="RollID" />
+      <Principal Role="Role">
+        <PropertyRef Name="RoleID" />
       </Principal>
       <Dependent Role="User">
-        <PropertyRef Name="RollID" />
+        <PropertyRef Name="RoleID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -259,7 +259,7 @@
     <EntitySet Name="BookTours" EntityType="Self.BookTour" />
     <EntitySet Name="Contacts" EntityType="Self.Contact" />
     <EntitySet Name="Feedbacks" EntityType="Self.Feedback" />
-    <EntitySet Name="Rolls" EntityType="Self.Roll" />
+    <EntitySet Name="Roles" EntityType="Self.Role" />
     <EntitySet Name="Tours" EntityType="Self.Tour" />
     <EntitySet Name="TourLabels" EntityType="Self.TourLabel" />
     <EntitySet Name="TourTypes" EntityType="Self.TourType" />
@@ -279,7 +279,7 @@
       <End Role="Tourist" EntitySet="Tourists" />
     </AssociationSet>
     <AssociationSet Name="FK_User_Roll" Association="Self.FK_User_Roll">
-      <End Role="Roll" EntitySet="Rolls" />
+      <End Role="Role" EntitySet="Roles" />
       <End Role="User" EntitySet="Users" />
     </AssociationSet>
     <AssociationSet Name="FK_Comment_Tour" Association="Self.FK_Comment_Tour">
