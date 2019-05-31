@@ -22,6 +22,13 @@ namespace TopTravel
             "~/Content/SB_Admin/vendor/datatables/dataTables.bootstrap4.min.js",
             "~/Content/SB_Admin/js/demo/datatables-demo.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/travelix").Include(
+                "~/Content/travelix/styles/bootstrap4/popper.js",
+                "~/Content/travelix/styles/bootstrap4/bootstrap.min.js",
+                "~/Content/travelix/plugins/OwlCarousel2-2.2.1/owl.carousel.js",
+                "~/Content/travelix/plugins/easing/easing.js",
+                "~/Content/travelix/js/custom.js"));
+
 
             bundles.Add(new ScriptBundle("~/bundles/ckeditor").Include(
                 "~/Content/ckeditor/ckeditor.js"));
@@ -48,6 +55,15 @@ namespace TopTravel
             "~/Content/SB_Admin/vendor/fontawesome-free/css/all.min.css",
             "~/Content/SB_Admin/css/sb-admin-2.min.css",
             "~/Content/SB_Admin/vendor/datatables/dataTables.bootstrap4.min.css"));
+
+            bundles.Add(new StyleBundle("~/Content/travelix").Include(
+                "~/Content/travelix/styles/bootstrap4/bootstrap.min.css",
+                "~/Content/travelix/plugins/OwlCarousel2-2.2.1/owl.carousel.css",
+                "~/Content/travelix/plugins/OwlCarousel2-2.2.1/owl.theme.default.css",
+                "~/Content/travelix/plugins/OwlCarousel2-2.2.1/animate.css",
+                "~/Content/travelix/styles/main_styles.css",
+                "~/Content/travelix/styles/responsive.css"
+                ));
         }
     }
 }
