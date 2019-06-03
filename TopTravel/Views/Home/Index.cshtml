@@ -2,19 +2,7 @@
     ViewBag.Title = "Home Page";
 }
 
-<div class="menu trans_500">
-    <div class="menu_content d-flex flex-column align-items-center justify-content-center text-center">
-        <div class="menu_close_container"><div class="menu_close"></div></div>
-        <div class="logo menu_logo"><a href="#"><img src="/Content/travelix/images/logo.png" alt=""></a></div>
-        <ul>
-            <li class="menu_item"><a href="#">home</a></li>
-            <li class="menu_item"><a href="about.html">about us</a></li>
-            <li class="menu_item"><a href="offers.html">offers</a></li>
-            <li class="menu_item"><a href="blog.html">news</a></li>
-            <li class="menu_item"><a href="contact.html">contact</a></li>
-        </ul>
-    </div>
-</div>
+
 
 <!-- Home -->
 
@@ -27,44 +15,24 @@
         <div class="owl-carousel owl-theme home_slider">
 
             <!-- Slider Item -->
-            <div class="owl-item home_slider_item">
-  
-                <div class="home_slider_background" style="background-image:url(/Content/travelix/images/home_slider.jpg)"></div>
-
-                <div class="home_slider_content text-center">
-                    <div class="home_slider_content_inner" data-animation-in="flipInX" data-animation-out="animate-out fadeOut">
-                        <h1>discover</h1>
-                        <h1>the world</h1>
-                        <div class="button home_slider_button"><div class="button_bcg"></div><a href="#">explore now<span></span><span></span><span></span></a></div>
+            
+            @foreach (var item in ViewBag.Banners)
+            {
+                <div class="owl-item home_slider_item">
+                    <div class="home_slider_background" style="background-image:url(@item)"></div>
+                    <div class="home_slider_content text-center">
+                        <div class="home_slider_content_inner" data-animation-in="flipInX" data-animation-out="animate-out fadeOut">
+                            <h1>discover</h1>
+                            <h1>the world</h1>
+                        </div>
                     </div>
                 </div>
-            </div>
+
+
+            }
 
             <!-- Slider Item -->
-            <div class="owl-item home_slider_item">
-                <div class="home_slider_background" style="background-image:url(/Content/travelix/images/home_slider.jpg)"></div>
-
-                <div class="home_slider_content text-center">
-                    <div class="home_slider_content_inner" data-animation-in="flipInX" data-animation-out="animate-out fadeOut">
-                        <h1>discover</h1>
-                        <h1>the world</h1>
-                        <div class="button home_slider_button"><div class="button_bcg"></div><a href="#">explore now<span></span><span></span><span></span></a></div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Slider Item -->
-            <div class="owl-item home_slider_item">
-                <div class="home_slider_background" style="background-image:url(/Content/travelix/images/home_slider.jpg)"></div>
-
-                <div class="home_slider_content text-center">
-                    <div class="home_slider_content_inner" data-animation-in="flipInX" data-animation-out="animate-out fadeOut">
-                        <h1>discover</h1>
-                        <h1>the world</h1>
-                        <div class="button home_slider_button"><div class="button_bcg"></div><a href="#">explore now<span></span><span></span><span></span></a></div>
-                    </div>
-                </div>
-            </div>
+           
 
         </div>
 
@@ -113,15 +81,7 @@
         </div>
 
         <!-- Home Slider Dots -->
-
-        <div class="home_slider_dots">
-            <ul id="home_slider_custom_dots" class="home_slider_custom_dots">
-                <li class="home_slider_custom_dot active"><div></div>01.</li>
-                <li class="home_slider_custom_dot"><div></div>02.</li>
-                <li class="home_slider_custom_dot"><div></div>03.</li>
-            </ul>
-        </div>
-
+      
     </div>
 
 </div>
@@ -141,12 +101,13 @@
 
                 <div class="search_tabs_container">
                     <div class="search_tabs d-flex flex-lg-row flex-column align-items-lg-center align-items-start justify-content-lg-between justify-content-start">
-                        <div class="search_tab active d-flex flex-row align-items-center justify-content-lg-center justify-content-start"><img src="/Content/travelix/images/suitcase.png" alt=""><span>hotels</span></div>
-                        <div class="search_tab d-flex flex-row align-items-center justify-content-lg-center justify-content-start"><img src="/Content/travelix/images/bus.png" alt="">car rentals</div>
-                        <div class="search_tab d-flex flex-row align-items-center justify-content-lg-center justify-content-start"><img src="/Content/travelix/images/departure.png" alt="">flights</div>
-                        <div class="search_tab d-flex flex-row align-items-center justify-content-lg-center justify-content-start"><img src="/Content/travelix/images/island.png" alt="">trips</div>
-                        <div class="search_tab d-flex flex-row align-items-center justify-content-lg-center justify-content-start"><img src="/Content/travelix/images/cruise.png" alt="">cruises</div>
-                        <div class="search_tab d-flex flex-row align-items-center justify-content-lg-center justify-content-start"><img src="/Content/travelix/images/diving.png" alt="">activities</div>
+                        @foreach (var item in ViewBag.TourTypes)
+                        {
+                            <div class="search_tab d-flex flex-row align-items-center justify-content-lg-center justify-content-start">@item</div>
+
+                        }
+
+                       
                     </div>
                 </div>
 
@@ -155,19 +116,19 @@
                 <div class="search_panel active">
                     <form action="#" id="search_form_1" class="search_panel_content d-flex flex-lg-row flex-column align-items-lg-center align-items-start justify-content-lg-between justify-content-start">
                         <div class="search_item">
-                            <div>destination</div>
+                            <div>Điểm đến</div>
                             <input type="text" class="destination search_input" required="required">
                         </div>
                         <div class="search_item">
-                            <div>check in</div>
+                            <div>Khởi hành</div>
                             <input type="text" class="check_in search_input" placeholder="YYYY-MM-DD">
                         </div>
                         <div class="search_item">
-                            <div>check out</div>
+                            <div>Kết thúc</div>
                             <input type="text" class="check_out search_input" placeholder="YYYY-MM-DD">
                         </div>
                         <div class="search_item">
-                            <div>adults</div>
+                            <div>Người lớn</div>
                             <select name="adults" id="adults_1" class="dropdown_item_select search_input">
                                 <option>01</option>
                                 <option>02</option>
@@ -175,196 +136,18 @@
                             </select>
                         </div>
                         <div class="search_item">
-                            <div>children</div>
+                            <div>Trẻ em</div>
                             <select name="children" id="children_1" class="dropdown_item_select search_input">
                                 <option>0</option>
                                 <option>02</option>
                                 <option>03</option>
                             </select>
                         </div>
-                        <button class="button search_button">search<span></span><span></span><span></span></button>
+                        <button class="button search_button">Tìm kiếm<span></span><span></span><span></span></button>
                     </form>
                 </div>
 
-                <!-- Search Panel -->
-
-                <div class="search_panel">
-                    <form action="#" id="search_form_2" class="search_panel_content d-flex flex-lg-row flex-column align-items-lg-center align-items-start justify-content-lg-between justify-content-start">
-                        <div class="search_item">
-                            <div>destination</div>
-                            <input type="text" class="destination search_input" required="required">
-                        </div>
-                        <div class="search_item">
-                            <div>check in</div>
-                            <input type="text" class="check_in search_input" placeholder="YYYY-MM-DD">
-                        </div>
-                        <div class="search_item">
-                            <div>check out</div>
-                            <input type="text" class="check_out search_input" placeholder="YYYY-MM-DD">
-                        </div>
-                        <div class="search_item">
-                            <div>adults</div>
-                            <select name="adults" id="adults_2" class="dropdown_item_select search_input">
-                                <option>01</option>
-                                <option>02</option>
-                                <option>03</option>
-                            </select>
-                        </div>
-                        <div class="search_item">
-                            <div>children</div>
-                            <select name="children" id="children_2" class="dropdown_item_select search_input">
-                                <option>0</option>
-                                <option>02</option>
-                                <option>03</option>
-                            </select>
-                        </div>
-                        <button class="button search_button">search<span></span><span></span><span></span></button>
-                    </form>
-                </div>
-
-                <!-- Search Panel -->
-
-                <div class="search_panel">
-                    <form action="#" id="search_form_3" class="search_panel_content d-flex flex-lg-row flex-column align-items-lg-center align-items-start justify-content-lg-between justify-content-start">
-                        <div class="search_item">
-                            <div>destination</div>
-                            <input type="text" class="destination search_input" required="required">
-                        </div>
-                        <div class="search_item">
-                            <div>check in</div>
-                            <input type="text" class="check_in search_input" placeholder="YYYY-MM-DD">
-                        </div>
-                        <div class="search_item">
-                            <div>check out</div>
-                            <input type="text" class="check_out search_input" placeholder="YYYY-MM-DD">
-                        </div>
-                        <div class="search_item">
-                            <div>adults</div>
-                            <select name="adults" id="adults_3" class="dropdown_item_select search_input">
-                                <option>01</option>
-                                <option>02</option>
-                                <option>03</option>
-                            </select>
-                        </div>
-                        <div class="search_item">
-                            <div>children</div>
-                            <select name="children" id="children_3" class="dropdown_item_select search_input">
-                                <option>0</option>
-                                <option>02</option>
-                                <option>03</option>
-                            </select>
-                        </div>
-                        <button class="button search_button">search<span></span><span></span><span></span></button>
-                    </form>
-                </div>
-
-                <!-- Search Panel -->
-
-                <div class="search_panel">
-                    <form action="#" id="search_form_4" class="search_panel_content d-flex flex-lg-row flex-column align-items-lg-center align-items-start justify-content-lg-between justify-content-start">
-                        <div class="search_item">
-                            <div>destination</div>
-                            <input type="text" class="destination search_input" required="required">
-                        </div>
-                        <div class="search_item">
-                            <div>check in</div>
-                            <input type="text" class="check_in search_input" placeholder="YYYY-MM-DD">
-                        </div>
-                        <div class="search_item">
-                            <div>check out</div>
-                            <input type="text" class="check_out search_input" placeholder="YYYY-MM-DD">
-                        </div>
-                        <div class="search_item">
-                            <div>adults</div>
-                            <select name="adults" id="adults_4" class="dropdown_item_select search_input">
-                                <option>01</option>
-                                <option>02</option>
-                                <option>03</option>
-                            </select>
-                        </div>
-                        <div class="search_item">
-                            <div>children</div>
-                            <select name="children" id="children_4" class="dropdown_item_select search_input">
-                                <option>0</option>
-                                <option>02</option>
-                                <option>03</option>
-                            </select>
-                        </div>
-                        <button class="button search_button">search<span></span><span></span><span></span></button>
-                    </form>
-                </div>
-
-                <!-- Search Panel -->
-
-                <div class="search_panel">
-                    <form action="#" id="search_form_5" class="search_panel_content d-flex flex-lg-row flex-column align-items-lg-center align-items-start justify-content-lg-between justify-content-start">
-                        <div class="search_item">
-                            <div>destination</div>
-                            <input type="text" class="destination search_input" required="required">
-                        </div>
-                        <div class="search_item">
-                            <div>check in</div>
-                            <input type="text" class="check_in search_input" placeholder="YYYY-MM-DD">
-                        </div>
-                        <div class="search_item">
-                            <div>check out</div>
-                            <input type="text" class="check_out search_input" placeholder="YYYY-MM-DD">
-                        </div>
-                        <div class="search_item">
-                            <div>adults</div>
-                            <select name="adults" id="adults_5" class="dropdown_item_select search_input">
-                                <option>01</option>
-                                <option>02</option>
-                                <option>03</option>
-                            </select>
-                        </div>
-                        <div class="search_item">
-                            <div>children</div>
-                            <select name="children" id="children_5" class="dropdown_item_select search_input">
-                                <option>0</option>
-                                <option>02</option>
-                                <option>03</option>
-                            </select>
-                        </div>
-                        <button class="button search_button">search<span></span><span></span><span></span></button>
-                    </form>
-                </div>
-
-                <!-- Search Panel -->
-
-                <div class="search_panel">
-                    <form action="#" id="search_form_6" class="search_panel_content d-flex flex-lg-row flex-column align-items-lg-center align-items-start justify-content-lg-between justify-content-start">
-                        <div class="search_item">
-                            <div>destination</div>
-                            <input type="text" class="destination search_input" required="required">
-                        </div>
-                        <div class="search_item">
-                            <div>check in</div>
-                            <input type="text" class="check_in search_input" placeholder="YYYY-MM-DD">
-                        </div>
-                        <div class="search_item">
-                            <div>check out</div>
-                            <input type="text" class="check_out search_input" placeholder="YYYY-MM-DD">
-                        </div>
-                        <div class="search_item">
-                            <div>adults</div>
-                            <select name="adults" id="adults_6" class="dropdown_item_select search_input">
-                                <option>01</option>
-                                <option>02</option>
-                                <option>03</option>
-                            </select>
-                        </div>
-                        <div class="search_item">
-                            <div>children</div>
-                            <select name="children" id="children_6" class="dropdown_item_select search_input">
-                                <option>0</option>
-                                <option>02</option>
-                                <option>03</option>
-                            </select>
-                        </div>
-                        <button class="button search_button">search<span></span><span></span><span></span></button>
-                    </form>
-                </div>
+               
             </div>
         </div>
     </div>
@@ -376,13 +159,13 @@
     <div class="container">
         <div class="row">
             <div class="col">
-                <h2 class="intro_title text-center">We have the best tours</h2>
+                <h2 class="intro_title text-center">Chúng tôi luôn mang lại cho bạn sự lựa chọn tốt nhất</h2>
             </div>
         </div>
         <div class="row">
             <div class="col-lg-10 offset-lg-1">
                 <div class="intro_text text-center">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eu convallis tortor. Suspendisse potenti. In faucibus massa arcu, vitae cursus mi hendrerit nec. </p>
+                    <p>Khám phá và đặt trước các hoạt động du lịch đặc sắc với giá độc quyền tốt nhất </p>
                 </div>
             </div>
         </div>
@@ -401,13 +184,6 @@
                         <div class="intro_center text-center">
                             <h1>Mauritius</h1>
                             <div class="intro_price">From $1450</div>
-                            <div class="rating rating_4">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -426,14 +202,7 @@
                         <div class="intro_center text-center">
                             <h1>Greece</h1>
                             <div class="intro_price">From $1450</div>
-                            <div class="rating rating_4">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
                             </div>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -451,13 +220,7 @@
                         <div class="intro_center text-center">
                             <h1>Scotland</h1>
                             <div class="intro_price">From $1450</div>
-                            <div class="rating rating_4">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                            </div>
+                            
                         </div>
                     </div>
                 </div>
@@ -470,9 +233,11 @@
 <!-- CTA -->
 
 <div class="cta">
-   
-    <div class="cta_background" style="background-image:url(/Content/travelix/images/cta.jpg)"></div>
 
+    <div class="cta_background" style="background-image:url(/Content/travelix/images/cta.jpg)"></div>
+    <div class="col text-center" style="margin-bottom: 50px">
+        <h2 class="section_title" style="color: #eda84a; font-size: 34px">Đến với TopTravel các bạn sẽ được những gì ?</h2> 
+    </div>
     <div class="container">
         <div class="row">
             <div class="col">
@@ -484,44 +249,23 @@
 
                         <!-- CTA Slider Item -->
                         <div class="owl-item cta_item text-center">
-                            <div class="cta_title">maldives deluxe package</div>
-                            <div class="rating_r rating_r_4">
-                                <i></i>
-                                <i></i>
-                                <i></i>
-                                <i></i>
-                                <i></i>
-                            </div>
-                            <p class="cta_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eu convallis tortor. Suspendisse potenti. In faucibus massa arcu, vitae cursus mi hendrerit nec. Proin bibendum, augue faucibus tincidunt ultrices, tortor augue gravida lectus, et efficitur enim justo vel ligula.</p>
-                            <div class="button cta_button"><div class="button_bcg"></div><a href="#">book now<span></span><span></span><span></span></a></div>
+                            <div class="cta_title">Trải nghiệm chọn lọc</div>
+                            <p class="cta_text" style="font-size: 16px">Luôn đưa đến cho người dùng nhiều sự lựa chọn phù hợp nhất với sở thích, lứa tuổi và kinh phí</p>
+
                         </div>
 
                         <!-- CTA Slider Item -->
                         <div class="owl-item cta_item text-center">
-                            <div class="cta_title">maldives deluxe package</div>
-                            <div class="rating_r rating_r_4">
-                                <i></i>
-                                <i></i>
-                                <i></i>
-                                <i></i>
-                                <i></i>
-                            </div>
-                            <p class="cta_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eu convallis tortor. Suspendisse potenti. In faucibus massa arcu, vitae cursus mi hendrerit nec. Proin bibendum, augue faucibus tincidunt ultrices, tortor augue gravida lectus, et efficitur enim justo vel ligula.</p>
-                            <div class="button cta_button"><div class="button_bcg"></div><a href="#">book now<span></span><span></span><span></span></a></div>
+                            <div class="cta_title">Chính sách tốt</div>
+                            <p class="cta_text" style="font-size: 18px">Với nhiều chính sách tốt, hỗ trợ người dùng một cách nhanh nhất. Giảm giá thành lên đến 60%</p>
+
                         </div>
 
                         <!-- CTA Slider Item -->
                         <div class="owl-item cta_item text-center">
-                            <div class="cta_title">maldives deluxe package</div>
-                            <div class="rating_r rating_r_4">
-                                <i></i>
-                                <i></i>
-                                <i></i>
-                                <i></i>
-                                <i></i>
-                            </div>
-                            <p class="cta_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eu convallis tortor. Suspendisse potenti. In faucibus massa arcu, vitae cursus mi hendrerit nec. Proin bibendum, augue faucibus tincidunt ultrices, tortor augue gravida lectus, et efficitur enim justo vel ligula.</p>
-                            <div class="button cta_button"><div class="button_bcg"></div><a href="#">book now<span></span><span></span><span></span></a></div>
+                            <div class="cta_title">Đặt tour dễ dàng và nhanh chóng</div>
+                            <p class="cta_text" style="font-size: 18px">Chỉ với các bước đơn giản để có thể tham gia vào các tour du lịch thú vị</p>
+
                         </div>
 
                     </div>
@@ -534,7 +278,11 @@
                         <linearGradient id='cta_grad_prev'>
                         <stop offset='0%' stop-color='#fa9e1b' />
 
+
+
                         <stop offset='100%' stop-color='#8d4fff' />
+
+
 
 									</linearGradient>
 								</defs>
@@ -542,8 +290,12 @@
 								M26,23.091C26,27.459,22.545,31,18.285,31H9.714C5.454,31,2,27.459,2,23.091V9.909C2,5.541,5.454,2,9.714,2h8.571
 								C22.545,2,26,5.541,26,9.909V23.091z" />
 
+
+
                         <polygon class="nav_arrow" fill="#F3F6F9" points="15.044,22.222 16.377,20.888 12.374,16.885 16.377,12.882 15.044,11.55 9.708,16.885 11.04,18.219
 								11.042,18.219 " />
+
+
 
 							</svg>
                     </div>
@@ -556,7 +308,11 @@
                         <linearGradient id='cta_grad_next'>
                         <stop offset='0%' stop-color='#fa9e1b' />
 
+
+
                         <stop offset='100%' stop-color='#8d4fff' />
+
+
 
 									</linearGradient>
 								</defs>
@@ -564,8 +320,12 @@
 							M26,23.091C26,27.459,22.545,31,18.285,31H9.714C5.454,31,2,27.459,2,23.091V9.909C2,5.541,5.454,2,9.714,2h8.571
 							C22.545,2,26,5.541,26,9.909V23.091z" />
 
+
+
                         <polygon class="nav_arrow" fill="#F3F6F9" points="13.044,11.551 11.71,12.885 15.714,16.888 11.71,20.891 13.044,22.224 18.379,16.888 17.048,15.554
 							17.046,15.554 " />
+
+
 
 							</svg>
                     </div>
@@ -603,14 +363,7 @@
                         <div class="col-lg-6">
                             <div class="offers_content">
                                 <div class="offers_price">$70<span>per night</span></div>
-                                <div class="rating_r rating_r_4 offers_rating">
-                                    <i></i>
-                                    <i></i>
-                                    <i></i>
-                                    <i></i>
-                                    <i></i>
-                                </div>
-                                <p class="offers_text">Suspendisse potenti. In faucibus massa. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eu convallis tortor.</p>
+                               <p class="offers_text">Suspendisse potenti. In faucibus massa. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eu convallis tortor.</p>
                                 <div class="offers_icons">
                                     <ul class="offers_icons_list">
                                         <li class="offers_icons_item"><img src="/Content/travelix/images/post.png" alt=""></li>
@@ -640,13 +393,6 @@
                         <div class="col-lg-6">
                             <div class="offers_content">
                                 <div class="offers_price">$50<span>per night</span></div>
-                                <div class="rating_r rating_r_4 offers_rating">
-                                    <i></i>
-                                    <i></i>
-                                    <i></i>
-                                    <i></i>
-                                    <i></i>
-                                </div>
                                 <p class="offers_text">Suspendisse potenti. In faucibus massa. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eu convallis tortor.</p>
                                 <div class="offers_icons">
                                     <ul class="offers_icons_list">
@@ -677,14 +423,7 @@
                         <div class="col-lg-6">
                             <div class="offers_content">
                                 <div class="offers_price">$90<span>per night</span></div>
-                                <div class="rating_r rating_r_4 offers_rating">
-                                    <i></i>
-                                    <i></i>
-                                    <i></i>
-                                    <i></i>
-                                    <i></i>
-                                </div>
-                                <p class="offers_text">Suspendisse potenti. In faucibus massa. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eu convallis tortor.</p>
+                               <p class="offers_text">Suspendisse potenti. In faucibus massa. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eu convallis tortor.</p>
                                 <div class="offers_icons">
                                     <ul class="offers_icons_list">
                                         <li class="offers_icons_item"><img src="/Content/travelix/images/post.png" alt=""></li>
@@ -714,14 +453,7 @@
                         <div class="col-lg-6">
                             <div class="offers_content">
                                 <div class="offers_price">$30<span>per night</span></div>
-                                <div class="rating_r rating_r_4 offers_rating">
-                                    <i></i>
-                                    <i></i>
-                                    <i></i>
-                                    <i></i>
-                                    <i></i>
-                                </div>
-                                <p class="offers_text">Suspendisse potenti. In faucibus massa. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eu convallis tortor.</p>
+                               <p class="offers_text">Suspendisse potenti. In faucibus massa. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eu convallis tortor.</p>
                                 <div class="offers_icons">
                                     <ul class="offers_icons_list">
                                         <li class="offers_icons_item"><img src="/Content/travelix/images/post.png" alt=""></li>
@@ -921,137 +653,3 @@
     </div>
 </div>
 
-<div class="trending">
-    <div class="container">
-        <div class="row">
-            <div class="col text-center">
-                <h2 class="section_title">trending now</h2>
-            </div>
-        </div>
-        <div class="row trending_container">
-
-            <!-- Trending Item -->
-            <div class="col-lg-3 col-sm-6">
-                <div class="trending_item clearfix">
-                    <div class="trending_image"><img src="/Content/travelix/images/trend_1.png" ></div>
-                    <div class="trending_content">
-                        <div class="trending_title"><a href="#">grand hotel</a></div>
-                        <div class="trending_price">From $182</div>
-                        <div class="trending_location">madrid, spain</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Trending Item -->
-            <div class="col-lg-3 col-sm-6">
-                <div class="trending_item clearfix">
-                    <div class="trending_image"><img src="/Content/travelix/images/trend_2.png" ></div>
-                    <div class="trending_content">
-                        <div class="trending_title"><a href="#">mars hotel</a></div>
-                        <div class="trending_price">From $182</div>
-                        <div class="trending_location">madrid, spain</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Trending Item -->
-            <div class="col-lg-3 col-sm-6">
-                <div class="trending_item clearfix">
-                    <div class="trending_image"><img src="/Content/travelix/images/trend_3.png" ></div>
-                    <div class="trending_content">
-                        <div class="trending_title"><a href="#">queen hotel</a></div>
-                        <div class="trending_price">From $182</div>
-                        <div class="trending_location">madrid, spain</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Trending Item -->
-            <div class="col-lg-3 col-sm-6">
-                <div class="trending_item clearfix">
-                    <div class="trending_image"><img src="/Content/travelix/images/trend_4.png"></div>
-                    <div class="trending_content">
-                        <div class="trending_title"><a href="#">mars hotel</a></div>
-                        <div class="trending_price">From $182</div>
-                        <div class="trending_location">madrid, spain</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Trending Item -->
-            <div class="col-lg-3 col-sm-6">
-                <div class="trending_item clearfix">
-                    <div class="trending_image"><img src="/Content/travelix/images/trend_5.png"></div>
-                    <div class="trending_content">
-                        <div class="trending_title"><a href="#">grand hotel</a></div>
-                        <div class="trending_price">From $182</div>
-                        <div class="trending_location">madrid, spain</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Trending Item -->
-            <div class="col-lg-3 col-sm-6">
-                <div class="trending_item clearfix">
-                    <div class="trending_image"><img src="/Content/travelix/images/trend_6.png" ></div>
-                    <div class="trending_content">
-                        <div class="trending_title"><a href="#">mars hotel</a></div>
-                        <div class="trending_price">From $182</div>
-                        <div class="trending_location">madrid, spain</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Trending Item -->
-            <div class="col-lg-3 col-sm-6">
-                <div class="trending_item clearfix">
-                    <div class="trending_image"><img src="/Content/travelix/images/trend_7.png"></div>
-                    <div class="trending_content">
-                        <div class="trending_title"><a href="#">queen hotel</a></div>
-                        <div class="trending_price">From $182</div>
-                        <div class="trending_location">madrid, spain</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Trending Item -->
-            <div class="col-lg-3 col-sm-6">
-                <div class="trending_item clearfix">
-                    <div class="trending_image"><img src="/Content/travelix/images/trend_8.png" ></div>
-                    <div class="trending_content">
-                        <div class="trending_title"><a href="#">mars hotel</a></div>
-                        <div class="trending_price">From $182</div>
-                        <div class="trending_location">madrid, spain</div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </div>
-</div>
-
-<div class="contact">
-    <div class="contact_background" style="background-image:url(/Content/travelix/images/contact.png)"></div>
-
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-5">
-                <div class="contact_image">
-
-                </div>
-            </div>
-            <div class="col-lg-7">
-                <div class="contact_form_container">
-                    <div class="contact_title">get in touch</div>
-                    <form action="#" id="contact_form" class="contact_form">
-                        <input type="text" id="contact_form_name" class="contact_form_name input_field" placeholder="Name" required="required" data-error="Name is required.">
-                        <input type="text" id="contact_form_email" class="contact_form_email input_field" placeholder="E-mail" required="required" data-error="Email is required.">
-                        <input type="text" id="contact_form_subject" class="contact_form_subject input_field" placeholder="Subject" required="required" data-error="Subject is required.">
-                        <textarea id="contact_form_message" class="text_field contact_form_message" name="message" rows="4" placeholder="Message" required="required" data-error="Please, write us a message."></textarea>
-                        <button type="submit" id="form_submit_button" class="form_submit_button button">send message<span></span><span></span><span></span></button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>

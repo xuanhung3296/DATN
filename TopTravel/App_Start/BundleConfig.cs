@@ -18,7 +18,7 @@ namespace TopTravel
                 "~/Content/SB_Admin/js/sb-admin-2.min.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/sb_admin/table").Include(
-           "~/Content/SB_Admin/vendor/datatables/jquery.dataTables.min.js",
+            "~/Content/SB_Admin/vendor/datatables/jquery.dataTables.min.js",
             "~/Content/SB_Admin/vendor/datatables/dataTables.bootstrap4.min.js",
             "~/Content/SB_Admin/js/demo/datatables-demo.js"));
 
@@ -58,6 +58,7 @@ namespace TopTravel
 
             bundles.Add(new StyleBundle("~/Content/travelix").Include(
                 "~/Content/travelix/styles/bootstrap4/bootstrap.min.css",
+                "~/Content/travelix/plugins/font-awesome-4.7.0/css/font-awesome.min.css",
                 "~/Content/travelix/plugins/OwlCarousel2-2.2.1/owl.carousel.css",
                 "~/Content/travelix/plugins/OwlCarousel2-2.2.1/owl.theme.default.css",
                 "~/Content/travelix/plugins/OwlCarousel2-2.2.1/animate.css",
