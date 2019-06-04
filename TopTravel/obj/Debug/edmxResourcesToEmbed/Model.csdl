@@ -48,7 +48,7 @@
     <Property Name="Company" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="FeedbackContent" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="FeedbackContent" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="DateCreated" Type="DateTime" Precision="3" />
     <Property Name="Status" Type="Int32" />
   </EntityType>
@@ -78,9 +78,9 @@
     <Property Name="TotalSeat" Type="Int32" />
     <Property Name="SeatAvailability" Type="Int32" />
     <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="TourProgram" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-    <Property Name="TourDetail" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-    <Property Name="Contact" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="TourProgram" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="TourDetail" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Contact" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="DateCreated" Type="DateTime" Precision="3" />
     <Property Name="IsHot" Type="Boolean" />
     <Property Name="OnHomePage" Type="Boolean" />
@@ -134,7 +134,7 @@
       <PropertyRef Name="TourID" />
     </Key>
     <Property Name="TourID" Type="Int32" Nullable="false" />
-    <Property Name="CommentContent" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="CommentContent" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="DateCreated" Type="DateTime" Precision="3" />
     <Property Name="Status" Type="Int32" />
     <Property Name="UserID" Type="Int32" />

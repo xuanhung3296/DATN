@@ -28,7 +28,7 @@ warning 6002: The table/view 'Booking.dbo.Comment' does not have a primary key d
       <PropertyRef Name="TourID" />
     </Key>
     <Property Name="TourID" Type="int" Nullable="false" />
-    <Property Name="CommentContent" Type="text" />
+    <Property Name="CommentContent" Type="nvarchar(max)" />
     <Property Name="DateCreated" Type="datetime" />
     <Property Name="Status" Type="int" />
     <Property Name="UserID" Type="int" />
@@ -57,7 +57,7 @@ warning 6002: The table/view 'Booking.dbo.Comment' does not have a primary key d
     <Property Name="Company" Type="nvarchar" MaxLength="50" />
     <Property Name="Address" Type="nvarchar" MaxLength="50" />
     <Property Name="Title" Type="nvarchar" MaxLength="50" />
-    <Property Name="FeedbackContent" Type="text" />
+    <Property Name="FeedbackContent" Type="nvarchar(max)" />
     <Property Name="DateCreated" Type="datetime" />
     <Property Name="Status" Type="int" />
   </EntityType>
@@ -86,9 +86,9 @@ warning 6002: The table/view 'Booking.dbo.Comment' does not have a primary key d
     <Property Name="TotalSeat" Type="int" />
     <Property Name="SeatAvailability" Type="int" />
     <Property Name="Image" Type="nvarchar(max)" />
-    <Property Name="TourProgram" Type="text" />
-    <Property Name="TourDetail" Type="text" />
-    <Property Name="Contact" Type="text" />
+    <Property Name="TourProgram" Type="nvarchar(max)" />
+    <Property Name="TourDetail" Type="nvarchar(max)" />
+    <Property Name="Contact" Type="nvarchar(max)" />
     <Property Name="DateCreated" Type="datetime" />
     <Property Name="IsHot" Type="bit" />
     <Property Name="OnHomePage" Type="bit" />

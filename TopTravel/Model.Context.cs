@@ -7,14 +7,12 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using System.Linq;
-
 namespace TopTravel
 {
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
-    using TopTravel.Common;
+    using System.Linq;
 
     public partial class BookingEntities : DbContext
     {
@@ -42,7 +40,7 @@ namespace TopTravel
 
         public bool userIsValid(User user)
         {
-            user.Password = Encrypt.Encode(user.Password);
+            user.Password = Common.Encrypt.Encode(user.Password);
             if (Users.Count(u => u.Email.Equals(user.Email) && u.Password.Equals(user.Password)) == 0)
             {
                 return false;

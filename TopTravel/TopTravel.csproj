@@ -2615,13 +2615,6 @@
     <Content Include="Areas\Admin\Views\Tourists\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Tourists\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Login\Index.cshtml" />
-    <EntityDeploy Include="Model.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Model.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Model.edmx.diagram">
-      <DependentUpon>Model.edmx</DependentUpon>
-    </Content>
     <Content Include="Content\travelix\fonts\beyond_the_mountains.otf" />
     <Content Include="Content\travelix\fonts\beyond_the_mountains.ttf" />
     <Content Include="Content\travelix\plugins\font-awesome-4.7.0\fonts\fontawesome-webfont.eot" />
@@ -2657,6 +2650,13 @@
     <Content Include="Content\travelix\plugins\font-awesome-4.7.0\scss\_screen-reader.scss" />
     <Content Include="Content\travelix\plugins\font-awesome-4.7.0\scss\_stacked.scss" />
     <Content Include="Content\travelix\plugins\font-awesome-4.7.0\scss\_variables.scss" />
+    <EntityDeploy Include="Model.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Model.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Model.edmx.diagram">
+      <DependentUpon>Model.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
