@@ -13,6 +13,7 @@ namespace TopTravel
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     using System.Linq;
+    using TopTravel.Common;
 
     public partial class BookingEntities : DbContext
     {
@@ -40,7 +41,7 @@ namespace TopTravel
 
         public bool userIsValid(User user)
         {
-            user.Password = Common.Encrypt.Encode(user.Password);
+            user.Password = Encrypt.Encode(user.Password);
             if (Users.Count(u => u.Email.Equals(user.Email) && u.Password.Equals(user.Password)) == 0)
             {
                 return false;

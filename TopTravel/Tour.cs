@@ -28,8 +28,8 @@ namespace TopTravel
         public string Destination { get; set; }
         public Nullable<System.DateTime> StartDate { get; set; }
         public string Duration { get; set; }
-        public Nullable<float> Price { get; set; }
-        public Nullable<float> ListedPrice { get; set; }
+        public Nullable<decimal> Price { get; set; }
+        public Nullable<decimal> ListedPrice { get; set; }
         public Nullable<int> TotalSeat { get; set; }
         public Nullable<int> SeatAvailability { get; set; }
         public string Image { get; set; }

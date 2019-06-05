@@ -34,6 +34,19 @@ namespace TopTravel.Controllers
 
             ViewBag.TourTypes = tourTypes;
 
+
+            var listDestination = db.Tours.OrderBy(t => t.StartDate).Where(t => t.OnHomePage == true).Take(3);
+
+            ViewBag.listDestination = listDestination;
+
+            var listTour = db.Tours.OrderBy(t => t.StartDate).Where(t => t.IsHot == true).Take(4);
+
+            ViewBag.listTour = listTour;
+
+            var listFeedback = db.Feedbacks.Where(t => t.InfomationType.Equals("Khen"));
+
+            ViewBag.listFeedback = listFeedback;
+
             return View();
         }
 

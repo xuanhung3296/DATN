@@ -72,7 +72,7 @@ namespace TopTravel.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "FeedbackID,InfomationType,Email,Name,Phone,Company,Address,Title,Feedback1,DateCreated,Status")] Feedback feedback)
+        public ActionResult Create([Bind(Include = "FeedbackID,InfomationType,Email,Name,Phone,Company,Address,Title,FeedbackContent,DateCreated,Status")] Feedback feedback)
         {
             if (ModelState.IsValid)
             {
@@ -104,7 +104,7 @@ namespace TopTravel.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "FeedbackID,InfomationType,Email,Name,Phone,Company,Address,Title,Feedback1,DateCreated,Status")] Feedback feedback)
+        public ActionResult Edit([Bind(Include = "FeedbackID,InfomationType,Email,Name,Phone,Company,Address,Title,FeedbackContent,DateCreated,Status")] Feedback feedback)
         {
             if (ModelState.IsValid)
             {

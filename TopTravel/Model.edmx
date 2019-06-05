@@ -86,8 +86,8 @@ warning 6002: The table/view 'Booking.dbo.Comment' does not have a primary key d
           <Property Name="Destination" Type="nvarchar" MaxLength="50" />
           <Property Name="StartDate" Type="date" />
           <Property Name="Duration" Type="nvarchar" MaxLength="50" />
-          <Property Name="Price" Type="real" />
-          <Property Name="ListedPrice" Type="real" />
+          <Property Name="Price" Type="money" />
+          <Property Name="ListedPrice" Type="money" />
           <Property Name="TotalSeat" Type="int" />
           <Property Name="SeatAvailability" Type="int" />
           <Property Name="Image" Type="nvarchar(max)" />
@@ -391,8 +391,8 @@ warning 6002: The table/view 'Booking.dbo.Tourist' does not have a primary key d
           <Property Name="Destination" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="StartDate" Type="DateTime" Precision="0" />
           <Property Name="Duration" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Price" Type="Single" />
-          <Property Name="ListedPrice" Type="Single" />
+          <Property Name="Price" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="ListedPrice" Type="Decimal" Precision="19" Scale="4" />
           <Property Name="TotalSeat" Type="Int32" />
           <Property Name="SeatAvailability" Type="Int32" />
           <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
