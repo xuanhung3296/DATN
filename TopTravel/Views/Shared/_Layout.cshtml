@@ -3,9 +3,10 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - TopTravel</title>
-    @Styles.Render("~/Content/travelix")
+    <title>TopTravel</title>
     @Scripts.Render("~/bundles/modernizr")
+    @RenderSection("csslib", required: false)
+    @RenderSection("scripts", required: false)
 </head>
 <body>
     <div class="super_container">
@@ -55,7 +56,7 @@
                                     <li class="main_nav_item"><a href="contact.html">Liên hệ</a></li>
                                 </ul>
                             </div>
-                          
+
 
                             <div class="hamburger">
                                 <i class="fa fa-bars trans_200"></i>
@@ -186,11 +187,12 @@
             </div>
         </footer>
 
-   
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @Scripts.Render("~/bundles/travelix")
-    @RenderSection("scripts", required: false)
+
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")
+        @Scripts.Render("~/bundles/travelix")
+       
+      
     </div>
 </body>
 </html>

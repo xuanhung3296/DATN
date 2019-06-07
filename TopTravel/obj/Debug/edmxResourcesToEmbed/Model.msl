@@ -21,6 +21,7 @@
           <ScalarProperty Name="PaymentMethod" ColumnName="PaymentMethod" />
           <ScalarProperty Name="Status" ColumnName="Status" />
           <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -121,7 +122,6 @@
           <ScalarProperty Name="Password" ColumnName="Password" />
           <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
           <ScalarProperty Name="Status" ColumnName="Status" />
-          <ScalarProperty Name="RememberMe" ColumnName="RememberMe" />
           <ScalarProperty Name="IsActive" ColumnName="IsActive" />
         </MappingFragment>
       </EntityTypeMapping>

@@ -18,8 +18,9 @@
     <Property Name="NumberOfChildrent" Type="int" />
     <Property Name="Amount" Type="real" />
     <Property Name="PaymentMethod" Type="nvarchar" MaxLength="50" />
-    <Property Name="Status" Type="nchar" MaxLength="10" />
+    <Property Name="Status" Type="int" />
     <Property Name="UserID" Type="int" />
+    <Property Name="DateCreated" Type="date" />
   </EntityType>
   <!--Errors Found During Generation:
 warning 6002: The table/view 'Booking.dbo.Comment' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -29,7 +30,7 @@ warning 6002: The table/view 'Booking.dbo.Comment' does not have a primary key d
     </Key>
     <Property Name="TourID" Type="int" Nullable="false" />
     <Property Name="CommentContent" Type="nvarchar(max)" />
-    <Property Name="DateCreated" Type="datetime" />
+    <Property Name="DateCreated" Type="date" />
     <Property Name="Status" Type="int" />
     <Property Name="UserID" Type="int" />
   </EntityType>
@@ -58,7 +59,7 @@ warning 6002: The table/view 'Booking.dbo.Comment' does not have a primary key d
     <Property Name="Address" Type="nvarchar" MaxLength="50" />
     <Property Name="Title" Type="nvarchar" MaxLength="50" />
     <Property Name="FeedbackContent" Type="nvarchar(max)" />
-    <Property Name="DateCreated" Type="datetime" />
+    <Property Name="DateCreated" Type="date" />
     <Property Name="Status" Type="int" />
   </EntityType>
   <EntityType Name="Role">
@@ -89,7 +90,7 @@ warning 6002: The table/view 'Booking.dbo.Comment' does not have a primary key d
     <Property Name="TourProgram" Type="nvarchar(max)" />
     <Property Name="TourDetail" Type="nvarchar(max)" />
     <Property Name="Contact" Type="nvarchar(max)" />
-    <Property Name="DateCreated" Type="datetime" />
+    <Property Name="DateCreated" Type="date" />
     <Property Name="IsHot" Type="bit" />
     <Property Name="OnHomePage" Type="bit" />
     <Property Name="Status" Type="int" />
@@ -141,9 +142,8 @@ warning 6002: The table/view 'Booking.dbo.Tourist' does not have a primary key d
     <Property Name="Phone" Type="nvarchar" MaxLength="50" />
     <Property Name="Address" Type="nvarchar" MaxLength="50" />
     <Property Name="Password" Type="nvarchar(max)" />
-    <Property Name="DateCreated" Type="datetime" />
+    <Property Name="DateCreated" Type="date" />
     <Property Name="Status" Type="int" />
-    <Property Name="RememberMe" Type="bit" />
     <Property Name="IsActive" Type="bit" />
   </EntityType>
   <Association Name="FK_BookTour_Tour">

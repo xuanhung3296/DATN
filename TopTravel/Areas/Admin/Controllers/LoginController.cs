@@ -25,7 +25,7 @@ namespace TopTravel.Areas.Admin.Controllers
                 if (db.userIsValid(user))
                 {
                     user = db.Users.First(u => u.Email.Equals(user.Email));
-                    FormsAuthentication.SetAuthCookie(user.Email,Convert.ToBoolean(user.RememberMe));
+                    FormsAuthentication.SetAuthCookie(user.Email,true);
                     Session["Email"] = user.Email;
                     Session["Role"] = user.Role.RoleName;
                     return RedirectToAction("Index", "Roles");

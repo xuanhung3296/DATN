@@ -47,8 +47,8 @@
                                             </div>
                                             <div class="form-group">
                                                 <div class="custom-control custom-checkbox small">
-                                                    @Html.CheckBox("RememberMe", Model == null ? false : (Model.RememberMe == null ? false : true), new { @class = "custom-control-input" })
-                                                    @Html.LabelFor(u => u.RememberMe, new { @class = "custom-control-label" })
+                                                    @Html.CheckBox("RememberMe", new { @class = "custom-control-input" })
+                                                  
                                                 </div>
                                             </div>
                                             <input type="submit" value="Login" class="btn btn-primary btn-user btn-block" />

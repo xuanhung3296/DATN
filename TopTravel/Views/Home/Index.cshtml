@@ -2,6 +2,9 @@
     ViewBag.Title = "Home Page";
 }
 
+@section csslib{
+    @Styles.Render("~/Content/travelix")
+}
 
 
 <!-- Home -->
@@ -46,7 +49,31 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
             <stop offset='100%' stop-color='#8d4fff' />
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -58,8 +85,32 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
             <polygon class="nav_arrow" fill="#F3F6F9" points="15.044,22.222 16.377,20.888 12.374,16.885 16.377,12.882 15.044,11.55 9.708,16.885 11.04,18.219
 					11.042,18.219 " />
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -76,7 +127,31 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
             <stop offset='100%' stop-color='#8d4fff' />
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -88,8 +163,32 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
             <polygon class="nav_arrow" fill="#F3F6F9" points="13.044,11.551 11.71,12.885 15.714,16.888 11.71,20.891 13.044,22.224 18.379,16.888 17.048,15.554
 				17.046,15.554 " />
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -272,7 +371,55 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                         <stop offset='100%' stop-color='#8d4fff' />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -292,8 +439,56 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                         <polygon class="nav_arrow" fill="#F3F6F9" points="15.044,22.222 16.377,20.888 12.374,16.885 16.377,12.882 15.044,11.55 9.708,16.885 11.04,18.219
 								11.042,18.219 " />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -318,7 +513,55 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                         <stop offset='100%' stop-color='#8d4fff' />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -338,8 +581,56 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                         <polygon class="nav_arrow" fill="#F3F6F9" points="13.044,11.551 11.71,12.885 15.714,16.888 11.71,20.891 13.044,22.224 18.379,16.888 17.048,15.554
 							17.046,15.554 " />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -385,26 +676,26 @@
                             </div>
                             <div class="col-lg-6">
                                 <div class="offers_content">
-                                    <h3 style="font-size: 26px;font-weight: 550;color: #2d2c2c;">@item.TourName</h3>                                    
+                                    <h3 style="font-size: 26px;font-weight: 550;color: #2d2c2c;">@item.TourName</h3>
                                     <div class="offers_price">
                                         <p class="offers_text">Chỉ từ</p>
                                         @string.Format("{0:0,0}", @item.ListedPrice)đ <br />
                                         <p class="offers_text"><del>@string.Format("{0:0,0}", @item.Price)đ</del></p>
                                     </div>
-                                <p class="offers_text">
-                                    Nơi khởi hành : @item.Departure <br />
-                                    Ngày khởi hành : @item.StartDate.ToString("dd/MM/yyyy") <br />
-                                    Số ngày : @item.Duration <br />
-                                    Số chỗ còn nhận : @item.SeatAvailability
-                                </p>
-                                <div class="offers_link"><a href="offers.html" style="font-size: 16px">read more</a></div>
+                                    <p class="offers_text">
+                                        Nơi khởi hành : @item.Departure <br />
+                                        Ngày khởi hành : @item.StartDate.ToString("dd/MM/yyyy") <br />
+                                        Số ngày : @item.Duration <br />
+                                        Số chỗ còn nhận : @item.SeatAvailability
+                                    </p>
+                                    <div class="offers_link"><a href="offers.html" style="font-size: 16px">read more</a></div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-        }
+            }
 
         </div>
     </div>
@@ -448,7 +739,7 @@
                                 </div>
                             </div>
                         }
-                        
+
 
                     </div>
 
@@ -462,7 +753,31 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
                         <stop offset='100%' stop-color='#8d4fff' />
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -474,8 +789,32 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
                         <polygon class="nav_arrow" fill="#F3F6F9" points="15.044,22.222 16.377,20.888 12.374,16.885 16.377,12.882 15.044,11.55 9.708,16.885 11.04,18.219
 								11.042,18.219 " />
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -492,7 +831,31 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
                         <stop offset='100%' stop-color='#8d4fff' />
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -504,8 +867,32 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
                         <polygon class="nav_arrow" fill="#F3F6F9" points="13.044,11.551 11.71,12.885 15.714,16.888 11.71,20.891 13.044,22.224 18.379,16.888 17.048,15.554
 							17.046,15.554 " />
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -520,3 +907,6 @@
     </div>
 </div>
 
+@section scripts{
+    @Styles.Render("~/Content/travelix")
+}
