@@ -3,6 +3,8 @@
 {
     @Styles.Render("~/Content/travelix/single")
 }
+
+
 <div class="home">
     <div class="home_background">
         <img style="width: 100%;height: 465px;" src="/Content/travelix/images/single_background.jpg"/>
@@ -33,7 +35,7 @@
                         <!-- Title -->
                         <div class="hotel_title_container d-flex flex-lg-row flex-column">
                             <div class="hotel_title_content">
-                                <div class="hotel_title">@Model.TourName</div>
+                                <div class="hotel_title" style="color: #fa9e1b; font-size: 36">@Model.TourName</div>
                                 <div class="hotel_location col-lg-12">
                                         Nơi khởi hành : @Model.Departure <br />
                                         Số ngày : @Model.Duration          <br />                      
@@ -84,62 +86,45 @@
 
                     <!-- Rooms -->
 
-                    <div class="rooms">
-
-                        <!-- Room -->
-                        <div class="room">
-
+                        <div class="rooms">
+                            <div class="reviews_title" style="margin-bottom: 60px">Related Tours</div>
                             <!-- Room -->
-                            <div class="row">
-                                <div class="col-lg-2">
-                                    <div class="room_image"><img src="/Content/travelix/images/room_1.jpg"></div>
-                                </div>
-                                <div class="col-lg-7">
-                                    <div class="room_content">
-                                        <div class="room_title">Double or Twin Room</div>
-                                        <div class="room_price">$99/night</div>
-                                        <div class="room_text">FREE cancellation before 23:59 on 20 December 2017</div>
-                                        <div class="room_extra">Breakfast $7.50</div>
+
+
+                            @foreach (var item in ViewBag.Relate)
+                            {
+                                <div class="room">
+                                    <div class="row">
+                                        <div class="col-lg-2">
+                                            <div class="room_image"><img src="@item.Image"></div>
+                                        </div>
+                                        <div class="col-lg-7">
+                                            <div class="room_content">
+                                                <div class="room_title">@item.TourName</div>
+                                                <div class="room_price">@string.Format("{0:0,0}", @Model.ListedPrice)đ</div>
+                                                <div class="room_text"> Ngày khởi hành : @item.StartDate.ToString("dd/MM/yyyy")</div>
+                                                <div class="room_extra">  Số chỗ còn nhận : @item.SeatAvailability</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3 text-lg-right">
+                                            <div class="room_button">
+                                                <div class="button book_button trans_200"><a href="#">book<span></span><span></span><span></span></a></div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="col-lg-3 text-lg-right">
-                                    <div class="room_button">
-                                        <div class="button book_button trans_200"><a href="#">book<span></span><span></span><span></span></a></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
 
-                        <!-- Room -->
-                        <div class="room">
-
+                            }
                             <!-- Room -->
-                            <div class="row">
-                                <div class="col-lg-2">
-                                    <div class="room_image"><img src="/Content/travelix/images/room_2.jpg"></div>
-                                </div>
-                                <div class="col-lg-7">
-                                    <div class="room_content">
-                                        <div class="room_title">Double or Twin Room</div>
-                                        <div class="room_price">$99/night</div>
-                                        <div class="room_text">FREE cancellation before 23:59 on 20 December 2017</div>
-                                        <div class="room_extra">Breakfast $7.50</div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3 text-lg-right">
-                                    <div class="room_button">
-                                        <div class="button book_button trans_200"><a href="#">book<span></span><span></span><span></span></a></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
 
-                    </div>
+
+
+                        </div>
 
                     <!-- Reviews -->
 
                     <div class="reviews">
-                        <div class="reviews_title">reviews</div>
+                        <div class="reviews_title">Comment</div>
                         <div class="reviews_container">
 
                             <!-- Review -->
@@ -204,6 +189,60 @@
                             <div id="google_map" class="google_map">
                                 <div class="map_container">
                                     <div id="map"></div>
+                                    <script>
+                                      
+                                        function initMap() {
+                                            var map = new google.maps.Map(document.getElementById('map'), {
+                                                zoom: 4,
+                                                center: { lat: 14.315424, lng: 108.339537}  // HN.
+                                            });
+
+                                            var directionsService = new google.maps.DirectionsService;
+                                            var directionsDisplay = new google.maps.DirectionsRenderer({
+                                                draggable: true,
+                                                map: map,
+                                                panel: document.getElementById('right-panel')
+                                            });
+
+                                            directionsDisplay.addListener('directions_changed', function() {
+                                                computeTotalDistance(directionsDisplay.getDirections());
+                                            });
+
+                                           
+                                            displayRoute('@ViewBag.Departure','@ViewBag.Destination',directionsService,
+                                                directionsDisplay);
+                                        }
+
+                                       
+
+                                        function displayRoute(origin, destination, service, display) {
+                                            service.route({
+                                                origin: origin,
+                                                destination: destination,
+                                                travelMode: 'DRIVING',
+                                                avoidTolls: true
+                                            }, function(response, status) {
+                                                if (status === 'OK') {
+                                                    display.setDirections(response);
+                                                } else {
+                                                    alert('Could not display directions due to: ' + status);
+                                                }
+                                            });
+                                        }
+
+                                        function computeTotalDistance(result) {
+                                            var total = 0;
+                                            var myroute = result.routes[0];
+                                            for (var i = 0; i < myroute.legs.length; i++) {
+                                                total += myroute.legs[i].distance.value;
+                                            }
+                                            total = total / 1000;
+                                            document.getElementById('total').innerHTML = total + ' km';
+                                        }
+                                    </script>
+                                    <script async defer
+                                            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAsMGLXmmX66ONC6BrJcP_x9GW5yxa3KQ8&callback=initMap">
+                                    </script>
                                 </div>
                             </div>
                         </div>
