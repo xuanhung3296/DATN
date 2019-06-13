@@ -168,6 +168,7 @@
     <Compile Include="Contact.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Controllers\BookingController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\TourController.cs" />
     <Compile Include="Feedback.cs">
@@ -212,6 +213,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\BaseFuction.js" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -617,7 +619,12 @@
     <Content Include="Content\ckeditor\skins\moono-lisa\images\refresh.png" />
     <Content Include="Content\ckeditor\skins\moono-lisa\images\spinner.gif" />
     <Content Include="Content\ckeditor\styles.js" />
+    <Content Include="Content\hoverIntent.js" />
+    <Content Include="Content\jquery-ui-1.10.4.custom.js" />
+    <Content Include="Content\jquery.date-dropdowns.js" />
+    <Content Include="Content\jquery.dotdotdot.min.js" />
     <Content Include="Content\PagedList.css" />
+    <Content Include="Content\pager_simple_orange.css" />
     <Content Include="Content\SB_Admin\css\sb-admin-2.css" />
     <Content Include="Content\SB_Admin\css\sb-admin-2.min.css" />
     <Content Include="Content\SB_Admin\img\undraw_posting_photo.svg" />
@@ -2197,6 +2204,7 @@
     <Content Include="Content\SB_Admin\vendor\jquery\jquery.min.js" />
     <Content Include="Content\SB_Admin\vendor\jquery\jquery.slim.js" />
     <Content Include="Content\SB_Admin\vendor\jquery\jquery.slim.min.js" />
+    <Content Include="Content\style.css" />
     <Content Include="Content\travelix\images\about_background.jpg" />
     <Content Include="Content\travelix\images\add.jpg" />
     <Content Include="Content\travelix\images\backpack.png" />
@@ -2684,6 +2692,7 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Tour\Index.cshtml" />
+    <Content Include="Views\Booking\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

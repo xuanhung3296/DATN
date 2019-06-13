@@ -28,7 +28,13 @@ namespace TopTravel
                 "~/Content/travelix/plugins/OwlCarousel2-2.2.1/owl.carousel.js",
                 "~/Content/travelix/plugins/easing/easing.js",
                 "~/Content/travelix/js/custom.js"));
-
+            bundles.Add(new ScriptBundle("~/bundles/booking").Include(
+                "~/Content/BaseFuction.js",
+                "~/Content/hoverIntent.js",
+                "~/Content/jquery.date-dropdowns.js",
+                "~/Content/jquery.dotdotdot.min.js",
+                "~/Content/jquery-ui-1.10.4.custom.js"
+                ));
 
             bundles.Add(new ScriptBundle("~/bundles/travelix/single").Include(
                 "~/Content/travelix/styles/bootstrap4/popper.js",
@@ -64,6 +70,13 @@ namespace TopTravel
             "~/Content/SB_Admin/vendor/fontawesome-free/css/all.min.css",
             "~/Content/SB_Admin/css/sb-admin-2.min.css",
             "~/Content/SB_Admin/vendor/datatables/dataTables.bootstrap4.min.css"));
+
+            bundles.Add(new StyleBundle("~/Content/booking").Include(
+                "~/Content/travelix/styles/bootstrap4/bootstrap.min.css",
+                "~/Content/SB_Admin/vendor/fontawesome-free/css/all.min.css",
+                "~/Content/pager_simple_orange.css",
+                "~/Content/style.css"
+               ));
 
             bundles.Add(new StyleBundle("~/Content/travelix").Include(
                 "~/Content/travelix/styles/bootstrap4/bootstrap.min.css",
