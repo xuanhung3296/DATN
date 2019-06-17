@@ -170,6 +170,7 @@
     </Compile>
     <Compile Include="Controllers\BookingController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Controllers\TourController.cs" />
     <Compile Include="Feedback.cs">
       <DependentUpon>Model.tt</DependentUpon>
@@ -2693,6 +2694,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Tour\Index.cshtml" />
     <Content Include="Views\Booking\Index.cshtml" />
+    <Content Include="Views\Search\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

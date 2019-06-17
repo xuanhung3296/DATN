@@ -6,7 +6,46 @@
     @Styles.Render("~/bundles/jquery")
     @Styles.Render("~/bundles/booking")
 }
-
+<script type="text/javascript">
+    var ent; // Global var is declared here so we can access in both functions
+    // This shows the pop up window next to the calling element
+    function show_text(t, dname) {
+        var xp, yp, op
+        xp = dname.offsetLeft; // Element's offset x in pixels
+        yp = dname.offsetTop; // Element's offset y in pixels
+        // Now loop through all parent containers, adding offsets as we do so
+        while (dname.offsetParent) {
+            op = dname.offsetParent; // Get container parent
+            xp = xp + op.offsetLeft; // Add this element's offset x in pixels
+            yp = yp + op.offsetTop; 	// Add this element's offset y in pixels
+            dname = dname.offsetParent; // Update current container
+        }
+        var newdiv = document.createElement('div');
+        newdiv.setAttribute('id', "ent");
+        document.body.appendChild(newdiv);
+        ent = document.getElementById("ent")	// Get the main element
+        if (ent) {
+            // Change these to customise your popup window
+            ent.style.color = "#000000";
+            ent.style.padding = "2px 3px 2px 3px";
+            ent.style.background = "#eee";
+            ent.style.border = "1px solid #0066cb";
+            // Don't, however, change these
+            ent.style.position = 'absolute';
+            ent.style.left = (xp + 10) + "px";
+            ent.style.top = (yp + 25) + "px";
+            ent.innerHTML = t;
+            ent.style.display = "block";
+        }
+    }
+    // This clears the pop up element
+    function clear_text(dname) {
+        ent = document.getElementById("ent");
+        if (ent) {
+            document.body.removeChild(ent);
+        }
+    }
+</script>
 <div class="home">
     <div class="home_background">
         <img style="width: 100%;height: 465px;" src="/Content/travelix/images/single_background.jpg" />
@@ -267,6 +306,7 @@
                                                             <div>
                                                                 <select class="form-control" id="personkind0" name="[0].personkind" onchange="ChangeChoose();">
                                                                     <option value="0">Người lớn</option>
+                                                                    <option value="1">Trẻ em</option>
                                                                 </select>
 
 
@@ -295,8 +335,8 @@
                                                     </div>
                                                     <div class="row" style="padding: 15px 0 0px 0; border-top: 1px solid #ccc; margin-top: 15px;">
                                                         <div class="col-md-12 col-sm-12 text-right">
-                                                            Trị gi&#225;: <span style="color:#cd2c24;font-weight: bold;font-size: 16px;padding-top: 18px" id="spanprice0"></span>
-                                                            <input class="form-control" disabled="disabled" id="price0" name="price0" type="hidden" value="" />
+                                                            Trị gi&#225;: <span style="color:#cd2c24;font-weight: bold;font-size: 16px;padding-top: 18px" id="spanprice0">1349000</span>
+                                                            <input class="form-control" disabled="disabled" id="price0" name="price0" type="hidden" value="1349000" />
                                                         </div>
                                                     </div>
                                                 </div>

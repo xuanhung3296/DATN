@@ -1,0 +1,189 @@
+﻿@model List<Tour>
+@section csslib
+{
+    @Styles.Render("~/Content/travelix/search")
+}
+
+<div class="home">
+    <div class="home">
+        <div class="home_background">
+            <img style="width: 100%;height: 465px;" src="/Content/travelix/images/about_background.jpg" />
+        </div>
+        <div class="home_content">
+            <div class="home_title">the Booking</div>
+        </div>
+    </div>
+</div>
+<div class="offers">
+
+    <!-- Search -->
+
+    <div class="search">
+        <div class="search_inner">
+
+            <!-- Search Contents -->
+
+            <div class="container fill_height no-padding">
+                <div class="row fill_height no-margin">
+                    <div class="col fill_height no-padding">
+
+                        <!-- Search Tabs -->
+
+                        <div class="search_tabs_container">
+                            <div class="search_tabs d-flex flex-lg-row flex-column align-items-lg-center align-items-start justify-content-lg-between justify-content-start">
+                                <div class="search_tab active d-flex flex-row align-items-center justify-content-lg-center justify-content-start"><img src="/Content/travelix/images/suitcase.png" alt=""><span>hotels</span></div>
+                                <div class="search_tab d-flex flex-row align-items-center justify-content-lg-center justify-content-start"><img src="/Content/travelix/images/bus.png" alt="">car rentals</div>
+                                <div class="search_tab d-flex flex-row align-items-center justify-content-lg-center justify-content-start"><img src="/Content/travelix/images/departure.png" alt="">flights</div>
+                                <div class="search_tab d-flex flex-row align-items-center justify-content-lg-center justify-content-start"><img src="/Content/travelix/images/island.png" alt="">trips</div>
+                                <div class="search_tab d-flex flex-row align-items-center justify-content-lg-center justify-content-start"><img src="/Content/travelix/images/cruise.png" alt="">cruises</div>
+                                <div class="search_tab d-flex flex-row align-items-center justify-content-lg-center justify-content-start"><img src="/Content/travelix/images/diving.png" alt="">activities</div>
+                            </div>
+                        </div>
+
+                        <!-- Search Panel -->
+
+                        <div class="search_panel active">
+                            @using (Html.BeginForm("SearchTour", "Search", FormMethod.Get, new { @class = "search_panel_content d-flex flex-lg-row flex-column align-items-lg-center align-items-start justify-content-lg-between justify-content-start" }))
+                            {
+                                <div class="search_item">
+                                        <div>departure</div>
+                                        @Html.TextBox("departure",null,new { @class= "destination search_input" })
+                                    </div>
+                                    <div class="search_item">
+                                        <div>destination</div>
+                                        @Html.TextBox("destination", null, new { @class = "destination search_input" })
+                                    </div>
+                                    <div class="search_item">
+                                        <div>check out</div>
+                                        <input type="text" class="check_out search_input" placeholder="YYYY-MM-DD">
+                                    </div>
+
+                                    <div class="search_item">
+                                        <div>price</div>
+                                        @Html.TextBox("price", null, new { @class = "destination search_input" })
+                                    </div>
+
+
+                                <button class="button search_button">search<span></span><span></span><span></span></button>
+                            }
+                        </div>
+                        
+                        <!-- Search Panel -->
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Offers -->
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-1 temp_col"></div>
+            <div class="col-lg-11">
+
+                <!-- Offers Sorting -->
+                <div class="offers_sorting_container">
+                    <ul class="offers_sorting">
+                        <li>
+                            <span class="sorting_text">price</span>
+                            <i class="fa fa-chevron-down"></i>
+                            <ul>
+                                <li class="sort_btn" data-isotope-option='{ "sortBy": "original-order" }' data-parent=".price_sorting"><span>show all</span></li>
+                                <li class="sort_btn" data-isotope-option='{ "sortBy": "price" }' data-parent=".price_sorting"><span>ascending</span></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <span class="sorting_text">location</span>
+                            <i class="fa fa-chevron-down"></i>
+                            <ul>
+                                <li class="sort_btn" data-isotope-option='{ "sortBy": "original-order" }'><span>default</span></li>
+                                <li class="sort_btn" data-isotope-option='{ "sortBy": "name" }'><span>alphabetical</span></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <span class="sorting_text">stars</span>
+                            <i class="fa fa-chevron-down"></i>
+                            <ul>
+                                <li class="filter_btn" data-filter="*"><span>show all</span></li>
+                                <li class="sort_btn" data-isotope-option='{ "sortBy": "stars" }'><span>ascending</span></li>
+                                <li class="filter_btn" data-filter=".rating_3"><span>3</span></li>
+                                <li class="filter_btn" data-filter=".rating_4"><span>4</span></li>
+                                <li class="filter_btn" data-filter=".rating_5"><span>5</span></li>
+                            </ul>
+                        </li>
+                        <li class="distance_item">
+                            <span class="sorting_text">distance from center</span>
+                            <i class="fa fa-chevron-down"></i>
+                            <ul>
+                                <li class="num_sorting_btn"><span>distance</span></li>
+                                <li class="num_sorting_btn"><span>distance</span></li>
+                                <li class="num_sorting_btn"><span>distance</span></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <span class="sorting_text">reviews</span>
+                            <i class="fa fa-chevron-down"></i>
+                            <ul>
+                                <li class="num_sorting_btn"><span>review</span></li>
+                                <li class="num_sorting_btn"><span>review</span></li>
+                                <li class="num_sorting_btn"><span>review</span></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-lg-12">
+                <!-- Offers Grid -->
+
+                <div class="offers_grid">
+
+                    <!-- Offers Item -->
+                    @foreach (var item in Model)
+                    {
+                        <div class="offers_item rating_4">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="offers_image_container">
+
+                                        <div class="offers_image_background" style="background-image:url(@item.Image)"></div>
+                                        <div class="offer_name"><a href="#">@item.TourLabel.TourLabelName</a></div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="offers_content">
+                                        <h3 style="font-size: 26px;font-weight: 550;color: #2d2c2c;">@item.TourName</h3>
+                                        <div class="offers_price">
+                                            <p class="offers_text">Chỉ từ</p>
+                                            @string.Format("{0:0,0}", @item.ListedPrice)đ <br />
+                                            <p class="offers_text"><del>@string.Format("{0:0,0}", @item.Price)đ</del></p>
+                                        </div>
+                                        <p class="offers_text">
+                                            Nơi khởi hành : @item.Departure <br />
+                                            Ngày khởi hành : @item.StartDate.Value.ToString("dd/MM/yyyy") <br />
+                                            Số ngày : @item.Duration <br />
+                                            Số chỗ còn nhận : @item.SeatAvailability
+                                        </p>
+                                        <div class="offers_link"><a href="offers.html" style="font-size: 16px">read more</a></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+
+                    <!-- Offers Item -->
+
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    @Styles.Render("~/Content/travelix/search")
+}

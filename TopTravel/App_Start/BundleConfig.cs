@@ -36,9 +36,17 @@ namespace TopTravel
                 "~/Content/jquery-ui-1.10.4.custom.js"
                 ));
 
+            bundles.Add(new ScriptBundle("~/bundles/search").Include(
+                "~/Content/travelix/styles/bootstrap4/popper.js",
+                "~/Content/travelix/styles/bootstrap4/bootstrap.min.js",
+                "~/Content/travelix/plugins/Isotope/isotope.pkgd.min.js",
+                "~/Content/travelix/plugins/easing/easing.js",
+                "~/Content/travelix/plugins/parallax-js-master/parallax.min.js",
+                "~/Content/travelix/js/offers_custom.js"));
+
             bundles.Add(new ScriptBundle("~/bundles/travelix/single").Include(
                 "~/Content/travelix/styles/bootstrap4/popper.js",
-                "~/Content/travelix/styles/bootstrap4/bootstrap.min.js",                
+                "~/Content/travelix/styles/bootstrap4/bootstrap.min.js",
                 "~/Content/travelix/plugins/easing/easing.js",
                 "~/Content/travelix/plugins/parallax-js-master/parallax.min.js",
                 "~/Content/travelix/plugins/colorbox/jquery.colorbox-min.js",
@@ -97,7 +105,14 @@ namespace TopTravel
                 "~/Content/travelix/plugins/OwlCarousel2-2.2.1/animate.css",
                 "~/Content/travelix/styles/single_listing_styles.css",
                 "~/Content/travelix/styles/single_listing_responsive.css"
-                )); 
+                ));
+
+            bundles.Add(new StyleBundle("~/Content/travelix/search").Include(
+                "~/Content/travelix/styles/bootstrap4/bootstrap.min.css",
+                "~/Content/travelix/plugins/font-awesome-4.7.0/css/font-awesome.min.css",
+                "~/Content/travelix/styles/offers_styles.css",
+                "~/Content/travelix/styles/offers_responsive.css"
+            ));
         }
     }
 }
