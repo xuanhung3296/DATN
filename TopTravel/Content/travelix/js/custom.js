@@ -250,11 +250,8 @@ $(document).ready(function()
 			{
 				$('.search_tab').removeClass('active');
 				$(this).addClass('active');
-				var clickedIndex = $('.search_tab').index(this);
-
-				var panels = $('.search_panel');
-				panels.removeClass('active');
-				$(panels[clickedIndex]).addClass('active');
+			
+				
 			});
 		}
 	}

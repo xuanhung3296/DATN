@@ -1,9 +1,16 @@
-﻿@model List<Tour>
+﻿@using DotNetNuke.UI.WebControls
+@using PagedList.Mvc
+@model PagedList.IPagedList<Tour>
 @section csslib
 {
+    @Styles.Render("~/Content/jqueryui")
     @Styles.Render("~/Content/travelix/search")
 }
 
+@section scripts{
+    @Scripts.Render("~/bundles/jqueryui")
+    @Scripts.Render("~/bundles/travelix/search")
+}
 <div class="home">
     <div class="home">
         <div class="home_background">
@@ -31,13 +38,33 @@
 
                         <div class="search_tabs_container">
                             <div class="search_tabs d-flex flex-lg-row flex-column align-items-lg-center align-items-start justify-content-lg-between justify-content-start">
-                                <div class="search_tab active d-flex flex-row align-items-center justify-content-lg-center justify-content-start"><img src="/Content/travelix/images/suitcase.png" alt=""><span>hotels</span></div>
-                                <div class="search_tab d-flex flex-row align-items-center justify-content-lg-center justify-content-start"><img src="/Content/travelix/images/bus.png" alt="">car rentals</div>
-                                <div class="search_tab d-flex flex-row align-items-center justify-content-lg-center justify-content-start"><img src="/Content/travelix/images/departure.png" alt="">flights</div>
-                                <div class="search_tab d-flex flex-row align-items-center justify-content-lg-center justify-content-start"><img src="/Content/travelix/images/island.png" alt="">trips</div>
-                                <div class="search_tab d-flex flex-row align-items-center justify-content-lg-center justify-content-start"><img src="/Content/travelix/images/cruise.png" alt="">cruises</div>
-                                <div class="search_tab d-flex flex-row align-items-center justify-content-lg-center justify-content-start"><img src="/Content/travelix/images/diving.png" alt="">activities</div>
+                                @*<div class="search_tab active d-flex flex-row align-items-center justify-content-lg-center justify-content-start"><img src="/Content/travelix/images/suitcase.png" alt=""><span>hotels</span></div>
+                                    <div class="search_tab d-flex flex-row align-items-center justify-content-lg-center justify-content-start"><img src="/Content/travelix/images/bus.png" alt="">car rentals</div>
+                                    <div class="search_tab d-flex flex-row align-items-center justify-content-lg-center justify-content-start"><img src="/Content/travelix/images/departure.png" alt="">flights</div>
+                                    <div class="search_tab d-flex flex-row align-items-center justify-content-lg-center justify-content-start"><img src="/Content/travelix/images/island.png" alt="">trips</div>
+                                    <div class="search_tab d-flex flex-row align-items-center justify-content-lg-center justify-content-start"><img src="/Content/travelix/images/cruise.png" alt="">cruises</div>
+                                    <div class="search_tab d-flex flex-row align-items-center justify-content-lg-center justify-content-start"><img src="/Content/travelix/images/diving.png" alt="">activities</div>*@
+                                @for (int i = 0; i < ViewBag.TourTypes.Count; i++)
+                                {
+                                    if (i == 0)
+                                    {
+                                        <div class="search_tab active d-flex flex-row align-items-center justify-content-lg-center justify-content-start">@ViewBag.TourTypes[i]</div>
+                                    }
+                                    else
+                                    {
+                                        <div class="search_tab d-flex flex-row align-items-center justify-content-lg-center justify-content-start">@ViewBag.TourTypes[i]</div>
+                                    }
+                                   
+                                }
+                                @*@foreach (var item in ViewBag.TourTypes)
+                                    {
+                                        <div class="search_tab d-flex flex-row align-items-center justify-content-lg-center justify-content-start">@item</div>
+
+                                    }*@
                             </div>
+                            <scripts>
+
+                            </scripts>
                         </div>
 
                         <!-- Search Panel -->
@@ -45,29 +72,47 @@
                         <div class="search_panel active">
                             @using (Html.BeginForm("SearchTour", "Search", FormMethod.Get, new { @class = "search_panel_content d-flex flex-lg-row flex-column align-items-lg-center align-items-start justify-content-lg-between justify-content-start" }))
                             {
+                                <div class="search_item" style="display:none">
+                                    <div>label</div>
+                                    @Html.TextBox("label", (string)ViewBag.Label, new { @class = "destination search_input" , @id="label" })
+                                    <script>
+                                        var x = $(".search_tab")[0].innerHTML;
+                                        $('#label').val(x);
+                                    </script>
+                                </div>
                                 <div class="search_item">
-                                        <div>departure</div>
-                                        @Html.TextBox("departure",null,new { @class= "destination search_input" })
-                                    </div>
-                                    <div class="search_item">
-                                        <div>destination</div>
-                                        @Html.TextBox("destination", null, new { @class = "destination search_input" })
-                                    </div>
-                                    <div class="search_item">
-                                        <div>check out</div>
-                                        <input type="text" class="check_out search_input" placeholder="YYYY-MM-DD">
-                                    </div>
+                                    <div>departure</div>
+                                    @Html.TextBox("departure", (string)ViewBag.Departure, new { @class = "destination search_input" })
+                                </div>
+                                <div class="search_item">
+                                    <div>destination</div>
+                                    @Html.TextBox("destination", (string)ViewBag.Destination, new { @class = "destination search_input" })
 
-                                    <div class="search_item">
-                                        <div>price</div>
-                                        @Html.TextBox("price", null, new { @class = "destination search_input" })
-                                    </div>
+                                </div>
+                                <div class="search_item">
+                                    <div>check out</div>
+                                    @Html.TextBox("startDate", (string)ViewBag.StartDate, new { @id = "date" })
+
+                                    <script>
+                                        $("#date").dateDropdowns({
+                                            submitFieldName: 'date',
+                                            submitFormat: "dd/mm/yyyy",
+                                            maxAge: 68
+                                            //,required: true
+                                        });
+                                    </script>
+                                </div>
+
+                                <div class="search_item">
+                                    <div>price</div>
+                                    @Html.TextBox("price", (string)ViewBag.Price, new { @class = "destination search_input" })
+                                </div>
 
 
                                 <button class="button search_button">search<span></span><span></span><span></span></button>
                             }
                         </div>
-                        
+
                         <!-- Search Panel -->
 
                     </div>
@@ -145,14 +190,14 @@
                     {
                         <div class="offers_item rating_4">
                             <div class="row">
-                                <div class="col-lg-6">
+                                <div class="col-lg-8">
                                     <div class="offers_image_container">
 
                                         <div class="offers_image_background" style="background-image:url(@item.Image)"></div>
                                         <div class="offer_name"><a href="#">@item.TourLabel.TourLabelName</a></div>
                                     </div>
                                 </div>
-                                <div class="col-lg-6">
+                                <div class="col-lg-4">
                                     <div class="offers_content">
                                         <h3 style="font-size: 26px;font-weight: 550;color: #2d2c2c;">@item.TourName</h3>
                                         <div class="offers_price">
@@ -166,7 +211,8 @@
                                             Số ngày : @item.Duration <br />
                                             Số chỗ còn nhận : @item.SeatAvailability
                                         </p>
-                                        <div class="offers_link"><a href="offers.html" style="font-size: 16px">read more</a></div>
+                                        <div class="offers_link">
+                                            @Html.ActionLink("Read more", "Index","Tour",new{id=@item.TourID},new{@style= "font-size: 18px; color: black; text-transform: uppercase; font-weight: bold" })</div>
                                     </div>
                                 </div>
                             </div>
@@ -175,8 +221,18 @@
 
 
                     <!-- Offers Item -->
+             
 
+                </div>
+            </div>
 
+        </div>
+        <div class="row">
+            <div class=" col-sm-12 col-md-5">
+            </div>
+            <div class=" col-sm-12 col-md-7">
+                <div class="dataTables_paginate" style="font-size: 18px">
+                    @Html.PagedListPager(Model, page => Url.Action("SearchTour",new {label = ViewBag.Label, destination = ViewBag.Destination , departure = ViewBag.Departure, startDate = ViewBag.StartDate,price= ViewBag.Price,page}))
                 </div>
             </div>
 
@@ -184,6 +240,5 @@
     </div>
 </div>
 
-@section scripts{
-    @Styles.Render("~/Content/travelix/search")
-}
+
+

@@ -11,6 +11,12 @@ namespace TopTravel
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                         "~/Scripts/jquery-{version}.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/jqueryui").Include(
+              "~/Scripts/jquery.date-dropdowns.js",
+                "~/Scripts/jquery.dotdotdot.min.js",
+                "~/Scripts/jquery-ui-1.10.4.custom.js"));
+
+
             bundles.Add(new ScriptBundle("~/bundles/sb_admin").Include(
                 "~/Content/SB_Admin/vendor/jquery/jquery.min.js",
                 "~/Content/SB_Admin/vendor/bootstrap/js/bootstrap.bundle.min.js",
@@ -29,18 +35,15 @@ namespace TopTravel
                 "~/Content/travelix/plugins/easing/easing.js",
                 "~/Content/travelix/js/custom.js"));
             bundles.Add(new ScriptBundle("~/bundles/booking").Include(
-                "~/Content/BaseFuction.js",
-                "~/Content/hoverIntent.js",
-                "~/Content/jquery.date-dropdowns.js",
-                "~/Content/jquery.dotdotdot.min.js",
-                "~/Content/jquery-ui-1.10.4.custom.js"
+                "~/Scripts/BaseFuction.js",
+                "~/Scripts/hoverIntent.js",
+                "~/Scripts/jquery.date-dropdowns.js",
+                "~/Scripts/jquery.dotdotdot.min.js",
+                "~/Scripts/jquery-ui-1.10.4.custom.js"
                 ));
 
-            bundles.Add(new ScriptBundle("~/bundles/search").Include(
-                "~/Content/travelix/styles/bootstrap4/popper.js",
-                "~/Content/travelix/styles/bootstrap4/bootstrap.min.js",
+            bundles.Add(new ScriptBundle("~/bundles/travelix/search").Include(
                 "~/Content/travelix/plugins/Isotope/isotope.pkgd.min.js",
-                "~/Content/travelix/plugins/easing/easing.js",
                 "~/Content/travelix/plugins/parallax-js-master/parallax.min.js",
                 "~/Content/travelix/js/offers_custom.js"));
 
@@ -71,7 +74,7 @@ namespace TopTravel
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
 
-            bundles.Add(new ScriptBundle("~/Content/PagedList").Include(
+            bundles.Add(new StyleBundle("~/Content/PagedList").Include(
                 "~/Content/PagedList.css"));
 
             bundles.Add(new StyleBundle("~/Content/sb_admin").Include(
@@ -110,9 +113,14 @@ namespace TopTravel
             bundles.Add(new StyleBundle("~/Content/travelix/search").Include(
                 "~/Content/travelix/styles/bootstrap4/bootstrap.min.css",
                 "~/Content/travelix/plugins/font-awesome-4.7.0/css/font-awesome.min.css",
+                "~/Content/PagedList.css",
                 "~/Content/travelix/styles/offers_styles.css",
                 "~/Content/travelix/styles/offers_responsive.css"
             ));
+
+
+            bundles.Add(new StyleBundle("~/Content/jqueryui").Include(
+                "~/Content/themes/base/jquery-ui.min.css"));
         }
     }
 }
