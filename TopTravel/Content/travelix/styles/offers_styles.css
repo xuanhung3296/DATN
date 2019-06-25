@@ -465,6 +465,7 @@ section
 	color: #f4f4f8;
 	font-weight: 800;
 	text-transform: uppercase;
+    margin-left: 50px;
 }
 .logo a img
 {
@@ -871,7 +872,7 @@ section
 	left: 0;
 	width: 370px;
     height: 100%;
-    min-height: 900px;
+    min-height: 950px;
 	background: #5cd6e9;
 	z-index: 10;
 }
@@ -914,7 +915,7 @@ section
 	-o-transition: all 200ms ease;
 	transition: all 200ms ease;
 }
-.search_tab:not(:first-child):not(:nth-child(2))
+.search_tab
 {
 	border: solid 1px #ededed;
 	margin-right: -1px;
@@ -931,13 +932,13 @@ section
 }
 .search_tab:first-child
 {
-	border-top-left-radius: 94px;
-	padding-left: 7px;
+	border-top-left-radius: 35px;
+	padding-left: 5px;
 }
 .search_tab:nth-child(2)
 {
-	border-top-right-radius: 94px;
-	padding-right: 7px;
+	border-top-right-radius: 35px;
+	padding-right: 5px;
 }
 .search_tab.active
 {
@@ -1260,7 +1261,7 @@ section
 .offers
 {
 	width: 100%;
-	padding-top: 115px;
+	padding-top: 50px;
 	padding-bottom: 115px;
 }
 

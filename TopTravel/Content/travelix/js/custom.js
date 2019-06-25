@@ -242,19 +242,23 @@ $(document).ready(function()
 
 	*/
 
-	function initSearch()
-	{
-		if($('.search_tab').length)
-		{
-			$('.search_tab').on('click', function()
-			{
-				$('.search_tab').removeClass('active');
-				$(this).addClass('active');
-			
-				
-			});
-		}
-	}
+
+    function initSearch() {
+        if ($('.search_tab').length) {
+            $('.search_tab').on('click', function () {
+                $('.search_tab').removeClass('active');
+                $(this).addClass('active');
+                $('#label').val($(this).html());
+            });
+
+            for (var i = 0; i < $('.search_tab').length; i++) {
+                if ($('#label').val() == $('.search_tab')[i].innerHTML) {
+                    $('.search_tab').eq(i).addClass('active');
+                }
+            }
+
+        }
+    }
 
 	/* 
 

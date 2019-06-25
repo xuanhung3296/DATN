@@ -44,9 +44,10 @@ namespace TopTravel.Controllers
         }
 
 
-        public ActionResult Index(int id)
+        public ActionResult Index(string id)
         {
-            var tour = db.Tours.FirstOrDefault(u => u.TourID.Equals(id));
+            var ID = Convert.ToInt32(id);
+            var tour = db.Tours.FirstOrDefault(u => u.TourID.Equals(ID));
 
             ViewBag.Departure = utf8Convert1(tour.Departure);
             ViewBag.Destination = utf8Convert1(tour.Destination);

@@ -3,6 +3,7 @@
 }
 
 @section csslib{
+    @Styles.Render("~/Content/jqueryui")
     @Styles.Render("~/Content/travelix")
 }
 
@@ -61,7 +62,39 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
             <stop offset='100%' stop-color='#8d4fff' />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -97,8 +130,40 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
             <polygon class="nav_arrow" fill="#F3F6F9" points="15.044,22.222 16.377,20.888 12.374,16.885 16.377,12.882 15.044,11.55 9.708,16.885 11.04,18.219
 					11.042,18.219 " />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -139,7 +204,39 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
             <stop offset='100%' stop-color='#8d4fff' />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -175,8 +272,40 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
             <polygon class="nav_arrow" fill="#F3F6F9" points="13.044,11.551 11.71,12.885 15.714,16.888 11.71,20.891 13.044,22.224 18.379,16.888 17.048,15.554
 				17.046,15.554 " />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -229,37 +358,44 @@
                 <!-- Search Panel -->
 
                 <div class="search_panel active">
-                    <form action="#" id="search_form_1" class="search_panel_content d-flex flex-lg-row flex-column align-items-lg-center align-items-start justify-content-lg-between justify-content-start">
-                        <div class="search_item">
-                            <div>Điểm đến</div>
-                            <input type="text" class="destination search_input" required="required">
+                    @using (Html.BeginForm("SearchTour", "Search", FormMethod.Get, new { @class = "search_panel_content d-flex flex-lg-row flex-column align-items-lg-center align-items-start justify-content-lg-between justify-content-start" }))
+                    {
+                        <div class="search_item" style="display:none">
+                            <div>label</div>
+                            @Html.TextBox("label", (string)ViewBag.Label, new { @class = "destination search_input", @id = "label" })
+
                         </div>
                         <div class="search_item">
-                            <div>Khởi hành</div>
-                            <input type="text" class="check_in search_input" placeholder="YYYY-MM-DD">
+                            <div>departure</div>
+                            @Html.TextBox("departure", (string)ViewBag.Departure, new { @class = "destination search_input" })
                         </div>
                         <div class="search_item">
-                            <div>Kết thúc</div>
-                            <input type="text" class="check_out search_input" placeholder="YYYY-MM-DD">
+                            <div>destination</div>
+                            @Html.TextBox("destination", (string)ViewBag.Destination, new { @class = "destination search_input" })
+
                         </div>
                         <div class="search_item">
-                            <div>Người lớn</div>
-                            <select name="adults" id="adults_1" class="dropdown_item_select search_input">
-                                <option>01</option>
-                                <option>02</option>
-                                <option>03</option>
-                            </select>
+                            <div>check out</div>
+                            @Html.TextBox("startDate", (string)ViewBag.StartDate, new { @id = "date" })
+
+                            <script>
+                                $("#date").dateDropdowns({
+                                    submitFieldName: 'date',
+                                    submitFormat: "dd/mm/yyyy",
+                                    maxAge: 68
+                                    //,required: true
+                                });
+                            </script>
                         </div>
+
                         <div class="search_item">
-                            <div>Trẻ em</div>
-                            <select name="children" id="children_1" class="dropdown_item_select search_input">
-                                <option>0</option>
-                                <option>02</option>
-                                <option>03</option>
-                            </select>
+                            <div>price</div>
+                            @Html.TextBox("price", (string)ViewBag.Price, new { @class = "destination search_input" })
                         </div>
-                        <button class="button search_button">Tìm kiếm<span></span><span></span><span></span></button>
-                    </form>
+
+
+                        <button class="button search_button">search<span></span><span></span><span></span></button>
+                    }
                 </div>
 
 
@@ -297,7 +433,7 @@
                         <div class="intro_item_background" style="background-image: url(@item.Image);background-size:100% 100%"></div>
                         <div class="intro_item_content d-flex flex-column align-items-center justify-content-center">
                             <div class="intro_date">@item.StartDate.ToString("dd/MM/yyyy")</div>
-                            <div class="button intro_button"><div class="button_bcg"></div><a href="#">see more<span></span><span></span><span></span></a></div>
+                            <div class="button intro_button"><div class="button_bcg"></div> @Html.ActionLink("See more","Index","Tour",new{id=@item.TourID},null)<span></span><span></span><span></span></div>
                             <div class="intro_center text-center">
                                 <h1>@item.Destination</h1>
                                 <div class="intro_price">From @string.Format("{0:0,0}", @item.ListedPrice)đ</div>
@@ -395,7 +531,71 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                         <stop offset='100%' stop-color='#8d4fff' />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -463,8 +663,72 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                         <polygon class="nav_arrow" fill="#F3F6F9" points="15.044,22.222 16.377,20.888 12.374,16.885 16.377,12.882 15.044,11.55 9.708,16.885 11.04,18.219
 								11.042,18.219 " />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -537,7 +801,71 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                         <stop offset='100%' stop-color='#8d4fff' />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -605,8 +933,72 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                         <polygon class="nav_arrow" fill="#F3F6F9" points="13.044,11.551 11.71,12.885 15.714,16.888 11.71,20.891 13.044,22.224 18.379,16.888 17.048,15.554
 							17.046,15.554 " />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -688,7 +1080,7 @@
                                         Số ngày : @item.Duration <br />
                                         Số chỗ còn nhận : @item.SeatAvailability
                                     </p>
-                                    <div class="offers_link"><a href="offers.html" style="font-size: 16px">read more</a></div>
+                                    <div class="offers_link">@Html.ActionLink("Read more", "Index", "Tour", new { id=@item.TourID },null)</div>
                                 </div>
                             </div>
                         </div>
@@ -765,7 +1157,39 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                         <stop offset='100%' stop-color='#8d4fff' />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -801,8 +1225,40 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                         <polygon class="nav_arrow" fill="#F3F6F9" points="15.044,22.222 16.377,20.888 12.374,16.885 16.377,12.882 15.044,11.55 9.708,16.885 11.04,18.219
 								11.042,18.219 " />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -843,7 +1299,39 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                         <stop offset='100%' stop-color='#8d4fff' />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -879,8 +1367,40 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                         <polygon class="nav_arrow" fill="#F3F6F9" points="13.044,11.551 11.71,12.885 15.714,16.888 11.71,20.891 13.044,22.224 18.379,16.888 17.048,15.554
 							17.046,15.554 " />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -908,5 +1428,6 @@
 </div>
 
 @section scripts{
+    @Scripts.Render("~/bundles/jqueryui")
     @Styles.Render("~/Content/travelix")
 }

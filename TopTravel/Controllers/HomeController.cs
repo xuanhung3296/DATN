@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Remoting.Messaging;
 using System.Web;
 using System.Web.Mvc;
 using System.Xml;
@@ -50,11 +51,31 @@ namespace TopTravel.Controllers
             return View();
         }
 
-        public ActionResult About()
+        public string GetContact(string colunm)
         {
-            ViewBag.Message = "Your application description page.";
+            switch (colunm)
+            {
+                case "Address":
+                    return db.Contacts.FirstOrDefault().Address;
+                break;
+                case "Email":
+                    return db.Contacts.FirstOrDefault().Email;
+                    break;
+                case "Phone":
+                    return db.Contacts.FirstOrDefault().Phone;
+                    break;
+                case "Fax":
+                    return db.Contacts.FirstOrDefault().Fax;
+                    break;
+                case "Hotline":
+                    return db.Contacts.FirstOrDefault().HotLine;
+                    break;
+                default:
+                    return "";
+                    break;
 
-            return View();
+            }
+          
         }
 
         public ActionResult Contact()

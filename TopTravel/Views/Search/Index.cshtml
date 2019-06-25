@@ -38,29 +38,12 @@
 
                         <div class="search_tabs_container">
                             <div class="search_tabs d-flex flex-lg-row flex-column align-items-lg-center align-items-start justify-content-lg-between justify-content-start">
-                                @*<div class="search_tab active d-flex flex-row align-items-center justify-content-lg-center justify-content-start"><img src="/Content/travelix/images/suitcase.png" alt=""><span>hotels</span></div>
-                                    <div class="search_tab d-flex flex-row align-items-center justify-content-lg-center justify-content-start"><img src="/Content/travelix/images/bus.png" alt="">car rentals</div>
-                                    <div class="search_tab d-flex flex-row align-items-center justify-content-lg-center justify-content-start"><img src="/Content/travelix/images/departure.png" alt="">flights</div>
-                                    <div class="search_tab d-flex flex-row align-items-center justify-content-lg-center justify-content-start"><img src="/Content/travelix/images/island.png" alt="">trips</div>
-                                    <div class="search_tab d-flex flex-row align-items-center justify-content-lg-center justify-content-start"><img src="/Content/travelix/images/cruise.png" alt="">cruises</div>
-                                    <div class="search_tab d-flex flex-row align-items-center justify-content-lg-center justify-content-start"><img src="/Content/travelix/images/diving.png" alt="">activities</div>*@
-                                @for (int i = 0; i < ViewBag.TourTypes.Count; i++)
-                                {
-                                    if (i == 0)
-                                    {
-                                        <div class="search_tab active d-flex flex-row align-items-center justify-content-lg-center justify-content-start">@ViewBag.TourTypes[i]</div>
-                                    }
-                                    else
-                                    {
-                                        <div class="search_tab d-flex flex-row align-items-center justify-content-lg-center justify-content-start">@ViewBag.TourTypes[i]</div>
-                                    }
-                                   
-                                }
-                                @*@foreach (var item in ViewBag.TourTypes)
-                                    {
-                                        <div class="search_tab d-flex flex-row align-items-center justify-content-lg-center justify-content-start">@item</div>
 
-                                    }*@
+                                @foreach (var item in ViewBag.TourTypes)
+                                {
+                                    <div class="search_tab d-flex flex-row align-items-center justify-content-lg-center justify-content-start">@item</div>
+
+                                }
                             </div>
                             <scripts>
 
@@ -74,12 +57,8 @@
                             {
                                 <div class="search_item" style="display:none">
                                     <div>label</div>
-                                    @Html.TextBox("label", (string)ViewBag.Label, new { @class = "destination search_input" , @id="label" })
-                                    <script>
-                                        var x = $(".search_tab")[0].innerHTML;
-                                        $('#label').val(x);
-                                    </script>
-                                </div>
+                                    @Html.TextBox("label", (string)ViewBag.Label, new { @class = "destination search_input", @id = "label" })
+                                 </div>
                                 <div class="search_item">
                                     <div>departure</div>
                                     @Html.TextBox("departure", (string)ViewBag.Departure, new { @class = "destination search_input" })
@@ -125,61 +104,6 @@
 
     <div class="container">
         <div class="row">
-            <div class="col-lg-1 temp_col"></div>
-            <div class="col-lg-11">
-
-                <!-- Offers Sorting -->
-                <div class="offers_sorting_container">
-                    <ul class="offers_sorting">
-                        <li>
-                            <span class="sorting_text">price</span>
-                            <i class="fa fa-chevron-down"></i>
-                            <ul>
-                                <li class="sort_btn" data-isotope-option='{ "sortBy": "original-order" }' data-parent=".price_sorting"><span>show all</span></li>
-                                <li class="sort_btn" data-isotope-option='{ "sortBy": "price" }' data-parent=".price_sorting"><span>ascending</span></li>
-                            </ul>
-                        </li>
-                        <li>
-                            <span class="sorting_text">location</span>
-                            <i class="fa fa-chevron-down"></i>
-                            <ul>
-                                <li class="sort_btn" data-isotope-option='{ "sortBy": "original-order" }'><span>default</span></li>
-                                <li class="sort_btn" data-isotope-option='{ "sortBy": "name" }'><span>alphabetical</span></li>
-                            </ul>
-                        </li>
-                        <li>
-                            <span class="sorting_text">stars</span>
-                            <i class="fa fa-chevron-down"></i>
-                            <ul>
-                                <li class="filter_btn" data-filter="*"><span>show all</span></li>
-                                <li class="sort_btn" data-isotope-option='{ "sortBy": "stars" }'><span>ascending</span></li>
-                                <li class="filter_btn" data-filter=".rating_3"><span>3</span></li>
-                                <li class="filter_btn" data-filter=".rating_4"><span>4</span></li>
-                                <li class="filter_btn" data-filter=".rating_5"><span>5</span></li>
-                            </ul>
-                        </li>
-                        <li class="distance_item">
-                            <span class="sorting_text">distance from center</span>
-                            <i class="fa fa-chevron-down"></i>
-                            <ul>
-                                <li class="num_sorting_btn"><span>distance</span></li>
-                                <li class="num_sorting_btn"><span>distance</span></li>
-                                <li class="num_sorting_btn"><span>distance</span></li>
-                            </ul>
-                        </li>
-                        <li>
-                            <span class="sorting_text">reviews</span>
-                            <i class="fa fa-chevron-down"></i>
-                            <ul>
-                                <li class="num_sorting_btn"><span>review</span></li>
-                                <li class="num_sorting_btn"><span>review</span></li>
-                                <li class="num_sorting_btn"><span>review</span></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-
             <div class="col-lg-12">
                 <!-- Offers Grid -->
 
@@ -212,7 +136,8 @@
                                             Số chỗ còn nhận : @item.SeatAvailability
                                         </p>
                                         <div class="offers_link">
-                                            @Html.ActionLink("Read more", "Index","Tour",new{id=@item.TourID},new{@style= "font-size: 18px; color: black; text-transform: uppercase; font-weight: bold" })</div>
+                                            @Html.ActionLink("Read more", "Index", "Tour", new { id = @item.TourID }, new { @style = "font-size: 18px; color: black; text-transform: uppercase; font-weight: bold" })
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -221,7 +146,7 @@
 
 
                     <!-- Offers Item -->
-             
+
 
                 </div>
             </div>
@@ -232,7 +157,7 @@
             </div>
             <div class=" col-sm-12 col-md-7">
                 <div class="dataTables_paginate" style="font-size: 18px">
-                    @Html.PagedListPager(Model, page => Url.Action("SearchTour",new {label = ViewBag.Label, destination = ViewBag.Destination , departure = ViewBag.Departure, startDate = ViewBag.StartDate,price= ViewBag.Price,page}))
+                    @Html.PagedListPager(Model, page => Url.Action("SearchTour", new { label = ViewBag.Label, destination = ViewBag.Destination, departure = ViewBag.Departure, startDate = ViewBag.StartDate, price = ViewBag.Price, page }))
                 </div>
             </div>
 
