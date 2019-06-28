@@ -1,4 +1,5 @@
-﻿@section csslib{
+﻿@model Tour
+@section csslib{
     @Styles.Render("~/Content/travelix/single")
     @Styles.Render("~/Content/booking")
 }
@@ -63,7 +64,7 @@
                     <div class="row">
                         <div class="t-info-left col-md-4 col-sm-12 left tour-info-mgr mg-bot10">
                             <div class="tour-info-left-frame">
-                                <img src="https://travel.com.vn/Images/destination/tf_190313103540_816410.jpg" alt="Ph&#250; Y&#234;n - Đảo Nhất Tự Sơn - Quy Nhơn (M&#225;y bay. Kh&#225;ch sạn 4*. Tour Ti&#234;u Chuẩn)" class="img-responsive " style="width:100%;" />
+                                <img src="@Model.Image" alt="" class="img-responsive " style="width:100%;" />
                                 <div style="margin-top: 10px">
                                     <div class="f-left tour-info-left">
                                         <div style="border-right: none !important; text-align: center; margin: 0px !important; height: 50px; line-height: 50px">
@@ -71,7 +72,7 @@
                                             <span>3</span>
                                         </div>
                                     </div>
-                                    <div class="f-right tour-info-right">5,790,000<span> đ</span></div>
+                                    <div class="f-right tour-info-right">@string.Format("{0:0,0}", @Model.ListedPrice)<span> đ</span></div>
                                 </div>
                                 <div class="clear"></div>
                             </div>
@@ -79,8 +80,8 @@
                         <div class="col-md-8 col-sm-12 right tour-info-right-frame">
                             <div class="row tour-info-right-frame1">
                                 <div class="col-xs-12">
-                                    <div style="font-weight: bold; font-size: 17.5px; margin-bottom: 10px; line-height: 22px;">
-                                        <h1>Ph&#250; Y&#234;n - Đảo Nhất Tự Sơn - Quy Nhơn (M&#225;y bay. Kh&#225;ch sạn 4*. Tour Ti&#234;u Chuẩn)</h1>
+                                    <div style="font-weight: bold; font-size: 25.5px; margin-bottom: 10px; line-height: 22px;">
+                                        <h1>@Model.TourName</h1>
                                     </div>
                                 </div>
                             </div>
@@ -92,14 +93,14 @@
                                     </div>
                                     <div class="row" style="margin-bottom: 16px; margin-top: 15px">
                                         <div class="col-md-3 col-sm-3 col-xs-6 mg-bot5">Ng&#224;y khởi h&#224;nh:</div>
-                                        <div class="col-md-3 col-sm-4 col-xs-6">14/06/2019</div>
+                                        <div class="col-md-3 col-sm-4 col-xs-6">@Model.StartDate</div>
                                         <div class="col-md-3 col-sm-5 col-xs-12"></div>
                                     </div>
                                     <div class="row" style="margin-bottom: 31px; margin-top: 15px">
                                         <div class="col-md-3 col-sm-3 col-xs-6 mg-bot5">Nơi khởi h&#224;nh:</div>
-                                        <div class="col-md-3 col-sm-4 col-xs-6 mg-bot5"> Hồ Ch&#237; Minh</div>
+                                        <div class="col-md-3 col-sm-4 col-xs-6 mg-bot5">@Model.Departure</div>
                                         <div class="col-md-3 col-sm-3 col-xs-6">Số chỗ c&#242;n nhận:</div>
-                                        <div class="col-md-3 col-sm-2 col-xs-6">0</div>
+                                        <div class="col-md-3 col-sm-2 col-xs-6">@Model.SeatAvailability</div>
                                     </div>
                                 </div>
                             </div>
@@ -136,15 +137,17 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td data-title="Người lớn">5,790,000<span> đ</span></td>
-                                    <td data-title="Trẻ em">4,342,500<span> đ</span></td>
-                                    <td data-title="Trẻ nhỏ">2,500,000<span> đ</span></td>
-                                    <td data-title="Em b&#233;">220,000<span> đ</span></td>
-                                    <td data-title="Phụ thu ph&#242;ng đơn">1,200,000<span> đ</span></td>
+                                    <td id="nguoiLonPrice">@string.Format("{0:0,0}", @ViewBag.AdultPrice)<span> đ</span></td>
+                                    <td id="treEmPrice">@string.Format("{0:0,0}", @ViewBag.ChildPrice)<span> đ</span></td>
+                                    <td id="treNhoPrice">@string.Format("{0:0,0}", @ViewBag.BabyPrice)<span> đ</span></td>
+                                    <td id="emBePrice">@string.Format("{0:0,0}", @ViewBag.BabePrice)<span> đ</span></td>
+                                    <td id="phuThu">@string.Format("{0:0,0}", @ViewBag.Bonus)<span> đ</span></td>
                                 </tr>
                             </tbody>
                         </table>
+                        <script>
 
+                        </script>
                     </div>
                     <form action="/booking/inbound?tourId=9900daba-78c8-452f-8af2-726f725e09c8&amp;LM=1" method="post">
                         <input name="__RequestVerificationToken" type="hidden" value="0mmxwu6rmUMi87KHgWbAwQQp6pkGOjXN5W9XQRxtm7T0lbX9d_I-1nMmYQuIQH6Tkbzr7PP61k5dFiFBWMh9JNbXowfa_9rI07T30pHkW1a6jg0E2bEc4UH_oZ_AV4qnt7d4Ijc13UxGy5sNfkH4_ZxKF4m3PJdkFmsxZaEmKy41" /><input data-val="true" data-val-required="The tour_id field is required." id="tour_id" name="tour_id" type="hidden" value="9900daba-78c8-452f-8af2-726f725e09c8" />                    <div class="col-xs-12 text-center" style="margin: 40px 0 40px 0">
@@ -190,25 +193,25 @@
                                             <div class="col-md-3 col-sm-2 mg-bot15">
                                                 <label>Người lớn</label>
                                                 <div>
-                                                    <input class="form-control input-lg" id="adult" name="adult" onblur="javascript:clear_text(this);" onclick="javascript:show_text(&#39;Từ 12 tuổi trở lên&#39;,this)" onkeypress="return funCheckInt(event)" type="text" value="1" />
+                                                    <input class="form-control input-lg" id="adult" name="adult" onblur="javascript:clear_text(this);" onclick="javascript:show_text(&#39;Từ 12 tuổi trở lên&#39;,this)" onkeypress="return funCheckInt(event)" onchange="javascript:sumGuest()" type="text" value="1" />
                                                 </div>
                                             </div>
                                             <div class="col-md-2 col-sm-2 mg-bot15">
                                                 <label>Trẻ em</label>
                                                 <div>
-                                                    <input class="form-control input-lg" id="children11" name="children11" onblur="javascript:clear_text(this);" onclick="javascript:show_text(&#39;Từ 5 tuổi đến dưới 12 tuổi&#39;,this)" onkeypress="return funCheckInt(event)" type="text" value="0" />
+                                                    <input class="form-control input-lg" id="children11" name="children11" onblur="javascript:clear_text(this);" onclick="javascript:show_text(&#39;Từ 5 tuổi đến dưới 12 tuổi&#39;,this)" onkeypress="return funCheckInt(event)" onchange="javascript:sumGuest()" type="text" value="0" />
                                                 </div>
                                             </div>
                                             <div class="col-md-2 col-sm-3 mg-bot15">
                                                 <label>Trẻ nhỏ</label>
                                                 <div>
-                                                    <input class="form-control input-lg" id="children" name="children" onblur="javascript:clear_text(this);" onclick="javascript:show_text(&#39;Từ 2 tuổi đến dưới 5 tuổi&#39;,this)" onkeypress="return funCheckInt(event)" type="text" value="0" />
+                                                    <input class="form-control input-lg" id="children" name="children" onblur="javascript:clear_text(this);" onclick="javascript:show_text(&#39;Từ 2 tuổi đến dưới 5 tuổi&#39;,this)" onkeypress="return funCheckInt(event)" onchange="javascript:sumGuest()" type="text" value="0" />
                                                 </div>
                                             </div>
                                             <div class="col-md-2 col-sm-2 mg-bot15">
                                                 <label>Em b&#233;</label>
                                                 <div>
-                                                    <input class="form-control input-lg" id="small_children" name="small_children" onblur="javascript:clear_text(this);" onclick="javascript:show_text(&#39;Dưới 2 tuổi&#39;,this)" onkeypress="return funCheckInt(event)" type="text" value="0" />
+                                                    <input class="form-control input-lg" id="small_children" name="small_children" onblur="javascript:clear_text(this);" onclick="javascript:show_text(&#39;Dưới 2 tuổi&#39;,this)" onkeypress="return funCheckInt(event)" onchange="javascript:sumGuest()" type="text" value="0" />
                                                 </div>
                                             </div>
                                             <div class="col-md-3 col-sm-3">
@@ -253,10 +256,7 @@
                                     <span class="title" style="text-transform: uppercase;">Danh s&#225;ch kh&#225;ch h&#224;ng đi tour</span>
                                 </div>
                                 <div class="book-danhsachkhachditour list">
-
-
-
-                                    <script src="/Content/jquery.date-dropdowns.js"></script>
+                                    <script src="/Scripts/jquery.date-dropdowns.js"></script>
                                     <div class="row">
                                         <div class="col-md-12 col-sm-12 col-xs-12 mg-bot10">
                                             <div>
@@ -353,290 +353,7 @@
                                         </div>
                                     </div>
 
-                                    <script>
-                                        //$(function () {
-                                        ChangeChoose();
-                                        //});
-
-                                        function CheckDOBByPersonkind() {
-                                            var totalMember = parseInt('1');
-                                            var end_date = new Date('2019', parseInt('6') - 1, '16', '19', '35', '0');
-
-                                            for (var i = 0; i < totalMember; i++) {
-                                                var dateofbirth = $("#dateofbirth" + i).val();
-                                                var personkind = $("#personkind" + i).val();//(0 : NguoiLon,1:TreNho, 2:EmBe, 3: TreEm)
-
-                                                var ldob = dateofbirth.split("/");
-
-                                                if (personkind == 0)//Nguoi lon >= 12 tuổi
-                                                {
-                                                    //var year = parseInt(ldob[2]) + 12;
-                                                    var dobNew = new Date(parseInt(ldob[2]) + 12 + "-" + ldob[1] + "-" + ldob[0]);//Them 12 nam so với chọn ngày sinh
-
-                                                    if (dobNew > end_date) {
-                                                        alert('Ngày sinh & loại khách không tương ứng. Quý khách cần kiểm tra lại ngày sinh( so với ngày về của tour : ' + '16/06/19 19:35:00'.toString() + ')')
-                                                        $("#dateofbirth" + i).val("");
-                                                        $("#dateofbirth" + i).focus();
-
-                                                        $("#dob" + i).val("");
-                                                        $("#dob" + i + "_day").val("");
-                                                        $("#dob" + i + "_month").val("");
-                                                        $("#dob" + i + "_year").val("");
-                                                    }
-                                                }
-                                                if (personkind == 3)//5 tuoi <= Tre em < 12 tuoi
-                                                {
-                                                    var dobMin = new Date(parseInt(ldob[2]) + 5 + "-" + ldob[1] + "-" + ldob[0]);
-                                                    var dobMax = new Date(parseInt(ldob[2]) + 12 + "-" + ldob[1] + "-" + ldob[0]);
-
-                                                    if (dobMin > end_date || dobMax < end_date) {
-                                                        alert('Ngày sinh & loại khách không tương ứng. Quý khách cần kiểm tra lại ngày sinh( so với ngày về của tour : ' + '16/06/19 19:35:00'.toString() + ')')
-                                                        $("#dateofbirth" + i).val("");
-                                                        $("#dateofbirth" + i).focus();
-
-                                                        $("#dob" + i).val("");
-                                                        $("#dob" + i + "_day").val("");
-                                                        $("#dob" + i + "_month").val("");
-                                                        $("#dob" + i + "_year").val("");
-                                                    }
-                                                }
-                                                if (personkind == 1)//2 tuoi <= Tre Nhỏ < 5 tuoi
-                                                {
-                                                    var dobMin = new Date(parseInt(ldob[2]) + 2 + "-" + ldob[1] + "-" + ldob[0]);
-                                                    var dobMax = new Date(parseInt(ldob[2]) + 5 + "-" + ldob[1] + "-" + ldob[0]);
-
-                                                    if (dobMin > end_date || dobMax < end_date) {
-                                                        alert('Ngày sinh & loại khách không tương ứng. Quý khách cần kiểm tra lại ngày sinh( so với ngày về của tour : ' + '16/06/19 19:35:00'.toString() + ')')
-                                                        $("#dateofbirth" + i).val("");
-                                                        $("#dateofbirth" + i).focus();
-
-                                                        $("#dob" + i).val("");
-                                                        $("#dob" + i + "_day").val("");
-                                                        $("#dob" + i + "_month").val("");
-                                                        $("#dob" + i + "_year").val("");
-                                                    }
-                                                }
-                                                if (personkind == 2)//Em bé <= 2 tuoi
-                                                {
-                                                    var dobNew = new Date(parseInt(ldob[2]) + 2 + "-" + ldob[1] + "-" + ldob[0]);
-
-                                                    if (dobNew < end_date) {
-                                                        alert('Ngày sinh & loại khách không tương ứng. Quý khách cần kiểm tra lại ngày sinh( so với ngày về của tour : ' + '16/06/19 19:35:00'.toString() + ')')
-                                                        $("#dateofbirth" + i).val("");
-                                                        $("#dateofbirth" + i).focus();
-
-                                                        $("#dob" + i).val("");
-                                                        $("#dob" + i + "_day").val("");
-                                                        $("#dob" + i + "_month").val("");
-                                                        $("#dob" + i + "_year").val("");
-                                                    }
-                                                }
-                                            }
-                                        }
-
-                                        function ChangeChoose() {
-                                            var CurrencyName = 'đ';
-                                            var Rate = '1';
-
-                                            var totalMember = parseInt('1');
-                                            var totalAdult = parseInt('1');
-
-                                            var totalPrice = 0;
-                                            for (var i = 0; i < totalMember; i++) {
-                                                var amount_vn = 0;
-                                                var loaikhachnoidia = $("#loaikhachnoidia" + i).val();//(0 : VietNam, 1: Viet kiều, 2: Nuoc ngoài)
-                                                var personkind = $("#personkind" + i).val();//(0 : NguoiLon,1:TreNho, 2:EmBe, 3: TreEm)
-                                                var loaiphuthuphongdon = $("#loaiphuthuphongdon" + i).val();//(0:Không, 1 : Có)
-
-                                                $("#loaikhachnoidia" + i).change(function () {
-                                                    loaikhachnoidia = $("#loaikhachnoidia" + i).val();
-                                                });
-
-                                                $("#personkind" + i).change(function () {
-                                                    personkind = $("#personkind" + i).val();
-                                                });
-
-                                                $("#loaiphuthuphongdon" + i).change(function () {
-                                                    loaiphuthuphongdon = $("#loaiphuthuphongdon" + i).val();
-                                                });
-
-                                                if (totalAdult == 1) {
-                                                    $("#loaiphuthuphongdon0").val('1');
-
-                                                }
-                                                loaiphuthuphongdon = $("#loaiphuthuphongdon" + i).val();
-
-                                                amount_vn = CalPrice(loaikhachnoidia, personkind, loaiphuthuphongdon);
-
-                                                //$("#price" + i).val(formatnumber(amount_vn.toString()) + ' đ');
-                                                $("#price" + i).val((amount_vn / Rate).toFixed(0) + ' ' + CurrencyName);
-                                                $("#spanprice" + i).text(formatnumber((amount_vn / Rate).toFixed(0)) + ' ' + CurrencyName);
-
-                                                totalPrice += amount_vn;
-                                            }
-
-                                            //$("#TotalPrice").val(formatnumber(totalPrice.toString()) + ' đ');
-                                            $("#TotalPrice").val((totalPrice / Rate).toFixed(0) + ' ' + CurrencyName);
-                                            $("#spanTotalPrice").text(formatnumber((totalPrice / Rate).toFixed(0)) + ' ' + CurrencyName);
-                                        }
-
-                                        function CalPrice(loaikhachnoidia, personkind, loaiphuthuphongdon) {
-
-                                            //Gia tri cua tour
-
-                                            //NguoiLon
-                                            var adult_price = parseFloat('5790000');//VietNam
-                                            var adult_o_price = parseFloat('5790000');//VietKieu
-                                            var adult_f_price = parseFloat('5790000');//NuocNgoai
-
-                                            //TreNho
-                                            var child_price = parseFloat('2500000');//VietNam
-                                            var child_o_price = parseFloat('2500000');//VietKieu
-                                            var child_f_price = parseFloat('2500000');//NuocNgoai
-
-                                            //EmBe
-                                            var child_price5 = parseFloat('220000');//VietNam
-                                            var pretty_o_price = parseFloat('220000');//VietKieu
-                                            var pretty_f_price = parseFloat('220000');//NuocNgoai
-
-                                            //TreEm
-                                            var child_price11 = parseFloat('4342500');//VietNam
-                                            var child_o_price11 = parseFloat('4342500');//VietKieu
-                                            var child_f_price11 = parseFloat('4342500');//NuocNgoai
-
-                                            var phuthuphongdon_vn = parseFloat('1200000');//VietNam
-                                            var phuthuphongdon_vk = parseFloat('1200000');//VietKieu
-                                            var phuthuphongdon_nn = parseFloat('1200000');//NuocNgoai
-
-                                            //Gia tri cua tour
-
-                                            var amount_vn = 0;
-
-                                            /* Xử lý tính giá tiền theo độ tuổi,loại khách, phụ thu phòng đơn */
-                                            switch (personkind)//Độ tuổi
-                                            {
-                                                case "0"://Người lớn
-                                                    switch (loaikhachnoidia)//loại khách
-                                                    {
-                                                        case "0": amount_vn = adult_price;//VietNam
-                                                            if (loaiphuthuphongdon == 1)//Phụ thu phòng đơn
-                                                            {
-                                                                amount_vn = amount_vn + phuthuphongdon_vn;
-                                                            }
-                                                            break;
-                                                        case "1": amount_vn = adult_o_price;//Vietkieu
-                                                            if (loaiphuthuphongdon == 1)//Phụ thu phòng đơn
-                                                            {
-                                                                amount_vn = amount_vn + phuthuphongdon_vk;
-                                                            }
-                                                            break;
-                                                        case "2": amount_vn = adult_f_price;//Nuocngoai
-                                                            if (loaiphuthuphongdon == 1)//Phụ thu phòng đơn
-                                                            {
-                                                                amount_vn = amount_vn + phuthuphongdon_nn;
-                                                            }
-                                                            break;
-                                                    }
-                                                    break;
-
-                                                case "1"://Trẻ nhỏ
-                                                    switch (loaikhachnoidia)//loại khách
-                                                    {
-                                                        case "0": amount_vn = child_price;//VietNam
-                                                            if (loaiphuthuphongdon == 1)//Phụ thu phòng đơn
-                                                            {
-                                                                amount_vn = amount_vn + phuthuphongdon_vn;
-                                                            }
-                                                            break;
-                                                        case "1": amount_vn = child_o_price;//Vietkieu
-                                                            if (loaiphuthuphongdon == 1)//Phụ thu phòng đơn
-                                                            {
-                                                                amount_vn = amount_vn + phuthuphongdon_vk;
-                                                            }
-                                                            break;
-                                                        case "2": amount_vn = child_f_price;//Nuocngoai
-                                                            if (loaiphuthuphongdon == 1)//Phụ thu phòng đơn
-                                                            {
-                                                                amount_vn = amount_vn + phuthuphongdon_nn;
-                                                            }
-                                                            break;
-                                                    }
-                                                    break;
-
-                                                case "2"://Em bé
-                                                    switch (loaikhachnoidia)//loại khách
-                                                    {
-                                                        case "0": amount_vn = child_price5;//VietNam
-                                                            if (loaiphuthuphongdon == 1)//Phụ thu phòng đơn
-                                                            {
-                                                                amount_vn = amount_vn + phuthuphongdon_vn;
-                                                            }
-                                                            break;
-                                                        case "1": amount_vn = pretty_o_price;//Vietkieu
-                                                            if (loaiphuthuphongdon == 1)//Phụ thu phòng đơn
-                                                            {
-                                                                amount_vn = amount_vn + phuthuphongdon_vk;
-                                                            }
-                                                            break;
-                                                        case "2": amount_vn = pretty_f_price;//Nuocngoai
-                                                            if (loaiphuthuphongdon == 1)//Phụ thu phòng đơn
-                                                            {
-                                                                amount_vn = amount_vn + phuthuphongdon_nn;
-                                                            }
-                                                            break;
-                                                    }
-                                                    break;
-
-                                                case "3"://Trẻ em
-                                                    switch (loaikhachnoidia)//loại khách
-                                                    {
-                                                        case "0": amount_vn = child_price11;//VietNam
-                                                            if (loaiphuthuphongdon == 1)//Phụ thu phòng đơn
-                                                            {
-                                                                amount_vn = amount_vn + phuthuphongdon_vn;
-                                                            }
-                                                            break;
-                                                        case "1": amount_vn = child_o_price11;//Vietkieu
-                                                            if (loaiphuthuphongdon == 1)//Phụ thu phòng đơn
-                                                            {
-                                                                amount_vn = amount_vn + phuthuphongdon_vk;
-                                                            }
-                                                            break;
-                                                        case "2": amount_vn = child_f_price11;//Nuocngoai
-                                                            if (loaiphuthuphongdon == 1)//Phụ thu phòng đơn
-                                                            {
-                                                                amount_vn = amount_vn + phuthuphongdon_nn;
-                                                            }
-                                                            break;
-                                                    }
-                                                    break;
-                                            }
-                                            /* End Xử lý tính giá tiền theo độ tuổi,loại khách, phụ thu phòng đơn */
-                                            return amount_vn;
-                                        }
-
-                                        var datenow = '12/06/2019';
-                                        var datemin = '12/06/1949';
-                                        var yearmin = '1949';
-                                        var yearmax = '2019';
-                                        $(".date").datepicker({
-                                            dateFormat: 'dd/mm/yy',
-                                            defaultDate: '01/01/1980',
-                                            inline: true,
-                                            changeMonth: true,
-                                            changeYear: true,
-                                            maxDate: datenow,
-                                            minDate: datemin,
-                                            yearRange: yearmin + ':' + yearmax
-                                        });
-
-                                        //<!--Format Datetime dd/MM/yyyy-->
-                                        $(document).ready(function () {
-                                            $.validator.addMethod("date", function (value, element) {
-                                                return this.optional(element) || /^(([0-2]?\d{1})|([3][0,1]{1}))\/(([0]\d{1})|([1][0-2]{1}))\/(([1]{1}[9]{1}\d{1}\d{1})|([2-9]{1}\d{3}))$/.test(value);
-                                            }, "Please enter valid date.");
-                                        });
-                                    </script>
+                                   
                                 </div>
                             </div>
 
@@ -715,57 +432,8 @@
                                 opacity: 0.5;
                             }
                         </style>
-                        <script type="text/javascript">
-                            //$(document).ready(function () {
-                            paymentID = $('.chkPayment:checked').val();
-                            LoadConditionPayment(paymentID);
-                            //});
-
-                            $('.chkPayment').click('change', function () {
-                                paymentID = $('.chkPayment:checked').val();
-
-                                LoadConditionPayment(paymentID);
-
-                                if (paymentID == 15) {
-                                    $('#divCard').show();
-                                    $('#divVNPay').hide();
-                                }
-                                else if (paymentID == 16) {
-                                    $('#divVNPay').show();
-                                    $('#divCard').hide();
-                                }
-                                else {
-                                    $('#divCard').hide();
-                                    $('#divVNPay').hide();
-                                }
-                            });
-
-                            function LoadConditionPayment(paymentID) {
-                                // Tương tác với server
-                                $.ajax({
-                                    url: "/Booking/GetConditionPayment",
-                                    data: { paymentID: paymentID },
-                                    success: function (result) {
-                                        $("#conditionPayment").html(result);
-                                    }
-                                });
-                            }
-
-                            function ChonLoaiThe(type) {
-                                $('.card_type').each(function () {
-                                    if ($(this).attr('card') == type) {
-                                        $('#cardType').val(type);
-                                        $(this).addClass('card_active');
-                                        $(this).removeClass('card_opacity');
-                                    }
-                                    else {
-                                        $(this).removeClass('card_active');
-                                        $(this).addClass('card_opacity');
-                                    }
-                                })
-                            }
-
-                        </script>                    <div class="col-xs-12 text-center" style="margin: 40px 0 40px 0">
+                                         
+                    <div class="col-xs-12 text-center" style="margin: 40px 0 40px 0">
                             <span class="title" style="text-transform: uppercase;">Điều khoản bắt buộc khi đăng k&#253; online</span>
                         </div>
                         <div class="col-xs-12 book-hinhthucthanhtoan" style="margin-bottom: 30px">
@@ -968,235 +636,19 @@
 </div>
 </div>
 <script>
-    //var CaptchaCallback = function () {
-    //    var widgetId1 = grecaptcha.render('RecaptchaFieldInbound', { 'sitekey': '6LcezicTAAAAAIbBsNL6IS14WAowVVhd_iL0hVNf', 'callback': correctCaptcha_quote });
-    //};
-
-    //var correctCaptcha_quote = function (response) {
-    //    $("#responseCaptchaInbound").val(response);
-    //};
-
-    CaculatorPrice();
-    function CheckMobile() {
-        var mobilephone = $("#mobilephone").val();
-        $("#mobile0").val(mobilephone);
-    }
-    //$(function () {
-    $("#adult").change(function () {
-        if (this.value < 1) {
-            alert('Dữ liệu nhập vào không hợp lệ');
-            this.focus();
-            this.value = 1;
-            this.select();
-
-            return;
-        }
-        else {
-            callTotal(this);
-        }
-    });
-    $("#children11").change(function () {
-        callTotal(this);
-    });
-    $("#children").change(function () {
-        callTotal(this);
-    });
-    $("#small_children").change(function () {
-        callTotal(this);
-    });
-
-    function callTotal(_this) {
-        numNguoiLon = parseInt($("#adult").val());
-        numTreEm = parseInt($("#children11").val());
-        numTreNho = parseInt($("#children").val());
-        numEmBe = parseInt($("#small_children").val());
-        _tour_id = '9900daba-78c8-452f-8af2-726f725e09c8'.toString();
-        _LM = parseInt('1');
-        _TO = parseInt('0');
-
-        total = numNguoiLon + numTreEm + numTreNho + numEmBe;
-
-        if (total > parseInt('0')) {
-            alert('Số chỗ còn nhận cho tour này là ' + 0 + '. Quý khách cần chọn lại số lượng khách')
-            $("#adult").val("1");
-            $("#children11").val("0");
-            $("#children").val("0");
-            $("#small_children").val("0");
-
-            total = 1;
-            numNguoiLon = 1;
-            numTreEm = 0;
-            numTreNho = 0;
-            numEmBe = 0;
-        }
-
-        if (total > 0) {
-            $("#guests").val(total);
-
-            // Call Ajax
-            $.ajax({
-                url: "/Booking/_InboundMembers",
-                data: { Total: total, adult: numNguoiLon, children11: numTreEm, children: numTreNho, small_children: numEmBe, tour_id: _tour_id, LM: _LM, TO: _TO },
-                success: function (response) {
-                    // Hiển thị kết quả tìm kiếm
-                    $("div.list").html(response);
-                }
-            });
-        }
-        else {
-            alert('Dữ liệu nhập vào không hợp lệ');
-            _this.focus();
-            _this.value = 1;
-            _this.select();
-
-            $("#guests").val(1);
-
-            // Call Ajax
-            $.ajax({
-                url: "/Booking/_InboundMembers",
-                data: { Total: 1, adult: 1, children11: 0, children: 0, small_children: 0, tour_id: _tour_id, LM: _LM, TO: _TO },
-                success: function (response) {
-                    // Hiển thị kết quả tìm kiếm
-                    $("div.list").html(response);
-                }
-            });
-
-            return false;
-        }
-        CaculatorPrice();
-        return true;
-    }
-    //});
-
-    function LoadChuongTrinhTour(page_id) {
-        // Tương tác với server
-        $.ajax({
-            url: "/Tour/_LoadTourProgram",
-            data: { page_id: page_id },
-            success: function (result) {
-                $("#GetDetailTravelImage").html(result);
-            }
-        });
-    }
-
-    $('a.email-window').click(function () {
-
-        //Getting the variable's value from a link
-        var loginBox = $(this).attr('href');
-
-        //Fade in the Popup
-        $(loginBox).fadeIn(300);
-
-        //Set the center alignment padding + border see css style
-        var popMargTop = ($(loginBox).height() + 24) / 2;
-        var popMargLeft = ($(loginBox).width() + 24) / 2;
-
-        $(loginBox).css({
-            'margin-top': -popMargTop,
-            'margin-left': -popMargLeft
-        });
-
-        // Add the mask to body
-        $('body').append('<div id="mask"></div>');
-        $('#mask').fadeIn(300);
-
-        return false;
-    });
-
-    $('a.close').click(function () {
-        CloseDialog();
-    });
-
-    function CloseDialog() {
-        $('#mask , .email-popup').fadeOut(300, function () {
-            $('#mask').remove();
-        });
-        return false;
-    }
-
-    function CheckDieuKhoan() {
-        //if ($('#chkDieuKhoan').is(':checked')) {
-        if (document.getElementById("chkDieuKhoan").checked) {
-
-            var end_date = new Date('2019', parseInt('6') - 1, '16', '19', '35', '0');
-            //var guests = $("#guests").val();
-            var guests = document.getElementById("guests").value;
-
-            var icheck = 0;//Kiểm tra số lượng khách trên 18 tuổi
-
-            //Kiem tra bat buoc khi booking phải là người lớn trên 18 tuổi
-            for (var i = 0; i < guests; i++) {
-                //var personkind = $("#personkind" + i).val();
-                var personkind = document.getElementById("personkind" + i).value;
-                if (personkind == 0) {
-                    //var ldob = $("#dateofbirth" + i).val().split("/");
-                    var ldob = document.getElementById("dateofbirth" + i).value.split("/");
-                    var dobNew = new Date(parseInt(ldob[2]) + 18 + "-" + ldob[1] + "-" + ldob[0]);//Them 18 nam so với chọn ngày sinh
-
-                    if (dobNew > end_date) {
-                        icheck = icheck + 1;//Khách chưa đủ 18 tuổi
-                    }
-                    else {
-                        icheck = icheck - 5;
-                    }
-                }
-            }
-
-            if (icheck > 0) {
-                alert('Booking phải có ít nhất 1 khách trên 18 tuổi');
-                return false;
-            }
-            else {
-                return true;
-            }
-        } else {
-            alert('Quý khách cần chọn Điều khoản đăng ký online');
-            return false;
-        }
-    }
-
-    value = $('.chkListCustomer:checked').val();
-    LoadInfoCustomer(value);
-
-    $('.chkListCustomer').click('change', function () {
-        value = $('.chkListCustomer:checked').val();
-        LoadInfoCustomer(value);
-    });
-    function LoadInfoCustomer(value) {
-        if (value == 1) {
-            $("#DanhSachKhach").show();
-            $("#divTongTien").hide();
-            $("#ThongTinKhach").hide();
-        }
-        else {
-            $("#DanhSachKhach").hide();
-            $("#divTongTien").show();
-            $("#ThongTinKhach").show();
-        }
-    }
-
-    function CaculatorPrice() {
-        var CurrencyName = 'đ';
-        var Rate = '1';
-
+    function sumGuest() {
         var adult = $('#adult').val();
-        var children11 = $('#children11').val();
         var children = $('#children').val();
+        var children11 = $('#children11').val();
         var small_children = $('#small_children').val();
+        var sum = parseInt(adult) + parseInt(children) + parseInt(children11) + parseInt(small_children);
+        $('#guests').val(sum.toString());
+    }
 
-        var adult_price = parseFloat('5790000');//Nguoi lon
-        var child_price11 = parseFloat('4342500');//TreEm
-        var child_price = parseFloat('2500000');//TreNho
-        var child_price5 = parseFloat('220000');//EmBe
-        var phuthuphongdon_vn = parseFloat('1200000');//PhuThuPhongDon
-
-        if (adult == 1) {
-            adult_price = adult_price + phuthuphongdon_vn;
+    function buildForm(n) {
+        for (var i = 0; i < parseInt($('#guests').val()); i++) {
+                        
         }
-        var totalPrice = (adult * adult_price) + (children11 * child_price11) + (children * child_price) + (small_children * child_price5);
-
-        $("#spanTotalPriceBK").text(formatnumber((totalPrice / Rate).toFixed(0)) + ' ' + CurrencyName);
     }
 </script>
-
 
