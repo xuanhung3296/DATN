@@ -149,491 +149,131 @@
 
                         </script>
                     </div>
-                    <form action="/booking/inbound?tourId=9900daba-78c8-452f-8af2-726f725e09c8&amp;LM=1" method="post">
-                        <input name="__RequestVerificationToken" type="hidden" value="0mmxwu6rmUMi87KHgWbAwQQp6pkGOjXN5W9XQRxtm7T0lbX9d_I-1nMmYQuIQH6Tkbzr7PP61k5dFiFBWMh9JNbXowfa_9rI07T30pHkW1a6jg0E2bEc4UH_oZ_AV4qnt7d4Ijc13UxGy5sNfkH4_ZxKF4m3PJdkFmsxZaEmKy41" /><input data-val="true" data-val-required="The tour_id field is required." id="tour_id" name="tour_id" type="hidden" value="9900daba-78c8-452f-8af2-726f725e09c8" />                    <div class="col-xs-12 text-center" style="margin: 40px 0 40px 0">
-                            <span class="title" style="text-transform: uppercase;">Th&#244;ng tin li&#234;n lạc</span>
-                        </div>
-                        <div class="col-xs-12 book-thongtinlienlac">
-                            <div class="row">
-                                <div class="col-md-6 col-sm-12 col-xs-12">
-                                    <div class="form-group">
-                                        <label>Họ t&#234;n <span style="color: #cd2c24">*</span></label>
-                                        <div>
-                                            <input class="form-control input-lg" id="contact_name" name="contact_name" required="required" type="text" value="" />
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Di động <span style="color: #cd2c24">*</span></label>
-                                        <div>
-                                            <input class="form-control input-lg" id="mobilephone" name="mobilephone" onchange="CheckMobile();" onkeypress="return funCheckInt(event)" required="required" type="text" value="" />
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Địa chỉ</label>
-                                        <div>
-                                            <input class="form-control input-lg" id="address" name="address" type="text" value="" />
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-sm-12 col-xs-12">
-                                    <div class="form-group">
-                                        <label>EMAIL <span style="color: #cd2c24">*</span></label>
-                                        <div>
-                                            <input class="form-control input-lg" id="email" name="email" required="required" type="email" value="" />
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Điện thoại</label>
-                                        <div>
-                                            <input class="form-control input-lg" id="phone" name="phone" onkeypress="return funCheckInt(event)" type="text" value="" />
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="row">
-                                            <div class="col-md-3 col-sm-2 mg-bot15">
-                                                <label>Người lớn</label>
-                                                <div>
-                                                    <input class="form-control input-lg" id="adult" name="adult" onblur="javascript:clear_text(this);" onclick="javascript:show_text(&#39;Từ 12 tuổi trở lên&#39;,this)" onkeypress="return funCheckInt(event)" onchange="javascript:sumGuest()" type="text" value="1" />
-                                                </div>
-                                            </div>
-                                            <div class="col-md-2 col-sm-2 mg-bot15">
-                                                <label>Trẻ em</label>
-                                                <div>
-                                                    <input class="form-control input-lg" id="children11" name="children11" onblur="javascript:clear_text(this);" onclick="javascript:show_text(&#39;Từ 5 tuổi đến dưới 12 tuổi&#39;,this)" onkeypress="return funCheckInt(event)" onchange="javascript:sumGuest()" type="text" value="0" />
-                                                </div>
-                                            </div>
-                                            <div class="col-md-2 col-sm-3 mg-bot15">
-                                                <label>Trẻ nhỏ</label>
-                                                <div>
-                                                    <input class="form-control input-lg" id="children" name="children" onblur="javascript:clear_text(this);" onclick="javascript:show_text(&#39;Từ 2 tuổi đến dưới 5 tuổi&#39;,this)" onkeypress="return funCheckInt(event)" onchange="javascript:sumGuest()" type="text" value="0" />
-                                                </div>
-                                            </div>
-                                            <div class="col-md-2 col-sm-2 mg-bot15">
-                                                <label>Em b&#233;</label>
-                                                <div>
-                                                    <input class="form-control input-lg" id="small_children" name="small_children" onblur="javascript:clear_text(this);" onclick="javascript:show_text(&#39;Dưới 2 tuổi&#39;,this)" onkeypress="return funCheckInt(event)" onchange="javascript:sumGuest()" type="text" value="0" />
-                                                </div>
-                                            </div>
-                                            <div class="col-md-3 col-sm-3">
-                                                <label>Số kh&#225;ch</label>
-                                                <div>
-                                                    <input class="form-control input-lg" id="guests" name="guests" readonly="readonly" type="text" value="1" />
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-12 col-sm-12 col-xs-12">
-                                    <div class="form-group">
-                                        <label>Ghi ch&#250;</label>
-                                        <div>
-                                            <textarea class="form-control input-lg" cols="20" id="note" name="note" rows="4">
-</textarea>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-12 col-sm-12 col-xs-12">
-                                    <div class="form-group">
-                                        <label><span style="color: #cd2c24">Ghi ch&#250;:</span> </label>
-                                        <div style="line-height: 22px">
-                                            <span class="bold">Người lớn sinh từ :</span> 16/06/1949 đến 16/06/2007
-                                            -
-                                            <span class="bold">Trẻ em sinh từ :</span> 17/06/2007 đến 16/06/2014
-                                            -
-                                            <span class="bold">Trẻ nhỏ sinh từ :</span> 17/06/2014 đến 16/06/2017
-                                            -
-                                            <span class="bold">Em b&#233; sinh từ :</span> 17/06/2017 đến 12/06/2019
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xs-12">
-                            <input type="radio" class="chkListCustomer" name="ListCustomer" value="1" checked="checked" />
-                            <span style="font-weight:bold;">Nhập danh sách khách hàng đi tour</span>&nbsp;&nbsp;&nbsp;
-                            <div id="DanhSachKhach">
-                                <div class="text-center" style="margin: 40px 0 40px 0">
-                                    <span class="title" style="text-transform: uppercase;">Danh s&#225;ch kh&#225;ch h&#224;ng đi tour</span>
-                                </div>
-                                <div class="book-danhsachkhachditour list">
-                                    <script src="/Scripts/jquery.date-dropdowns.js"></script>
-                                    <div class="row">
-                                        <div class="col-md-12 col-sm-12 col-xs-12 mg-bot10">
-                                            <div>
-                                                <div style="padding: 12px 15px 12px 15px; background: #c50000; color: #FFF">Kh&#225;ch h&#224;ng 1</div>
-                                            </div>
-                                            <div style="border: 1px solid #ccc; padding: 15px">
-                                                <div class="form-horizontal">
-                                                    <div class="row mg-bot10">
-                                                        <div class="col-lg-3 col-md-8 col-sm-6 col-xs-12 mg-bot10">
-                                                            <label class="mg-bot5">Họ t&#234;n (<span class="price">*</span>)</label>
-                                                            <div>
-                                                                <input class="form-control" name="[0].fullname" type="text" value="" />
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-lg-2 col-md-4 col-sm-6 col-xs-12 mg-bot10">
-                                                            <label class="mg-bot5">Giới t&#237;nh</label>
-                                                            <div>
-                                                                <select class="form-control" name="[0].gender">
-                                                                    <option value="0">Nữ</option>
-                                                                    <option value="1">Nam</option>
-                                                                </select>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 mg-bot10">
-                                                            <label class="mg-bot5">Ng&#224;y sinh (<span class="price">*</span>)</label>
-                                                            <div>
-                                                                <input data-val="true" data-val-date="The field dateofbirth must be a date." id="dateofbirth0" name="[0].dateofbirth" type="hidden" value="" />
-                                                                <input type="hidden" id="dob0" />
-                                                                <script>
-                                                                    $("#dob" + '0').dateDropdowns({
-                                                                        submitFieldName: 'dob' + '0',
-                                                                        submitFormat: "dd/mm/yyyy",
-                                                                        maxAge: 68
-                                                                        //,required: true
-                                                                    });
-                                                                    $('#dob' + '0').change(function () {
-                                                                        $('#dateofbirth' + '0').val($('#dob' + '0').val());
-                                                                        CheckDOBByPersonkind();
-                                                                    });
-                                                                </script>
-
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="col-lg-2 col-md-4 col-sm-6 col-xs-12 mg-bot10">
-                                                            <label class="mg-bot5">Độ tuổi</label>
-                                                            <div>
-                                                                <select class="form-control" id="personkind0" name="[0].personkind" onchange="ChangeChoose();">
-                                                                    <option value="0">Người lớn</option>
-                                                                    <option value="1">Trẻ em</option>
-                                                                </select>
+                 
 
 
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 mg-bot10" style="display:none;">
-                                                            <label class="mg-bot5">Loại kh&#225;ch:</label>
-                                                            <div>
-                                                                <select class="form-control" id="loaikhachnoidia0" name="[0].loaikhachnoidia" onchange="ChangeChoose();">
-                                                                    <option value="0">Việt Nam</option>
-                                                                    <option value="1">Việt kiều</option>
-                                                                    <option value="2">Nước ngo&#224;i</option>
-                                                                </select>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-lg-2 col-md-4 col-sm-6 col-xs-12 mg-bot10">
-                                                            <label class="mg-bot5">Ph&#242;ng đơn</label>
-                                                            <div>
-                                                                <select class="form-control" id="loaiphuthuphongdon0" name="[0].loaiphuthuphongdon" onchange="ChangeChoose();">
-                                                                    <option selected="selected" value="0">Kh&#244;ng</option>
-                                                                    <option value="1">C&#243;</option>
-                                                                </select>
-                                                            </div>
-                                                        </div>
-
-                                                    </div>
-                                                    <div class="row" style="padding: 15px 0 0px 0; border-top: 1px solid #ccc; margin-top: 15px;">
-                                                        <div class="col-md-12 col-sm-12 text-right">
-                                                            Trị gi&#225;: <span style="color:#cd2c24;font-weight: bold;font-size: 16px;padding-top: 18px" id="spanprice0">1349000</span>
-                                                            <input class="form-control" disabled="disabled" id="price0" name="price0" type="hidden" value="1349000" />
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row" style="margin-top: 30px">
-                                        <div class="col-xs-12">
-                                            <div style="text-align: left; padding: 10px 15px 10px 15px; background: #ddd">
-                                                <span style="font-weight: bold; font-size: 14px; margin-right: 10px; text-transform: uppercase">Tổng cộng:</span>
-                                                <span style="color: #cd2c24; font-weight: bold; font-size: 20px;float:right;" id="spanTotalPrice"></span>
-                                                <input type="hidden" id="TotalPrice" disabled="disabled" class="form-control" />
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                   
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="col-xs-12" id="divTongTien">
-                            <div class="row" style="margin-top: 30px">
-                                <div class="col-xs-12">
-                                    <div style="text-align: left; padding: 10px 15px 10px 15px; background: #ddd">
-                                        <span style="font-weight: bold; font-size: 14px; margin-right: 10px; text-transform: uppercase">Tổng cộng:</span>
-                                        <span style="color: #cd2c24; font-weight: bold; font-size: 20px;float:right;" id="spanTotalPriceBK"></span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Hình thức thanh toán -->
-                        <div class="col-xs-12 text-center" style="margin: 40px 0 40px 0">
-                            <span class="title" style="text-transform: uppercase;">Xin qu&#253; kh&#225;ch vui l&#242;ng chọn h&#236;nh thức thanh to&#225;n</span>
-                        </div>
-                        <div class="col-xs-12 book-hinhthucthanhtoan" style="margin-bottom: 30px">
-                            <div style="border:1px solid #ccc;padding: 20px 30px 20px 30px">
-                                <div class="radio">
-                                    <label style="display:;"><input type="radio" class="chkPayment" name="paymentID" value="1" checked= checked /><label class="lb_r">Tiền mặt</label></label>
-                                </div>
-                                <div class="radio">
-                                    <label style="display:;"><input type="radio" class="chkPayment" name="paymentID" value="2" /><label class="lb_r">Chuyển khoản</label></label>
-                                </div>
-                                <div class="radio">
-                                    <label><input type="radio" class="chkPayment" name="paymentID" value="9" /><label class="lb_r">ATM / Internet Banking</label></label>
-                                </div>
-                                <div class="radio">
-                                    <label><input type="radio" class="chkPayment" name="paymentID" value="15" /><label class="lb_r">Thẻ t&#237;n dụng </label> </label>
-                                </div>
-                                <div class="row " style="padding-bottom:10px;display:none;" id="divCard">
-                                    <div style="margin-top: 5px; margin-left: 35px; font-weight: bold; color: #d57575;">
-                                        Qu&#253; kh&#225;ch vui l&#242;ng chọn loại thẻ
-
-                                    </div>
-                                    <div style="padding:15px; margin:0px 15px;">
-                                        <input id="cardType" name="cardType" type="hidden" value="visa">
-                                        <div card="visa" onclick="ChonLoaiThe('visa')" class="card_type f-left" style="margin-left:5px; cursor:pointer;height: 32px;">
-                                            <img src="/Content/themeOrange/img/thevisa.png" alt="visa">
-                                        </div>
-                                        <div card="mastercard" onclick="ChonLoaiThe('mastercard')" class="card_type f-left mg-left" style="margin-left:5px; cursor:pointer;height: 32px;">
-                                            <img src="/Content/themeOrange/img/master.png" alt="master">
-                                        </div>
-                                        <div card="jcb" onclick="ChonLoaiThe('jcb')" class="card_type f-left mg-left" style="margin-left:5px; cursor:pointer;height: 32px;">
-                                            <img src="/Content/themeOrange/img/jcb.png" alt="jcb">
-                                        </div>
-                                        <div card="amex" onclick="ChonLoaiThe('amex')" class="card_type f-left mg-left" style="margin-left:5px; cursor:pointer;height: 32px;">
-                                            <img src="/Content/themeOrange/img/amex.png" alt="amex">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="radio">
-                                    <label><input type="radio" class="chkPayment" name="paymentID" value="16" /><label class="lb_r">Thanh to&#225;n bằng qu&#233;t QRCode</label></label>
-                                </div>
-                                <div class="row " style="padding-bottom:10px;display:none;" id="divVNPay">
-                                    <div style="margin-top: 5px; margin-left: 35px; font-weight: bold; color: #d57575;">
-                                        Thẻ t&#237;n dụng (VISA/MASTER/JCB) / Thẻ ATM - Dịch vụ của VNPay
-                                    </div>
-                                </div>
-
-                                <div style="border:1px solid #ccc;padding: 20px 30px 20px 30px;text-align: justify;word-wrap: break-word;height: 150px;overflow-y: scroll;line-height: 22px">
-                                    <div id="conditionPayment"></div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <style type="text/css">
-                            .card_active {
-                                border: 1px solid #a66b01;
-                            }
-
-                            .card_opacity {
-                                opacity: 0.5;
-                            }
-                        </style>
-                                         
                     <div class="col-xs-12 text-center" style="margin: 40px 0 40px 0">
-                            <span class="title" style="text-transform: uppercase;">Điều khoản bắt buộc khi đăng k&#253; online</span>
-                        </div>
-                        <div class="col-xs-12 book-hinhthucthanhtoan" style="margin-bottom: 30px">
-                            <div style="border: 1px solid #ccc; padding: 20px 30px 20px 30px; text-align: justify; word-wrap: break-word; height: 200px; overflow-y: scroll; line-height: 22px">
-                                <html>
-                                <head>
-                                    <title></title>
-                                </head>
-                                <body>
-                                    <p>
-                                        <strong>ĐIỀU KIỆN B&Aacute;N V&Eacute; C&Aacute;C CHƯƠNG TR&Igrave;NH DU LỊCH TRONG NƯỚC</strong>
-                                    </p>
-                                    <p>
-                                        <strong>I.&nbsp;&nbsp; GI&Aacute; V&Eacute; DU LỊCH</strong>
-                                    </p>
-                                    <p>
-                                        Gi&aacute; v&eacute; du lịch được t&iacute;nh theo tiền Đồng (Việt Nam - VNĐ). Trường hợp kh&aacute;ch thanh to&aacute;n bằng USD sẽ được quy đổi ra VNĐ theo tỉ gi&aacute; của ng&acirc;n h&agrave;ng Đầu Tư v&agrave; Ph&aacute;t Triển Việt Nam - Chi nh&aacute;nh TP.HCM tại thời điểm thanh to&aacute;n.
-                                    </p>
-                                    <p>
-                                        Gi&aacute; v&eacute; chỉ bao gồm những khoản được liệt k&ecirc; một c&aacute;ch r&otilde; r&agrave;ng trong phần &ldquo;Bao gồm&rdquo; trong c&aacute;c chương tr&igrave;nh du lịch. Vietravel kh&ocirc;ng c&oacute; nghĩa vụ thanh to&aacute;n bất cứ chi ph&iacute; n&agrave;o kh&ocirc;ng nằm trong phần &ldquo;Bao gồm&rdquo;.
-                                    </p>
-                                    <p>
-                                        <strong>II.&nbsp;&nbsp; GI&Aacute; D&Agrave;NH CHO TRẺ EM</strong>
-                                    </p>
-                                    <p>
-                                        - Trẻ em dưới 5 tuổi:&nbsp; kh&ocirc;ng thu ph&iacute; dịch vụ, bố mẹ tự lo cho b&eacute; v&agrave; thanh to&aacute;n c&aacute;c chi ph&iacute; ph&aacute;t sinh (đối với c&aacute;c dịch vụ t&iacute;nh ph&iacute; theo chiều cao&hellip;). Hai người lớn chỉ được k&egrave;m 1 trẻ em dưới 5 tuổi, trẻ em thứ 2 sẽ đ&oacute;ng ph&iacute; theo qui định d&agrave;nh cho độ tuổi từ 5 đến dưới 12 tuổi v&agrave; phụ thu ph&ograve;ng đơn. V&eacute; m&aacute;y bay, t&agrave;u hỏa, phương tiện vận chuyển c&ocirc;ng cộng mua v&eacute; theo qui định của c&aacute;c đơn vị vận chuyển (nếu c&oacute;)
-                                    </p>
-                                    <p>
-                                        - Trẻ em từ 5 tuổi đến dưới 12 tuổi:&nbsp; 50% gi&aacute; tour người lớn đối với tuyến xe, 75% gi&aacute; tour người lớn đối với tuyến c&oacute; v&eacute; m&aacute;y bay (kh&ocirc;ng c&oacute; chế độ giường ri&ecirc;ng). Hai người lớn chỉ được k&egrave;m 1 trẻ em từ 5 - dưới 12 tuổi, em thứ hai trở l&ecirc;n phải mua 1 suất giường đơn.
-                                    </p>
-                                    <p>
-                                        - Trẻ em từ 12 tuổi trở l&ecirc;n: mua một v&eacute; như người lớn.
-                                    </p>
-                                    <p>
-                                        <strong>III. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; THANH TO&Aacute;N</strong>
-                                    </p>
-                                    <p>
-                                        Khi thanh to&aacute;n, Qu&yacute; kh&aacute;ch vui l&ograve;ng cung cấp đầy đủ th&ocirc;ng tin v&agrave; đặt cọc &iacute;t nhất 50% tổng số tiền tour để giữ chỗ, số tiền c&ograve;n lại Qu&yacute; kh&aacute;ch sẽ thanh to&aacute;n trước ng&agrave;y khởi h&agrave;nh 05 ng&agrave;y l&agrave;m việc (tour ng&agrave;y thường) v&agrave; trước 10 ng&agrave;y l&agrave;m việc (tour dịp Lễ, Tết)&rdquo;.
-                                    </p>
-                                    <p>
-                                        Thanh to&aacute;n bằng tiền mặt hoặc chuyển khoản tới t&agrave;i khoản ng&acirc;n h&agrave;ng của Vietravel.
-                                    </p>
-                                    <p>
-                                        T&ecirc;n t&agrave;i khoản: VIETRAVEL
-                                    </p>
-                                    <p>
-                                        Ng&acirc;n h&agrave;ng:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Ngoại Thương Việt Nam &ndash; Chi nh&aacute;nh TPHCM
-                                    </p>
-                                    <p>
-                                        Địa chỉ:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 29 Bến Chương Dương, Quận 1, TPHCM
-                                    </p>
-                                    <p>
-                                        T&agrave;i khoản:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; USD: 007 137 008 9095
-                                    </p>
-                                    <p style="margin-left:.5in;">
-                                        VNĐ: 007 100 001 2584
-                                    </p>
-                                    <p>
-                                        Việc thanh to&aacute;n được xem l&agrave; ho&agrave;n tất khi Vietravel nhận được đủ tiền v&eacute; du lịch trước l&uacute;c khởi h&agrave;nh hoặc theo hợp đồng thỏa thuận giữa hai b&ecirc;n. Bất kỳ mọi sự thanh to&aacute;n chậm trễ dẫn đến việc hủy dịch vụ kh&ocirc;ng thuộc tr&aacute;ch nhiệm của Vietravel.
-                                    </p>
-                                    <p>
-                                        Kh&aacute;ch h&agrave;ng c&oacute; nhu cầu xuất h&oacute;a đơn, vui l&ograve;ng cung cấp th&ocirc;ng tin xuất h&oacute;a đơn ngay tại thời điểm đăng k&yacute;. Vietravel c&oacute; tr&aacute;ch nhiệm xuất h&oacute;a đơn cho kh&aacute;ch h&agrave;ng trong v&ograve;ng 7 ng&agrave;y sau khi tour kết th&uacute;c.
-                                    </p>
-                                    <p>
-                                        <strong>D&Agrave;NH CHO KH&Aacute;CH H&Agrave;NG ĐĂNG K&Yacute; TR&Ecirc;N TRANG WWW.TRAVEL.COM.VN THANH TO&Aacute;N CHUYỂN KHOẢN:</strong>
-                                    </p>
-                                    <p>
-                                        Khi thực hiện việc chuyển khoản, Qu&yacute; kh&aacute;ch <strong>vui l&ograve;ng ghi r&otilde; T&ecirc;n họ, Số điện thoại v&agrave; Nội dung chuyển</strong> cho chương tr&igrave;nh du lịch cụ thể đ&atilde; được Qu&yacute; kh&aacute;ch chọn đăng k&yacute;. Sau khi thực hiện việc chuyển khoản, Qu&yacute; kh&aacute;ch vui l&ograve;ng gửi Ủy Nhiệm Chi về c&ocirc;ng ty Vietravel theo địa chỉ email sales@vietravel.com v&agrave; li&ecirc;n hệ với nh&acirc;n vi&ecirc;n phụ tr&aacute;ch tuyến để nhận được V&eacute; du lịch ch&iacute;nh thức từ c&ocirc;ng ty Vietravel. Vietravel sẽ kh&ocirc;ng giải quyết c&aacute;c trường hợp hệ thống tự động hủy phiếu đăng k&yacute; nếu Qu&yacute; kh&aacute;ch kh&ocirc;ng thực hiện đ&uacute;ng qui định tr&ecirc;n.
-                                    </p>
-                                    <p>
-                                        <strong>IV.&nbsp;&nbsp; HỦY V&Eacute; V&Agrave; PH&Iacute; HỦY V&Eacute; DU LỊCH</strong>
-                                    </p>
-                                    <p>
-                                        <strong>1.&nbsp;&nbsp; Trường hợp bị hủy bỏ do Vietravel:</strong>
-                                    </p>
-                                    <p>
-                                        Nếu Vietravel kh&ocirc;ng thực hiện được chuyến du lịch, Vietravel phải b&aacute;o ngay cho kh&aacute;ch h&agrave;ng biết v&agrave; thanh to&aacute;n lại cho kh&aacute;ch h&agrave;ng to&agrave;n bộ số tiền kh&aacute;ch h&agrave;ng đ&atilde; đ&oacute;ng trong v&ograve;ng 3 ng&agrave;y kể từ l&uacute;c việc th&ocirc;ng b&aacute;o hủy chuyến du lịch bằng tiền mặt hoặc chuyển khoản.
-                                    </p>
-                                    <p>
-                                        <strong>2.&nbsp;&nbsp; Trường hợp bị hủy bỏ do kh&aacute;ch h&agrave;ng:</strong>
-                                    </p>
-                                    <p>
-                                        Sau khi đ&oacute;ng tiền, nếu Qu&yacute; kh&aacute;ch muốn chuyển/hủy tour xin vui l&ograve;ng mang V&eacute; Du Lịch đến văn ph&ograve;ng đăng k&yacute; tour để l&agrave;m thủ tục chuyển/hủy tour v&agrave; chịu mất ph&iacute; theo quy định của Vietravel. Kh&ocirc;ng giải quyết c&aacute;c trường hợp li&ecirc;n hệ chuyển/hủy tour qua điện thoại.
-                                    </p>
-                                    <p>
-                                        <strong>&bull;&nbsp;&nbsp;&nbsp;&nbsp; Đối với ng&agrave;y thường:</strong>
-                                    </p>
-                                    <p>
-                                        -&nbsp;&nbsp; Được chuyển sang c&aacute;c tuyến du lịch kh&aacute;c trước ng&agrave;y khởi&nbsp; h&agrave;nh 20 ng&agrave;y : Kh&ocirc;ng mất chi ph&iacute;.
-                                    </p>
-                                    <p>
-                                        -&nbsp;&nbsp; Hủy hoặc chuyển sang c&aacute;c chuyến du lịch kh&aacute;c ngay sau khi đăng k&yacute; đến từ 15 - 19 ng&agrave;y trước ng&agrave;y khởi h&agrave;nh: Chi ph&iacute; chuyển/hủy tour: 50% tiền cọc tour.
-                                    </p>
-                                    <p>
-                                        <strong>&bull;&nbsp;&nbsp;&nbsp;&nbsp; Đối với ng&agrave;y lễ, Tết:&nbsp; </strong>
-                                    </p>
-                                    <p>
-                                        -&nbsp;&nbsp; Được chuyển sang c&aacute;c tuyến du lịch kh&aacute;c trước ng&agrave;y khởi &nbsp;h&agrave;nh 30 ng&agrave;y : Kh&ocirc;ng mất chi ph&iacute;.
-                                    </p>
-                                    <p>
-                                        -&nbsp;&nbsp; Hủy hoặc chuyển sang c&aacute;c chuyến du lịch kh&aacute;c ngay sau khi đăng k&yacute; đến từ 25 - 29 ng&agrave;y trước ng&agrave;y khởi h&agrave;nh: Chi ph&iacute; chuyển/hủy tour: 50% tiền cọc tour.
-                                    </p>
-                                    <p>
-                                        <strong><em>* C&aacute;c tour ng&agrave;y Lễ, Tết l&agrave; c&aacute;c tour c&oacute; thời gian diễn ra rơi v&agrave;o một trong c&aacute;c ng&agrave;y lễ, tết theo qui định.</em></strong>
-                                    </p>
-                                    <p>
-                                        <strong><em>* Thời gian hủy tour được t&iacute;nh cho ng&agrave;y l&agrave;m việc, kh&ocirc;ng t&iacute;nh thứ 7, Chủ Nhật v&agrave; c&aacute;c ng&agrave;y Lễ, Tết.</em></strong>
-                                    </p>
-                                    <p>
-                                        <strong>D&Agrave;NH CHO KH&Aacute;CH H&Agrave;NG ĐĂNG K&Yacute; TR&Ecirc;N TRANG WWW.TRAVEL.COM.VN THANH TO&Aacute;N TRỰC TUYẾN:</strong>
-                                    </p>
-                                    <p>
-                                        Kh&aacute;ch h&agrave;ng hủy V&eacute; du lịch trong thời điểm ng&agrave;y Thường v&agrave; Lễ Tết theo đ&uacute;ng những qui định tr&ecirc;n, trong trường hợp kh&aacute;ch thanh to&aacute;n trực tuyến, nếu hủy V&eacute; du lịch kh&aacute;ch h&agrave;ng sẽ chịu to&agrave;n bộ ph&iacute; ng&acirc;n h&agrave;ng cho việc thanh to&aacute;n tiền V&eacute; du lịch. Việc ho&agrave;n trả tiền cho kh&aacute;ch sẽ được Vietravel thực hiện ngay sau khi ng&acirc;n h&agrave;ng th&ocirc;ng b&aacute;o tiền đ&atilde; v&agrave;o t&agrave;i khoản của Vietravel.
-                                    </p>
-                                    <p>
-                                        <strong>3.&nbsp;&nbsp; Trường hợp bất khả kh&aacute;ng:</strong>
-                                    </p>
-                                    <p>
-                                        Nếu chương tr&igrave;nh du lịch bị hủy bỏ hoặc thay đổi bởi một trong hai b&ecirc;n v&igrave; một l&yacute; do bất khả kh&aacute;ng (hỏa hoạn, thời tiết, tai nạn, thi&ecirc;n tai, chiến tranh, dịch bệnh, ho&atilde;n, dời, hủy chuyến hoặc thay đổi kh&aacute;c của c&aacute;c phương tiện vận chuyển c&ocirc;ng cộng hoặc c&aacute;c sự kiến bất khả kh&aacute;ng kh&aacute;c theo quy định ph&aacute;p luật&hellip;), th&igrave; hai b&ecirc;n sẽ kh&ocirc;ng chịu bất kỳ nghĩa vụ bồi ho&agrave;n c&aacute;c tổn thất đ&atilde; xảy ra v&agrave; kh&ocirc;ng chịu bất kỳ tr&aacute;ch nhiệm ph&aacute;p l&yacute; n&agrave;o. Tuy nhi&ecirc;n mỗi b&ecirc;n c&oacute; tr&aacute;ch nhiệm cố gắng tối đa để gi&uacute;p đỡ b&ecirc;n bị thiệt hại nhằm giảm thiểu c&aacute;c tổn thất g&acirc;y ra v&igrave; l&yacute; do bất khả kh&aacute;ng.
-                                    </p>
-                                    <p>
-                                        <strong>4. &nbsp;&nbsp;&nbsp;Thay đổi lộ tr&igrave;nh:&nbsp; </strong>
-                                    </p>
-                                    <p>
-                                        T&ugrave;y theo t&igrave;nh h&igrave;nh thực tế, Vietravel giữ quyền thay đổi lộ tr&igrave;nh, sắp xếp lại thứ tự c&aacute;c điểm tham quan hoặc hủy bỏ chuyến đi du lịch bất cứ l&uacute;c n&agrave;o m&agrave; Vietravel thấy cần thiết v&igrave; sự thuận tiện hoặc an to&agrave;n cho kh&aacute;ch h&agrave;ng.
-                                    </p>
-                                    <p>
-                                        <strong>V.&nbsp;&nbsp; NHỮNG Y&Ecirc;U CẦU ĐẶC BIỆT TRONG CHUYẾN DU LỊCH</strong>
-                                    </p>
-                                    <p>
-                                        C&aacute;c y&ecirc;u cầu đặc biệt của Qu&yacute; kh&aacute;ch phải được b&aacute;o trước cho Vietravel ngay tại thời điểm đăng k&yacute;. Vietravel sẽ cố gắng đ&aacute;p ứng những y&ecirc;u cầu n&agrave;y trong khả năng của m&igrave;nh song sẽ kh&ocirc;ng chịu tr&aacute;ch nhiệm về bất kỳ sự từ chối cung cấp dịch vụ từ ph&iacute;a c&aacute;c nh&agrave; vận chuyển, kh&aacute;ch sạn, nh&agrave; h&agrave;ng v&agrave; c&aacute;c nh&agrave; cung cấp dịch vụ độc lập kh&aacute;c.
-                                    </p>
-                                    <p>
-                                        <strong>VI.&nbsp;&nbsp; KH&Aacute;CH SẠN</strong>
-                                    </p>
-                                    <p>
-                                        Kh&aacute;ch sạn được cung cấp tr&ecirc;n cơ sở những ph&ograve;ng c&oacute; hai giường đơn (TWN) hoặc một giường đ&ocirc;i (DBL) t&ugrave;y theo cơ cấu ph&ograve;ng của c&aacute;c kh&aacute;ch sạn. Kh&aacute;ch sạn do Vietravel đặt cho c&aacute;c chương tr&igrave;nh tham quan c&oacute; ti&ecirc;u chuẩn tương ứng với c&aacute;c mức gi&aacute; v&eacute; m&agrave; kh&aacute;ch chọn khi đăng k&yacute; đi du lịch. Nếu cần thiết thay đổi về bất kỳ l&yacute; do n&agrave;o, kh&aacute;ch sạn thay thế sẽ tương đương với ti&ecirc;u chuẩn của kh&aacute;ch sạn ban đầu v&agrave; sẽ được b&aacute;o cho du kh&aacute;ch trước khi khởi h&agrave;nh. Những y&ecirc;u cầu đặc biệt của kh&aacute;ch h&agrave;ng nếu th&ocirc;ng b&aacute;o trước cho Vietravel sẽ được đ&aacute;p ứng t&ugrave;y theo khả năng cung cấp của kh&aacute;ch sạn v&agrave; kh&aacute;ch h&agrave;ng phải trả th&ecirc;m tiền đối với c&aacute;c y&ecirc;u cầu n&agrave;y (nếu c&oacute;). Vietravel c&oacute; quyền kh&ocirc;ng đ&aacute;p ứng những y&ecirc;u cầu n&agrave;y nếu kh&aacute;ch sạn từ chối cung cấp dịch vụ. Thời gian nhận ph&ograve;ng theo qui định tại c&aacute;c kh&aacute;ch sạn l&agrave; sau 14:00 v&agrave; phải trả ph&ograve;ng trước 12:00. Đối với c&aacute;c trường hợp kh&aacute;ch lưu tr&uacute; tại hệ thống kh&aacute;ch sạn/Resort 5 sao (Vinpearl, FLC, Grand Ho Tram Strip&hellip;) tu&acirc;n thủ theo điều kiện hủy phạt của kh&aacute;ch sạn/Resort cho từng thời điểm.
-                                    </p>
-                                    <p>
-                                        <strong>VII.&nbsp;&nbsp; VẬN CHUYỂN</strong>
-                                    </p>
-                                    <p>
-                                        Phương tiện vận chuyển t&ugrave;y thuộc theo từng chương tr&igrave;nh du lịch.
-                                    </p>
-                                    <p>
-                                        Với chương tr&igrave;nh đi bằng xe: xe m&aacute;y lạnh (4, 7, 15, 25, 35, 45 chỗ) sẽ được Vietravel sắp xếp t&ugrave;y theo số lượng kh&aacute;ch từng đo&agrave;n, phục vụ suốt chương tr&igrave;nh tham quan.
-                                    </p>
-                                    <p>
-                                        Với chương tr&igrave;nh đi bằng xe lửa - m&aacute;y bay - t&agrave;u c&aacute;nh ngầm (phương tiện vận chuyển c&ocirc;ng cộng), trong một số chương tr&igrave;nh c&aacute;c nh&agrave; cung cấp dịch vụ c&oacute; thể thay đổi giờ khởi h&agrave;nh m&agrave; kh&ocirc;ng b&aacute;o trước, việc thay đổi n&agrave;y sẽ được Vietravel th&ocirc;ng b&aacute;o cho kh&aacute;ch h&agrave;ng nếu thời gian cho ph&eacute;p.
-                                    </p>
-                                    <p>
-                                        Vietravel kh&ocirc;ng chịu tr&aacute;ch nhiệm bồi ho&agrave;n v&agrave; tr&aacute;ch nhiệm ph&aacute;p l&yacute; với những thiệt hại về vật chất lẫn tinh thần do việc chậm trễ, thay đổi giờ giấc khởi h&agrave;nh của c&aacute;c phương tiện vận chuyển c&ocirc;ng cộng hoặc sự chậm trễ do ch&iacute;nh h&agrave;nh kh&aacute;ch g&acirc;y ra. Vietravel chỉ thực hiện h&agrave;nh vi gi&uacute;p đỡ để giảm bớt tổn thất cho h&agrave;nh kh&aacute;ch.
-                                    </p>
-                                    <p>
-                                        <strong>VIII.&nbsp;&nbsp; H&Agrave;NH L&Yacute;</strong>
-                                    </p>
-                                    <p>
-                                        H&agrave;nh l&yacute; gọn nhẹ, với c&aacute;c chương tr&igrave;nh sử dụng dịch vụ h&agrave;ng kh&ocirc;ng, h&agrave;nh l&yacute; miễn cước sẽ do c&aacute;c h&atilde;ng h&agrave;ng kh&ocirc;ng qui định. Vietravel kh&ocirc;ng chịu tr&aacute;ch nhiệm về sự thất lạc, hư hỏng h&agrave;nh l&yacute; hoặc bất kỳ vật dụng g&igrave; của du kh&aacute;ch trong suốt chuyến đi, du kh&aacute;ch tự bảo quản h&agrave;nh l&yacute; của m&igrave;nh. Nếu kh&aacute;ch h&agrave;ng bị mất hay thất lạc h&agrave;nh l&yacute; th&igrave; Vietravel sẽ gi&uacute;p h&agrave;nh kh&aacute;ch li&ecirc;n lạc v&agrave; khai b&aacute;o với c&aacute;c bộ phận li&ecirc;n quan truy t&igrave;m h&agrave;nh l&yacute; bị mất hay thất lạc. Việc bồi thường h&agrave;nh l&yacute; bị mất hay thất lạc sẽ theo qui định của c&aacute;c đơn vị cung cấp dịch vụ hoặc c&aacute;c đơn vị bảo hiểm (nếu c&oacute;).
-                                    </p>
-                                    <p>
-                                        <strong>IX.&nbsp;&nbsp; BẢO HIỂM DU LỊCH</strong>
-                                    </p>
-                                    <p>
-                                        Gi&aacute; dịch vụ du lịch trọn g&oacute;i đ&atilde; bao gồm bảo hiểm du lịch trong nước với mức đền b&ugrave; cao nhất l&agrave; 120.000.000đ/kh&aacute;ch Việt Nam/vụ cho nh&acirc;n mạng v&agrave; 12.000.000 VNĐ/kh&aacute;ch Việt Nam/vụ cho h&agrave;nh l&yacute; .
-                                    </p>
-                                    <p>
-                                        Điều kiện, điều khoản bảo hiểm: Theo quy tắc bảo hiểm kh&aacute;ch du lịch trong nước QĐ số: 001321/2006 &ndash; BM/BHCN.
-                                    </p>
-                                    <p>
-                                        Số hotline tư vấn về c&aacute;c điều kiện, điều khoản bảo hiểm 0938 30 1234
-                                    </p>
-                                    <p>
-                                        <strong>X.&nbsp;&nbsp;&nbsp; </strong>Trong qu&aacute; tr&igrave;nh thực hiện, nếu xảy ra tranh chấp sẽ được giải quyết tr&ecirc;n cơ sở thương lượng trong thời hạn 30 ng&agrave;y kể từ ng&agrave;y một trong hai b&ecirc;n đưa tranh chấp ra thương lượng. Hết thời hạn n&agrave;y nếu tranh chấp kh&ocirc;ng được giải quyết hoặc một trong hai b&ecirc;n kh&ocirc;ng đồng &yacute; với kết quả thương lượng th&igrave; c&oacute; quyền đưa tranh chấp ra giải quyết tại T&ograve;a &aacute;n thẩm quyền.
-                                    </p>
-                                    <p>
-                                        <strong><em>* V&eacute; du lịch được xem như Hợp đồng lữ h&agrave;nh v&agrave; được lập th&agrave;nh 2 bản, mỗi b&ecirc;n giữ một bản, c&oacute; gi&aacute; trị như nhau.</em></strong>
-                                    </p>
-                                    <p>
-                                        &nbsp;
-                                    </p>
-                                </body>
-                            </html>
-
+                        <span class="title" style="text-transform: uppercase;">Thông tin liên lạc</span>
+                    </div>
+                @using (Html.BeginForm("AddUser", "Booking"))
+                {
+                    <div class="col-xs-12 book-thongtinlienlac">
+                        <div class="row">
+                            <div class="col-md-6 col-sm-12 col-xs-12">
+                                <div class="form-group">
+                                    <label>Họ và tên <span style="color: #cd2c24">*</span></label>
+                                    <div>
+                                        <input class="form-control input-lg" id="contact_name" name="contact_name" required="required" type="text" value="" />
+                                        @Html.TextBox("Name", null, new { @class = "form-control input-lg", @required = "required" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Di động <span style="color: #cd2c24">*</span></label>
+                                    <div>
+                                        <input class="form-control input-lg" id="mobilephone" name="mobilephone" onchange="CheckMobile();" onkeypress="return funCheckInt(event)" required="required" type="text" value="" />
+                                        @Html.TextBox("Phone", null, new { @class = "form-control input-lg", @required = "required" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Địa chỉ</label>
+                                    <div>
+                                        <input class="form-control input-lg" id="address" name="address" type="text" value="" />
+                                        @Html.TextBox("Address", null, new { @class = "form-control input-lg", @required = "required" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-12 col-xs-12">
+                                <div class="form-group">
+                                    <label>EMAIL <span style="color: #cd2c24">*</span></label>
+                                    <div>
+                                        <input class="form-control input-lg" id="email" name="email" required="required" type="email" value="" />
+                                        @Html.TextBox("Email", null, new { @class = "form-control input-lg", @required = "required" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Ngày sinh</label>
+                                    <div>
+                                        <input class="form-control input-lg" id="phone" name="phone" onkeypress="return funCheckInt(event)" type="text" value="" />
+                                        @Html.TextBox("Birthday", null, new { @class = "form-control input-lg", @required = "required" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-3 col-sm-2 mg-bot15">
+                                            <label>Người lớn</label>
+                                            <div>
+                                                <input class="form-control input-lg" id="adult" name="adult" onblur="javascript:clear_text(this);" onclick="javascript:show_text(&#39;Từ 12 tuổi trở lên&#39;,this)" onkeypress="return funCheckInt(event)" onchange="javascript:sumGuest()" type="text" value="1" />
+                                                @Html.TextBox("Name", null, new { @class = "form-control input-lg", @required = "required" })
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2 col-sm-2 mg-bot15">
+                                            <label>Trẻ em</label>
+                                            <div>
+                                                <input class="form-control input-lg" id="children11" name="children11" onblur="javascript:clear_text(this);" onclick="javascript:show_text(&#39;Từ 5 tuổi đến dưới 12 tuổi&#39;,this)" onkeypress="return funCheckInt(event)" onchange="javascript:sumGuest()" type="text" value="0" />
+                                                @Html.TextBox("Name", null, new { @class = "form-control input-lg", @required = "required" })
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2 col-sm-3 mg-bot15">
+                                            <label>Trẻ nhỏ</label>
+                                            <div>
+                                                <input class="form-control input-lg" id="children" name="children" onblur="javascript:clear_text(this);" onclick="javascript:show_text(&#39;Từ 2 tuổi đến dưới 5 tuổi&#39;,this)" onkeypress="return funCheckInt(event)" onchange="javascript:sumGuest()" type="text" value="0" />
+                                                @Html.TextBox("Name", null, new { @class = "form-control input-lg", @required = "required" })
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2 col-sm-2 mg-bot15">
+                                            <label>Em b&#233;</label>
+                                            <div>
+                                                <input class="form-control input-lg" id="small_children" name="small_children" onblur="javascript:clear_text(this);" onclick="javascript:show_text(&#39;Dưới 2 tuổi&#39;,this)" onkeypress="return funCheckInt(event)" onchange="javascript:sumGuest()" type="text" value="0" />
+                                                @Html.TextBox("Name", null, new { @class = "form-control input-lg", @required = "required" })
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 col-sm-3">
+                                            <label>Số kh&#225;ch</label>
+                                            <div>
+                                                <input class="form-control input-lg" id="guests" name="guests" readonly="readonly" type="text" value="1" />
+                                                @Html.TextBox("Name", null, new { @class = "form-control input-lg", @required = "required" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <div class="form-group">
+                                    <label>Ghi ch&#250;</label>
+                                    <div>
+                                        <textarea class="form-control input-lg" cols="20" id="note" name="note" rows="4"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-sm-12 col-xs-12" style="font-size: 16px;">
+                                <div class="form-group">
+                                    <label><span style="color: #cd2c24">Ghi ch&#250;:</span> </label>
+                                    <div style="line-height: 22px">
+                                        <span class="bold">Người lớn sinh từ :</span> 16/06/1949 đến 16/06/2007
+                                        -
+                                        <span class="bold">Trẻ em sinh từ :</span> 17/06/2007 đến 16/06/2014
+                                        -
+                                        <span class="bold">Trẻ nhỏ sinh từ :</span> 17/06/2014 đến 16/06/2017
+                                        -
+                                        <span class="bold">Em b&#233; sinh từ :</span> 17/06/2017 đến 12/06/2019
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="col-xs-12 book-toidongy" style="margin: 0 0 40px 0">
-                        <label class="checkbox-inline">
-                            <input type="checkbox" id="chkDieuKhoan">T&#244;i đồng &#253; với c&#225;c điều kiện tr&#234;n
-                        </label>
-
-
-                    </div>
+                    
                     <div class="col-xs-12 text-center" style="margin: 0 0 40px 0">
-                        <input type="submit" class="btn btn-md btn-default" value="Đặt tour" onclick="return CheckDieuKhoan();ga('event','Buoc2', 'Booking', 'NDSGN449-003-140619VJ-D-O');" />
+                        <input type="submit" class="btn btn-md btn-default" value="Nhập danh sách khách" onclick="return CheckDieuKhoan()" />
                     </div>
-                </form>
+                }
+
+                   
+                </div>
             </div>
+
         </div>
+
     </div>
-</div>
 </div>
 <script>
     function sumGuest() {
@@ -643,12 +283,7 @@
         var small_children = $('#small_children').val();
         var sum = parseInt(adult) + parseInt(children) + parseInt(children11) + parseInt(small_children);
         $('#guests').val(sum.toString());
-    }
 
-    function buildForm(n) {
-        for (var i = 0; i < parseInt($('#guests').val()); i++) {
-                        
-        }
     }
 </script>
 

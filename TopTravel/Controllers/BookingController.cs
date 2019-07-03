@@ -26,5 +26,16 @@ namespace TopTravel.Controllers
             ViewBag.Bonus = phuThu;
             return View(tour);
         }
+
+        public string AddUser(string Name, string Phone, string Address, string )
+        {
+
+            return "success";
+        }
+
+        public ActionResult Form()
+        {
+            return View("Form");
+        }
     }
 }

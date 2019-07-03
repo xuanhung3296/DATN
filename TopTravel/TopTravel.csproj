@@ -2745,6 +2745,7 @@
     <Content Include="Views\Tour\Index.cshtml" />
     <Content Include="Views\Booking\Index.cshtml" />
     <Content Include="Views\Search\Index.cshtml" />
+    <Content Include="Views\Booking\Form.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
