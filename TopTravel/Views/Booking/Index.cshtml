@@ -157,28 +157,30 @@
                     </div>
                 @using (Html.BeginForm("AddUser", "Booking"))
                 {
+
+                    @Html.TextBox("id",@Model.TourID,new{@hidden="hidden"})
                     <div class="col-xs-12 book-thongtinlienlac">
                         <div class="row">
                             <div class="col-md-6 col-sm-12 col-xs-12">
                                 <div class="form-group">
                                     <label>Họ và tên <span style="color: #cd2c24">*</span></label>
                                     <div>
-                                        <input class="form-control input-lg" id="contact_name" name="contact_name" required="required" type="text" value="" />
-                                        @Html.TextBox("Name", null, new { @class = "form-control input-lg", @required = "required" })
+                                        @*<input class="form-control input-lg" id="contact_name" name="contact_name" required="required" type="text" value="" />*@
+                                        @Html.TextBox("name", null, new { @class = "form-control input-lg", @required = "required" })
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label>Di động <span style="color: #cd2c24">*</span></label>
                                     <div>
-                                        <input class="form-control input-lg" id="mobilephone" name="mobilephone" onchange="CheckMobile();" onkeypress="return funCheckInt(event)" required="required" type="text" value="" />
-                                        @Html.TextBox("Phone", null, new { @class = "form-control input-lg", @required = "required" })
+                                       @* <input class="form-control input-lg" id="mobilephone" name="mobilephone" onchange="CheckMobile();" onkeypress="return funCheckInt(event)" required="required" type="text" value="" />*@
+                                        @Html.TextBox("phone", null, new { @class = "form-control input-lg", @required = "required" })
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label>Địa chỉ</label>
                                     <div>
-                                        <input class="form-control input-lg" id="address" name="address" type="text" value="" />
-                                        @Html.TextBox("Address", null, new { @class = "form-control input-lg", @required = "required" })
+                                        @*<input class="form-control input-lg" id="address" name="address" type="text" value="" />*@
+                                        @Html.TextBox("address", null, new { @class = "form-control input-lg", @required = "required" })
                                     </div>
                                 </div>
                             </div>
@@ -186,15 +188,15 @@
                                 <div class="form-group">
                                     <label>EMAIL <span style="color: #cd2c24">*</span></label>
                                     <div>
-                                        <input class="form-control input-lg" id="email" name="email" required="required" type="email" value="" />
-                                        @Html.TextBox("Email", null, new { @class = "form-control input-lg", @required = "required" })
+                                       @* <input class="form-control input-lg" id="email" name="email" required="required" type="email" value="" />*@
+                                        @Html.TextBox("email", null, new { @class = "form-control input-lg", @required = "required" })
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label>Ngày sinh</label>
                                     <div>
-                                        <input class="form-control input-lg" id="phone" name="phone" onkeypress="return funCheckInt(event)" type="text" value="" />
-                                        @Html.TextBox("Birthday", null, new { @class = "form-control input-lg", @required = "required" })
+                                        @*<input class="form-control input-lg" id="phone" name="phone" onkeypress="return funCheckInt(event)" type="text" value="" />*@
+                                        @Html.TextBox("birthday", null, new { @class = "form-control input-lg", @required = "required" })
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -202,36 +204,36 @@
                                         <div class="col-md-3 col-sm-2 mg-bot15">
                                             <label>Người lớn</label>
                                             <div>
-                                                <input class="form-control input-lg" id="adult" name="adult" onblur="javascript:clear_text(this);" onclick="javascript:show_text(&#39;Từ 12 tuổi trở lên&#39;,this)" onkeypress="return funCheckInt(event)" onchange="javascript:sumGuest()" type="text" value="1" />
-                                                @Html.TextBox("Name", null, new { @class = "form-control input-lg", @required = "required" })
+                                               @* <input class="form-control input-lg" id="adult" name="adult" onblur="javascript:clear_text(this);" onclick="javascript:show_text(&#39;Từ 12 tuổi trở lên&#39;,this)" onkeypress="return funCheckInt(event)" onchange="javascript:sumGuest()" type="text" value="1" />*@
+                                                @Html.TextBox("numberAdult", null, new { @class = "form-control input-lg", @required = "required" , @id= "adult", onchange="javascript:sumGuest()" })
                                             </div>
                                         </div>
                                         <div class="col-md-2 col-sm-2 mg-bot15">
                                             <label>Trẻ em</label>
                                             <div>
-                                                <input class="form-control input-lg" id="children11" name="children11" onblur="javascript:clear_text(this);" onclick="javascript:show_text(&#39;Từ 5 tuổi đến dưới 12 tuổi&#39;,this)" onkeypress="return funCheckInt(event)" onchange="javascript:sumGuest()" type="text" value="0" />
-                                                @Html.TextBox("Name", null, new { @class = "form-control input-lg", @required = "required" })
+                                               @* <input class="form-control input-lg" id="children11" name="children11" onblur="javascript:clear_text(this);" onclick="javascript:show_text(&#39;Từ 5 tuổi đến dưới 12 tuổi&#39;,this)" onkeypress="return funCheckInt(event)" onchange="javascript:sumGuest()" type="text" value="0" />*@
+                                                @Html.TextBox("numberChildren", null, new { @class = "form-control input-lg", @required = "required" , @id= "children11", onchange = "javascript:sumGuest()" })
                                             </div>
                                         </div>
                                         <div class="col-md-2 col-sm-3 mg-bot15">
                                             <label>Trẻ nhỏ</label>
                                             <div>
-                                                <input class="form-control input-lg" id="children" name="children" onblur="javascript:clear_text(this);" onclick="javascript:show_text(&#39;Từ 2 tuổi đến dưới 5 tuổi&#39;,this)" onkeypress="return funCheckInt(event)" onchange="javascript:sumGuest()" type="text" value="0" />
-                                                @Html.TextBox("Name", null, new { @class = "form-control input-lg", @required = "required" })
+                                               @* <input class="form-control input-lg" id="children" name="children" onblur="javascript:clear_text(this);" onclick="javascript:show_text(&#39;Từ 2 tuổi đến dưới 5 tuổi&#39;,this)" onkeypress="return funCheckInt(event)" onchange="javascript:sumGuest()" type="text" value="0" />*@
+                                                @Html.TextBox("numberBaby", null, new { @class = "form-control input-lg", @required = "required" , @id= "children", onchange = "javascript:sumGuest()" })
                                             </div>
                                         </div>
                                         <div class="col-md-2 col-sm-2 mg-bot15">
                                             <label>Em b&#233;</label>
                                             <div>
-                                                <input class="form-control input-lg" id="small_children" name="small_children" onblur="javascript:clear_text(this);" onclick="javascript:show_text(&#39;Dưới 2 tuổi&#39;,this)" onkeypress="return funCheckInt(event)" onchange="javascript:sumGuest()" type="text" value="0" />
-                                                @Html.TextBox("Name", null, new { @class = "form-control input-lg", @required = "required" })
+                                                @*<input class="form-control input-lg" id="small_children" name="small_children" onblur="javascript:clear_text(this);" onclick="javascript:show_text(&#39;Dưới 2 tuổi&#39;,this)" onkeypress="return funCheckInt(event)" onchange="javascript:sumGuest()" type="text" value="0" />*@
+                                                @Html.TextBox("numberBabe", null, new { @class = "form-control input-lg", @required = "required",@id= "small_children", onchange = "javascript:sumGuest()" })
                                             </div>
                                         </div>
                                         <div class="col-md-3 col-sm-3">
                                             <label>Số kh&#225;ch</label>
                                             <div>
-                                                <input class="form-control input-lg" id="guests" name="guests" readonly="readonly" type="text" value="1" />
-                                                @Html.TextBox("Name", null, new { @class = "form-control input-lg", @required = "required" })
+                                                @*<input class="form-control input-lg" id="guests" name="guests" readonly="readonly" type="text" value="1" />*@
+                                                @Html.TextBox("guests", null, new { @class = "form-control input-lg", @required = "required",@id= "guests" })
                                             </div>
                                         </div>
                                     </div>
@@ -266,8 +268,7 @@
                         <input type="submit" class="btn btn-md btn-default" value="Nhập danh sách khách" onclick="return CheckDieuKhoan()" />
                     </div>
                 }
-
-                   
+                
                 </div>
             </div>
 
@@ -281,6 +282,18 @@
         var children = $('#children').val();
         var children11 = $('#children11').val();
         var small_children = $('#small_children').val();
+        if (adult ==="") {
+            adult = 0;
+        }
+        if (children ==="") {
+            children = 0;
+        }
+        if (children11==="") {
+            children11 = 0;
+        }
+        if (small_children==="") {
+            small_children = 0;
+        }
         var sum = parseInt(adult) + parseInt(children) + parseInt(children11) + parseInt(small_children);
         $('#guests').val(sum.toString());
 

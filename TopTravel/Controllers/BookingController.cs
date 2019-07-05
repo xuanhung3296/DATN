@@ -27,10 +27,33 @@ namespace TopTravel.Controllers
             return View(tour);
         }
 
-        public string AddUser(string Name, string Phone, string Address, string )
+        public ActionResult AddUser(string name, string phone, string address, string birthday, string email,string numberAdult, string numberChildren, string numberBaby, string numberBabe, string guests, string id)
         {
+            User user = new User();
+            user.Name = name;
+            user.Phone = phone;
+            user.Address = address;
+            user.Email = email;
+            ViewBag.NumberAdult = numberAdult;
+            ViewBag.NumberChildren = numberChildren;
+            ViewBag.NumberBaby = numberBaby;
+            ViewBag.NumberBabe = numberBabe;
+            ViewBag.Guest = guests;
+            var ID = Convert.ToInt32(id);
+            var tour = db.Tours.FirstOrDefault(x => x.TourID == ID);
 
-            return "success";
+
+            var touristList = new List<Tourist>();
+            // Another one is using for loop
+            for (int i = 0; i < Convert.ToInt32(guests); i++)
+            {
+                touristList.Add(new Tourist());
+            }
+
+
+            ViewBag.AdultPrice = tour.ListedPrice;
+            ViewBag.ChildrenPrice = tour.ListedPrice/2;         
+            return View("Form",touristList);
         }
 
         public ActionResult Form()
