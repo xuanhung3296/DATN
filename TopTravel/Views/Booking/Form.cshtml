@@ -37,7 +37,7 @@
                             <div class="row">
                                 <div class="col-md-12 col-sm-12 col-xs-12 mg-bot10">
                                     <div>
-                                        <div style="padding: 12px 15px 12px 15px; background: #c50000; color: #FFF">Khách hàng @{@i+1}</div>
+                                        <div style="padding: 12px 15px 12px 15px; background: #c50000; color: #FFF">Khách hàng @(i+1)</div>
                                     </div>
                                     <div style="border: 1px solid #ccc; padding: 15px">
                                         <div class="form-horizontal">
@@ -81,30 +81,31 @@
                                                 <div class="col-lg-2 col-md-4 col-sm-6 col-xs-12 mg-bot10">
                                                     <label class="mg-bot5">Loại khách</label>
                                                     <div>
-                                                        @*<select class="form-control" id="personkind0" name="[0].personkind" onchange="ChangeChoose();">
-                                                            <option value="0">Người lớn</option>
-                                                            <option value="1">Trẻ em</option>
-                                                        </select>*@
-                                                        @Html.DropDownListFor(model=>model[i].TouristType,new List<SelectListItem>
-                                                        {
-                                                            new SelectListItem {Text = "Người lớn", Value = "Người lớn",},
-                                                            new SelectListItem {Text = "Trẻ em", Value = "Trẻ em" },
-                                                        }, Model[i].TouristType,new{@class="form-control"})
+                                                        @{
+                                                            if (i < Convert.ToInt32(@ViewBag.NumberAdult))
+                                                            {
 
+                                                                @Html.DropDownListFor(model => model[i].TouristType, new List<SelectListItem>
+                                                                {
+                                                                    new SelectListItem {Text = "Người lớn", Value = "Người lớn",Selected = true},
+                                                                    new SelectListItem {Text = "Trẻ em", Value = "Trẻ em"},
+                                                                }, Model[i].TouristType, new {@class = "form-control", @id = "touristType_@id"})
+                                                            }
+                                                            else
+                                                            {
+
+                                                                @Html.DropDownListFor(model => model[i].TouristType, new List<SelectListItem>
+                                                                {
+                                                                    new SelectListItem {Text = "Người lớn", Value = "Người lớn"},
+                                                                    new SelectListItem {Text = "Trẻ em", Value = "Trẻ em",Selected = true},
+                                                                }, Model[i].TouristType, new {@class = "form-control", @id = "touristType_@id"})
+                                                            }
+
+                                                        }
 
                                                     </div>
                                                 </div>
-                                                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 mg-bot10" style="display:none;">
-                                                    <label class="mg-bot5">Loại kh&#225;ch:</label>
-                                                    <div>
-                                                        <select class="form-control" id="loaikhachnoidia0" name="[0].loaikhachnoidia" onchange="ChangeChoose();">
-                                                            <option value="0">Việt Nam</option>
-                                                            <option value="1">Việt kiều</option>
-                                                            <option value="2">Nước ngo&#224;i</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-2 col-md-4 col-sm-6 col-xs-12 mg-bot10">
+                                         <div class="col-lg-2 col-md-4 col-sm-6 col-xs-12 mg-bot10">
                                                     <label class="mg-bot5">Phòng đơn</label>
                                                     <div>
                                                         <select class="form-control" id="loaiphuthuphongdon0" name="[0].loaiphuthuphongdon" onchange="ChangeChoose();">
@@ -120,6 +121,9 @@
                                                     Trị giá:<span style="color:#cd2c24;font-weight: bold;font-size: 16px;padding-top: 18px" id="spanprice0">1349000</span>
                                                     <input class="form-control" disabled="disabled" id="price0" name="price0" type="hidden" value="1349000" />
                                                 </div>
+                                                <script>
+                                                   
+                                                </script>
                                             </div>
                                         </div>
                                     </div>
