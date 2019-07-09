@@ -37,7 +37,7 @@
                             <div class="row">
                                 <div class="col-md-12 col-sm-12 col-xs-12 mg-bot10">
                                     <div>
-                                        <div style="padding: 12px 15px 12px 15px; background: #c50000; color: #FFF">Khách hàng @(i+1)</div>
+                                        <div style="padding: 12px 15px 12px 15px; background: #c50000; color: #FFF">Khách hàng @(i + 1)</div>
                                     </div>
                                     <div style="border: 1px solid #ccc; padding: 15px">
                                         <div class="form-horizontal">
@@ -45,7 +45,7 @@
                                                 <div class="col-lg-3 col-md-8 col-sm-6 col-xs-12 mg-bot10">
                                                     <label class="mg-bot5">Họ và tên (<span class="price">*</span>)</label>
                                                     <div>
-                                                        @Html.TextBox("@Model["+i+"].Name", @Model[i].Name, new { @class = "form-control" })
+                                                        @Html.TextBox("@Model[" + i + "].Name", @Model[i].Name, new { @class = "form-control" })
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-2 col-md-4 col-sm-6 col-xs-12 mg-bot10">
@@ -64,8 +64,8 @@
                                                     <label class="mg-bot5">Ngày sinh (<span class="price">*</span>)</label>
                                                     <div>
 
-                                                        <input data-val="true" data-val-date="The field dateofbirth must be a date." id="dateofbirth0" name="@Model[i].Birthday" type="hidden" value=""/>
-                                                        <input type="hidden" id="dob_@i"/>
+                                                        <input data-val="true" data-val-date="The field dateofbirth must be a date." id="dateofbirth0" name="@Model[i].Birthday" type="hidden" value="" />
+                                                        <input type="hidden" id="dob_@i" />
                                                         <script>
                                                             $("#dob_@i").dateDropdowns({
                                                                 submitFieldName: 'dob_@i',
@@ -89,7 +89,7 @@
                                                                 {
                                                                     new SelectListItem {Text = "Người lớn", Value = "Người lớn",Selected = true},
                                                                     new SelectListItem {Text = "Trẻ em", Value = "Trẻ em"},
-                                                                }, Model[i].TouristType, new {@class = "form-control", @id = "touristType_@id"})
+                                                                }, Model[i].TouristType, new {@class = "form-control", @id = "TouristType_"+i})
                                                             }
                                                             else
                                                             {
@@ -98,14 +98,14 @@
                                                                 {
                                                                     new SelectListItem {Text = "Người lớn", Value = "Người lớn"},
                                                                     new SelectListItem {Text = "Trẻ em", Value = "Trẻ em",Selected = true},
-                                                                }, Model[i].TouristType, new {@class = "form-control", @id = "touristType_@id"})
+                                                                }, Model[i].TouristType, new {@class = "form-control", @id = "TouristType_"+i})
                                                             }
 
                                                         }
 
                                                     </div>
                                                 </div>
-                                         <div class="col-lg-2 col-md-4 col-sm-6 col-xs-12 mg-bot10">
+                                                <div class="col-lg-2 col-md-4 col-sm-6 col-xs-12 mg-bot10">
                                                     <label class="mg-bot5">Phòng đơn</label>
                                                     <div>
                                                         <select class="form-control" id="loaiphuthuphongdon0" name="[0].loaiphuthuphongdon" onchange="ChangeChoose();">
@@ -118,11 +118,16 @@
                                             </div>
                                             <div class="row" style="padding: 15px 0 0px 0; border-top: 1px solid #ccc; margin-top: 15px;">
                                                 <div class="col-md-12 col-sm-12 text-right">
-                                                    Trị giá:<span style="color:#cd2c24;font-weight: bold;font-size: 16px;padding-top: 18px" id="spanprice0">1349000</span>
-                                                    <input class="form-control" disabled="disabled" id="price0" name="price0" type="hidden" value="1349000" />
+                                                    Trị giá:<span style="color:#cd2c24;font-weight: bold;font-size: 16px;padding-top: 18px" id="price_@i"></span> đ
+                                                    <input class="form-control" disabled="disabled" id="price0" name="price0" type="hidden" />
                                                 </div>
                                                 <script>
-                                                   
+                                                    var touristType = $('#TouristType_@i').val();
+                                                    if (touristType ==="Người lớn") {
+                                                        $('#price_@i').text(@ViewBag.AdultPrice);
+                                                    } else {
+                                                        $('#price_@i').text(@ViewBag.ChildrenPrice);
+                                                    }
                                                 </script>
                                             </div>
                                         </div>
@@ -143,8 +148,17 @@
                     <div class="col-xs-12">
                         <div style="text-align: left; padding: 10px 15px 10px 15px; background: #ddd">
                             <span style="font-weight: bold; font-size: 14px; margin-right: 10px; text-transform: uppercase">Tổng cộng:</span>
-                            <span style="color: #cd2c24; font-weight: bold; font-size: 20px;float:right;" id="spanTotalPriceBK"></span>
+                            <span style="color: #cd2c24; font-weight: bold; font-size: 20px;float:right;" id="spanTotal"></span> đ
                         </div>
+                        <script>
+                            var sum = 0;
+                            for (var i = 0; i < @Model.Count; i++)
+                            {
+                                var price = $('#price_' + i).text();
+                                sum = sum + parseFloat(price);
+                            }
+                            $('#spanTotal').text(sum);
+                        </script>
                     </div>
                 </div>
             </div>
