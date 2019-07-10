@@ -22,8 +22,9 @@
     <div id="detail" class="chitiettour main-content">
         <div class="container" style="max-width: 1300px">
 
-
-
+            @Html.BeginForm()
+        {
+      
             <div class="col-xs-12">
                 <div id="DanhSachKhach">
                     <div class="text-center" style="margin: 40px 0 40px 0">
@@ -148,7 +149,8 @@
                     <div class="col-xs-12">
                         <div style="text-align: left; padding: 10px 15px 10px 15px; background: #ddd">
                             <span style="font-weight: bold; font-size: 14px; margin-right: 10px; text-transform: uppercase">Tổng cộng:</span>
-                            <span style="color: #cd2c24; font-weight: bold; font-size: 20px;float:right;" id="spanTotal"></span> đ
+                            @Html.TextBox("Total", null,new{@id="Total", @hidden="hidden"})
+                            <span) style="color: #cd2c24; font-weight: bold; font-size: 20px;float:right;" id="spanTotal"></span> đ
                         </div>
                         <script>
                             var sum = 0;
@@ -158,6 +160,7 @@
                                 sum = sum + parseFloat(price);
                             }
                             $('#spanTotal').text(sum);
+                            $('#Total').val(sum);p
                         </script>
                     </div>
                 </div>
@@ -415,14 +418,15 @@
         </div>
         <div class="col-xs-12 book-toidongy" style="margin: 0 0 40px 0">
             <label class="checkbox-inline">
-                <input type="checkbox" id="chkDieuKhoan">T&#244;i đồng &#253; với c&#225;c điều kiện tr&#234;n
+                @Html.CheckBox("checkRule",false,new{@id="checkRule"})Tôi đồng ý với các điều khoản trên
             </label>
 
 
         </div>
         <div class="col-xs-12 text-center" style="margin: 0 0 40px 0">
-            <input type="submit" class="btn btn-md btn-default" value="Đặt tour" onclick="return CheckDieuKhoan();ga('event','Buoc2', 'Booking', 'NDSGN449-003-140619VJ-D-O');" />
+            <input type="submit" class="btn btn-md btn-default" value="Đặt tour"/>
         </div>
+        }
     </div>
 </div>
 </div>
