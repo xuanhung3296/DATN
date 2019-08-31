@@ -149,116 +149,125 @@
 
                         </script>
                     </div>
-                 
+
 
 
                     <div class="col-xs-12 text-center" style="margin: 40px 0 40px 0">
                         <span class="title" style="text-transform: uppercase;">Thông tin liên lạc</span>
                     </div>
-                @using (Html.BeginForm("AddUser", "Booking"))
-                {
+                    @using (Html.BeginForm("AddUser", "Booking"))
+                    {
 
-                    @Html.TextBox("id",@Model.TourID,new{@hidden="hidden"})
-                    <div class="col-xs-12 book-thongtinlienlac">
-                        <div class="row">
-                            <div class="col-md-6 col-sm-12 col-xs-12">
-                                <div class="form-group">
-                                    <label>Họ và tên <span style="color: #cd2c24">*</span></label>
-                                    <div>
-                                      @Html.TextBox("name", null, new { @class = "form-control input-lg", @required = "required" })
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label>Di động <span style="color: #cd2c24">*</span></label>
-                                    <div>
-                                      @Html.TextBox("phone", null, new { @class = "form-control input-lg", @required = "required" })
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label>Địa chỉ</label>
-                                    <div>
-                                       @Html.TextBox("address", null, new { @class = "form-control input-lg", @required = "required" })
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-sm-12 col-xs-12">
-                                <div class="form-group">
-                                    <label>EMAIL <span style="color: #cd2c24">*</span></label>
-                                    <div>
-                                      @Html.TextBox("email", null, new { @class = "form-control input-lg", @required = "required" })
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label>Ngày sinh</label>
-                                    <div>
-                                     @Html.TextBox("birthday", null, new { @class = "form-control input-lg", @required = "required" })
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="row">
-                                        <div class="col-md-3 col-sm-2 mg-bot15">
-                                            <label>Người lớn</label>
-                                            <div>
-                                              @Html.TextBox("numberAdult", null, new { @class = "form-control input-lg", @required = "required" , @id= "adult", onchange="javascript:sumGuest()" })
-                                            </div>
+                        @Html.TextBox("id", @Model.TourID, new { @hidden = "hidden" })
+                        <div class="col-xs-12 book-thongtinlienlac">
+                            <div class="row">
+                                <div class="col-md-6 col-sm-12 col-xs-12">
+                                    <div class="form-group">
+                                        <label>Họ và tên <span style="color: #cd2c24">*</span></label>
+                                        <div>
+                                            @Html.TextBox("name", (string)ViewBag.Name, new { @class = "form-control input-lg", @required = "required" })
                                         </div>
-                                        <div class="col-md-2 col-sm-2 mg-bot15">
-                                            <label>Trẻ em</label>
-                                            <div>
-                                            @Html.TextBox("numberChildren", null, new { @class = "form-control input-lg", @required = "required" , @id= "children11", onchange = "javascript:sumGuest()" })
-                                            </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Di động <span style="color: #cd2c24">*</span></label>
+                                        <div>
+                                            @Html.TextBox("phone", (string)ViewBag.Phone, new { @class = "form-control input-lg", @required = "required" })
                                         </div>
-                                        <div class="col-md-2 col-sm-3 mg-bot15">
-                                            <label>Trẻ nhỏ</label>
-                                            <div>
-                                             @Html.TextBox("numberBaby", null, new { @class = "form-control input-lg", @required = "required" , @id= "children", onchange = "javascript:sumGuest()" })
-                                            </div>
-                                        </div>
-                                        <div class="col-md-2 col-sm-2 mg-bot15">
-                                            <label>Em b&#233;</label>
-                                            <div>
-                                            @Html.TextBox("numberBabe", null, new { @class = "form-control input-lg", @required = "required",@id= "small_children", onchange = "javascript:sumGuest()" })
-                                            </div>
-                                        </div>
-                                        <div class="col-md-3 col-sm-3">
-                                            <label>Số kh&#225;ch</label>
-                                            <div>
-                                              @Html.TextBox("guests", null, new { @class = "form-control input-lg", @required = "required",@id= "guests" })
-                                            </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Địa chỉ</label>
+                                        <div>
+                                            @Html.TextBox("address", (string)ViewBag.Address, new { @class = "form-control input-lg", @required = "required" })
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-md-12 col-sm-12 col-xs-12">
-                                <div class="form-group">
-                                    <label>Ghi ch&#250;</label>
-                                    <div>
-                                        <textarea class="form-control input-lg" cols="20" id="note" name="note" rows="4"></textarea>
+                                <div class="col-md-6 col-sm-12 col-xs-12">
+                                    <div class="form-group">
+                                        <label>EMAIL <span style="color: #cd2c24">*</span></label>
+                                        <div>
+                                            @Html.TextBox("email", (string)ViewBag.Email, new { @class = "form-control input-lg", @required = "required" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Ngày sinh</label>
+                                        <div>
+                                            @Html.Editor("birthday", null, new { htmlAttributes = new { @class = "form-control date-picker input-lg", @required = "required" } })
+                                            <script type="text/javascript">
+                                                $(function () {
+                                                    $(".date-picker").datepicker({
+                                                        dateFormat: 'dd-M-yy'
+                                                    });
+
+                                                });
+
+                                            </script>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-md-3 col-sm-2 mg-bot15">
+                                                <label>Người lớn</label>
+                                                <div>
+                                                    @Html.TextBox("numberAdult", null, new { @class = "form-control input-lg", @required = "required", @id = "adult", onchange = "javascript:sumGuest()" })
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2 col-sm-2 mg-bot15">
+                                                <label>Trẻ em</label>
+                                                <div>
+                                                    @Html.TextBox("numberChildren", null, new { @class = "form-control input-lg", @required = "required", @id = "children11", onchange = "javascript:sumGuest()" })
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2 col-sm-3 mg-bot15">
+                                                <label>Trẻ nhỏ</label>
+                                                <div>
+                                                    @Html.TextBox("numberBaby", null, new { @class = "form-control input-lg", @required = "required", @id = "children", onchange = "javascript:sumGuest()" })
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2 col-sm-2 mg-bot15">
+                                                <label>Em b&#233;</label>
+                                                <div>
+                                                    @Html.TextBox("numberBabe", null, new { @class = "form-control input-lg", @required = "required", @id = "small_children", onchange = "javascript:sumGuest()" })
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3 col-sm-3">
+                                                <label>Số kh&#225;ch</label>
+                                                <div>
+                                                    @Html.TextBox("guests", null, new { @class = "form-control input-lg", @required = "required", @id = "guests" })
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-md-12 col-sm-12 col-xs-12" style="font-size: 16px;">
-                                <div class="form-group">
-                                    <label><span style="color: #cd2c24">Ghi ch&#250;:</span> </label>
-                                    <div style="line-height: 22px">
-                                        <span class="bold">Người lớn sinh từ :</span> 16/06/1949 đến 16/06/2007
-                                        -
-                                        <span class="bold">Trẻ em sinh từ :</span> 17/06/2007 đến 16/06/2014
-                                        -
-                                        <span class="bold">Trẻ nhỏ sinh từ :</span> 17/06/2014 đến 16/06/2017
-                                        -
-                                        <span class="bold">Em b&#233; sinh từ :</span> 17/06/2017 đến 12/06/2019
+                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                    <div class="form-group">
+                                        <label>Ghi ch&#250;</label>
+                                        <div>
+                                            <textarea class="form-control input-lg" cols="20" id="note" name="note" rows="4"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 col-sm-12 col-xs-12" style="font-size: 16px;">
+                                    <div class="form-group">
+                                        <label><span style="color: #cd2c24">Ghi ch&#250;:</span> </label>
+                                        <div style="line-height: 22px">
+                                            <span class="bold">Người lớn sinh từ :</span> 16/06/1949 đến 16/06/2007
+                                            -
+                                            <span class="bold">Trẻ em sinh từ :</span> 17/06/2007 đến 16/06/2014
+                                            -
+                                            <span class="bold">Trẻ nhỏ sinh từ :</span> 17/06/2014 đến 16/06/2017
+                                            -
+                                            <span class="bold">Em b&#233; sinh từ :</span> 17/06/2017 đến 12/06/2019
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    
-                    <div class="col-xs-12 text-center" style="margin: 0 0 40px 0">
-                        <input type="submit" class="btn btn-md btn-default" value="Nhập danh sách khách" onclick="return CheckDieuKhoan()" />
-                    </div>
-                }
-                
+
+                        <div class="col-xs-12 text-center" style="margin: 0 0 40px 0">
+                            <input type="submit" class="btn btn-md btn-default" value="Nhập danh sách khách" onclick="return CheckDieuKhoan()" />
+                        </div>
+                    }
+
                 </div>
             </div>
 
@@ -272,16 +281,16 @@
         var children = $('#children').val();
         var children11 = $('#children11').val();
         var small_children = $('#small_children').val();
-        if (adult ==="") {
+        if (adult === "") {
             adult = 0;
         }
-        if (children ==="") {
+        if (children === "") {
             children = 0;
         }
-        if (children11==="") {
+        if (children11 === "") {
             children11 = 0;
         }
-        if (small_children==="") {
+        if (small_children === "") {
             small_children = 0;
         }
         var sum = parseInt(adult) + parseInt(children) + parseInt(children11) + parseInt(small_children);

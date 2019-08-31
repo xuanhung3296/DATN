@@ -33,11 +33,11 @@ namespace TopTravel
         public virtual DbSet<Feedback> Feedbacks { get; set; }
         public virtual DbSet<Role> Roles { get; set; }
         public virtual DbSet<Tour> Tours { get; set; }
+        public virtual DbSet<Tourist> Tourists { get; set; }
         public virtual DbSet<TourLabel> TourLabels { get; set; }
         public virtual DbSet<TourType> TourTypes { get; set; }
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<Comment> Comments { get; set; }
-        public virtual DbSet<Tourist> Tourists { get; set; }
 
         public bool userIsValid(User user)
         {

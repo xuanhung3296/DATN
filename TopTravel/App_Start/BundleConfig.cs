@@ -49,7 +49,6 @@ namespace TopTravel
 
             bundles.Add(new ScriptBundle("~/bundles/travelix/single").Include(
                 "~/Content/travelix/styles/bootstrap4/popper.js",
-                "~/Content/travelix/styles/bootstrap4/bootstrap.min.js",
                 "~/Content/travelix/plugins/easing/easing.js",
                 "~/Content/travelix/plugins/parallax-js-master/parallax.min.js",
                 "~/Content/travelix/plugins/colorbox/jquery.colorbox-min.js",

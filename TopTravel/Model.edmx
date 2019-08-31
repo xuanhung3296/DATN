@@ -26,6 +26,7 @@
           <Property Name="Status" Type="int" />
           <Property Name="UserID" Type="int" />
           <Property Name="DateCreated" Type="date" />
+          <Property Name="PaymentCode" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'Booking.dbo.Comment' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -100,15 +101,12 @@ warning 6002: The table/view 'Booking.dbo.Comment' does not have a primary key d
           <Property Name="OnHomePage" Type="bit" />
           <Property Name="Status" Type="int" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'Booking.dbo.Tourist' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="Tourist">
           <Key>
             <PropertyRef Name="TouristID" />
-            <PropertyRef Name="BookTourID" />
           </Key>
-          <Property Name="TouristID" Type="int" Nullable="false" />
-          <Property Name="BookTourID" Type="int" Nullable="false" />
+          <Property Name="TouristID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BookTourID" Type="int" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" />
           <Property Name="Birthday" Type="date" />
           <Property Name="Gender" Type="nvarchar" MaxLength="50" />
@@ -150,6 +148,8 @@ warning 6002: The table/view 'Booking.dbo.Tourist' does not have a primary key d
           <Property Name="DateCreated" Type="date" />
           <Property Name="Status" Type="int" />
           <Property Name="IsActive" Type="bit" />
+          <Property Name="ActiveCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="BookingCode" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <Association Name="FK_BookTour_Tour">
           <End Role="Tour" Type="Self.Tour" Multiplicity="1" />
@@ -224,7 +224,7 @@ warning 6002: The table/view 'Booking.dbo.Tourist' does not have a primary key d
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Tourist_BookTour">
-          <End Role="BookTour" Type="Self.BookTour" Multiplicity="1" />
+          <End Role="BookTour" Type="Self.BookTour" Multiplicity="0..1" />
           <End Role="Tourist" Type="Self.Tourist" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="BookTour">
@@ -254,6 +254,7 @@ warning 6002: The table/view 'Booking.dbo.Tourist' does not have a primary key d
           <EntitySet Name="Feedback" EntityType="Self.Feedback" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tour" EntityType="Self.Tour" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tourist" EntityType="Self.Tourist" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TourLabel" EntityType="Self.TourLabel" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TourType" EntityType="Self.TourType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
@@ -265,20 +266,6 @@ warning 6002: The table/view 'Booking.dbo.Tourist' does not have a primary key d
     [Comment].[Status] AS [Status], 
     [Comment].[UserID] AS [UserID]
     FROM [dbo].[Comment] AS [Comment]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="Tourist" EntityType="Self.Tourist" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [Tourist].[TouristID] AS [TouristID], 
-    [Tourist].[BookTourID] AS [BookTourID], 
-    [Tourist].[Name] AS [Name], 
-    [Tourist].[Birthday] AS [Birthday], 
-    [Tourist].[Gender] AS [Gender], 
-    [Tourist].[TouristType] AS [TouristType], 
-    [Tourist].[Nationality] AS [Nationality], 
-    [Tourist].[Passport] AS [Passport], 
-    [Tourist].[ExpiredDate] AS [ExpiredDate], 
-    [Tourist].[Status] AS [Status]
-    FROM [dbo].[Tourist] AS [Tourist]</DefiningQuery>
           </EntitySet>
           <AssociationSet Name="FK_BookTour_Tour" Association="Self.FK_BookTour_Tour">
             <End Role="Tour" EntitySet="Tour" />
@@ -339,6 +326,7 @@ warning 6002: The table/view 'Booking.dbo.Tourist' does not have a primary key d
           <Property Name="Status" Type="Int32" />
           <Property Name="UserID" Type="Int32" />
           <Property Name="DateCreated" Type="DateTime" Precision="0" />
+          <Property Name="PaymentCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Tour" Relationship="Self.FK_BookTour_Tour" FromRole="BookTour" ToRole="Tour" />
           <NavigationProperty Name="User" Relationship="Self.FK_BookTour_User" FromRole="BookTour" ToRole="User" />
           <NavigationProperty Name="Tourists" Relationship="Self.FK_Tourist_BookTour" FromRole="BookTour" ToRole="Tourist" />
@@ -409,6 +397,22 @@ warning 6002: The table/view 'Booking.dbo.Tourist' does not have a primary key d
           <NavigationProperty Name="TourLabel" Relationship="Self.FK_Tour_TourLabel" FromRole="Tour" ToRole="TourLabel" />
           <NavigationProperty Name="TourType" Relationship="Self.FK_Tour_TourType" FromRole="Tour" ToRole="TourType" />
         </EntityType>
+        <EntityType Name="Tourist">
+          <Key>
+            <PropertyRef Name="TouristID" />
+          </Key>
+          <Property Name="TouristID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BookTourID" Type="Int32" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Birthday" Type="DateTime" Precision="0" />
+          <Property Name="Gender" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TouristType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Nationality" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Passport" Type="Single" />
+          <Property Name="ExpiredDate" Type="DateTime" Precision="0" />
+          <Property Name="Status" Type="Int32" />
+          <NavigationProperty Name="BookTour" Relationship="Self.FK_Tourist_BookTour" FromRole="Tourist" ToRole="BookTour" />
+        </EntityType>
         <EntityType Name="TourLabel">
           <Key>
             <PropertyRef Name="TourLabelID" />
@@ -443,6 +447,8 @@ warning 6002: The table/view 'Booking.dbo.Tourist' does not have a primary key d
           <Property Name="DateCreated" Type="DateTime" Precision="0" />
           <Property Name="Status" Type="Int32" />
           <Property Name="IsActive" Type="Boolean" />
+          <Property Name="ActiveCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="BookingCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="BookTours" Relationship="Self.FK_BookTour_User" FromRole="User" ToRole="BookTour" />
           <NavigationProperty Name="Role" Relationship="Self.FK_User_Roll" FromRole="User" ToRole="Role" />
           <NavigationProperty Name="Comments" Relationship="Self.FK_Comment_User" FromRole="User" ToRole="Comment" />
@@ -458,23 +464,6 @@ warning 6002: The table/view 'Booking.dbo.Tourist' does not have a primary key d
           <Property Name="UserID" Type="Int32" />
           <NavigationProperty Name="Tour" Relationship="Self.FK_Comment_Tour" FromRole="Comment" ToRole="Tour" />
           <NavigationProperty Name="User" Relationship="Self.FK_Comment_User" FromRole="Comment" ToRole="User" />
-        </EntityType>
-        <EntityType Name="Tourist">
-          <Key>
-            <PropertyRef Name="TouristID" />
-            <PropertyRef Name="BookTourID" />
-          </Key>
-          <Property Name="TouristID" Type="Int32" Nullable="false" />
-          <Property Name="BookTourID" Type="Int32" Nullable="false" />
-          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Birthday" Type="DateTime" Precision="0" />
-          <Property Name="Gender" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="TouristType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Nationality" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Passport" Type="Single" />
-          <Property Name="ExpiredDate" Type="DateTime" Precision="0" />
-          <Property Name="Status" Type="Int32" />
-          <NavigationProperty Name="BookTour" Relationship="Self.FK_Tourist_BookTour" FromRole="Tourist" ToRole="BookTour" />
         </EntityType>
         <Association Name="FK_BookTour_Tour">
           <End Role="Tour" Type="Self.Tour" Multiplicity="1" />
@@ -501,7 +490,7 @@ warning 6002: The table/view 'Booking.dbo.Tourist' does not have a primary key d
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Tourist_BookTour">
-          <End Role="BookTour" Type="Self.BookTour" Multiplicity="1" />
+          <End Role="BookTour" Type="Self.BookTour" Multiplicity="0..1" />
           <End Role="Tourist" Type="Self.Tourist" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="BookTour">
@@ -579,11 +568,11 @@ warning 6002: The table/view 'Booking.dbo.Tourist' does not have a primary key d
           <EntitySet Name="Feedbacks" EntityType="Self.Feedback" />
           <EntitySet Name="Roles" EntityType="Self.Role" />
           <EntitySet Name="Tours" EntityType="Self.Tour" />
+          <EntitySet Name="Tourists" EntityType="Self.Tourist" />
           <EntitySet Name="TourLabels" EntityType="Self.TourLabel" />
           <EntitySet Name="TourTypes" EntityType="Self.TourType" />
           <EntitySet Name="Users" EntityType="Self.User" />
           <EntitySet Name="Comments" EntityType="Self.Comment" />
-          <EntitySet Name="Tourists" EntityType="Self.Tourist" />
           <AssociationSet Name="FK_BookTour_Tour" Association="Self.FK_BookTour_Tour">
             <End Role="Tour" EntitySet="Tours" />
             <End Role="BookTour" EntitySet="BookTours" />
@@ -644,6 +633,7 @@ warning 6002: The table/view 'Booking.dbo.Tourist' does not have a primary key d
                 <ScalarProperty Name="Status" ColumnName="Status" />
                 <ScalarProperty Name="UserID" ColumnName="UserID" />
                 <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="PaymentCode" ColumnName="PaymentCode" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -712,6 +702,22 @@ warning 6002: The table/view 'Booking.dbo.Tourist' does not have a primary key d
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Tourists">
+            <EntityTypeMapping TypeName="BookingModel.Tourist">
+              <MappingFragment StoreEntitySet="Tourist">
+                <ScalarProperty Name="TouristID" ColumnName="TouristID" />
+                <ScalarProperty Name="BookTourID" ColumnName="BookTourID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Birthday" ColumnName="Birthday" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="TouristType" ColumnName="TouristType" />
+                <ScalarProperty Name="Nationality" ColumnName="Nationality" />
+                <ScalarProperty Name="Passport" ColumnName="Passport" />
+                <ScalarProperty Name="ExpiredDate" ColumnName="ExpiredDate" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="TourLabels">
             <EntityTypeMapping TypeName="BookingModel.TourLabel">
               <MappingFragment StoreEntitySet="TourLabel">
@@ -745,6 +751,8 @@ warning 6002: The table/view 'Booking.dbo.Tourist' does not have a primary key d
                 <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
                 <ScalarProperty Name="Status" ColumnName="Status" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="ActiveCode" ColumnName="ActiveCode" />
+                <ScalarProperty Name="BookingCode" ColumnName="BookingCode" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -756,22 +764,6 @@ warning 6002: The table/view 'Booking.dbo.Tourist' does not have a primary key d
                 <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
                 <ScalarProperty Name="Status" ColumnName="Status" />
                 <ScalarProperty Name="UserID" ColumnName="UserID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Tourists">
-            <EntityTypeMapping TypeName="BookingModel.Tourist">
-              <MappingFragment StoreEntitySet="Tourist">
-                <ScalarProperty Name="TouristID" ColumnName="TouristID" />
-                <ScalarProperty Name="BookTourID" ColumnName="BookTourID" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Birthday" ColumnName="Birthday" />
-                <ScalarProperty Name="Gender" ColumnName="Gender" />
-                <ScalarProperty Name="TouristType" ColumnName="TouristType" />
-                <ScalarProperty Name="Nationality" ColumnName="Nationality" />
-                <ScalarProperty Name="Passport" ColumnName="Passport" />
-                <ScalarProperty Name="ExpiredDate" ColumnName="ExpiredDate" />
-                <ScalarProperty Name="Status" ColumnName="Status" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

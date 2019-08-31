@@ -6,8 +6,129 @@
     <title>TopTravel</title>
     @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+    <link href="~/Content/themes/base/jquery-ui.min.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
+    <style type="text/css">
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            z-index: 1000;
+            display: none;
+            float: left;
+            min-width: 160px;
+            padding: 5px 0;
+            margin: 2px 0 0;
+            font-size: 14px;
+            text-align: left;
+            list-style: none;
+            background-color: #fff;
+            -webkit-background-clip: padding-box;
+            background-clip: padding-box;
+            border: 1px solid #ccc;
+            border: 1px solid rgba(0,0,0,.15);
+            border-radius: 4px;
+            -webkit-box-shadow: 0 6px 12px rgba(0,0,0,.175);
+            box-shadow: 0 6px 12px rgba(0,0,0,.175);
+        }
+
+        label.error {
+            display: inline-block;
+            color: red;
+            width: 200px;
+        }
+
+        .container-fluid {
+            padding-right: 15px;
+            padding-left: 15px;
+            margin-right: auto;
+            margin-left: auto;
+        }
+
+        #formLogin {
+            position: absolute;
+            padding: 15px;
+            min-width: 300px;
+            font-size: 12px;
+        }
+
+            #formLogin .form-group {
+                margin-bottom: 5px;
+            }
+
+            #formLogin .form-control {
+                display: block;
+                width: 100%;
+                height: 32px !important;
+                padding: 6px 12px;
+                font-size: 14px;
+                line-height: 1.42857143;
+                color: #555;
+                background-color: #fff;
+                background-image: none;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+                box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+                -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+                -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+                transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+            }
+
+            #formLogin button {
+                background-color: #141354;
+                font-weight: 700;
+                color: #fff;
+                text-transform: uppercase;
+                border-radius: 25px;
+                cursor: pointer;
+                width: 100%;
+            }
+
+        #formRegister {
+            position: absolute;
+            padding: 15px;
+            min-width: 300px;
+            font-size: 12px;
+        }
+
+            #formRegister .form-group {
+                margin-bottom: 5px;
+            }
+
+            #formRegister .form-control {
+                display: block;
+                width: 100%;
+                height: 32px !important;
+                padding: 6px 12px;
+                font-size: 14px;
+                line-height: 1.42857143;
+                color: #555;
+                background-color: #fff;
+                background-image: none;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+                box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+                -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+                -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+                transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+            }
+
+            #formRegister button {
+                background-color: #141354;
+                font-weight: 700;
+                color: #fff;
+                text-transform: uppercase;
+                border-radius: 25px;
+                cursor: pointer;
+                width: 100%;
+            }
+    </style>
     @RenderSection("csslib", required: false)
     @RenderSection("scripts", required: false)
+
 </head>
 <body>
     <div class="super_container">
@@ -19,20 +140,159 @@
                 <div class="container">
                     <div class="row">
                         <div class="col d-flex flex-row">
-                            <div class="phone">+45 345 3324 56789</div>
-                            <div class="social">
-                                <ul class="social_list">
-                                    <li class="social_list_item"><a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a></li>
-                                    <li class="social_list_item"><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-                                    <li class="social_list_item"><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-                                    <li class="social_list_item"><a href="#"><i class="fa fa-dribbble" aria-hidden="true"></i></a></li>
-                                    <li class="social_list_item"><a href="#"><i class="fa fa-behance" aria-hidden="true"></i></a></li>
-                                    <li class="social_list_item"><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
-                                </ul>
-                            </div>
+
                             <div class="user_box ml-auto">
-                                <div class="user_box_login user_box_link"><a href="#">Đăng nhập</a></div>
-                                <div class="user_box_register user_box_link"><a href="#">Đăng ký</a></div>
+                                @if (Session["Email"] != null)
+                                {
+                                    <div class="user_box_login user_box_link">
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">@Session["Email"]</a>
+                                        <!-- Dropdown - User Information -->
+                                        <div class="dropdown-menu " aria-labelledby="userDropdown">
+                                            @Html.ActionLink("Profile", "getProfile", "UserLogin", new { id = @Session["UserID"] }, new { @class = "dropdown-item", @style = "color:black; font-size:13px;" })
+                                            <div class="dropdown-divider"></div>
+                                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal" style="color:black; font-size:13px;">
+                                                Logout
+                                            </a>
+                                        </div>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="user_box_login user_box_link">
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">Đăng nhập</a>
+
+                                        <div class="dropdown-menu" id="formLogin">
+                                            <div class="row">
+                                                <div class="container-fluid">
+                                                    @using (Html.BeginForm("Login", "UserLogin"))
+                                                    {
+                                                        <div class="form-group">
+                                                            <label class="" style="font-weight:bold">Email</label>
+                                                            <input class="form-control" name="email" id="email" type="text" required>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="" style="font-weight:bold">Password</label>
+                                                            <input class="form-control" name="password" id="password" type="password" required>
+                                                            <br class="">
+                                                        </div>
+                                                        <button type="submit" id="btnLogin" class="btn btn-success btn-sm">
+                                                            Đăng nhập
+                                                        </button>
+                                                    }
+                                                    <script type="text/javascript">
+                                                        window.preventAccordion = function (e) {
+                                                            e.stopPropagation();
+                                                        }
+                                                        $(document).ready(function () {
+
+                                                            //Khi bàn phím được nhấn và thả ra thì sẽ chạy phương thức này
+                                                            $("#Login").validate({
+
+                                                                rules: {
+                                                                    password: {
+                                                                        required: true,
+                                                                        minlength: 5
+                                                                    },
+                                                                    email: {
+                                                                        required: true,
+                                                                        email: true
+                                                                    },
+                                                                },
+                                                                messages: {
+
+                                                                    password: {
+                                                                        required: 'Vui lòng nhập mật khẩu',
+                                                                        minlength: 'Vui lòng nhập ít nhất 5 kí tự'
+                                                                    },
+                                                                    email: {
+                                                                        required: "Please provide a password",
+                                                                        minlength: "Your password must be at least 5 characters long",
+                                                                        equalTo: "Please enter the same password as above"
+                                                                    },
+                                                                    submitHandler: function (form) {
+                                                                        form.submit();
+                                                                    }
+                                                                }
+                                                            });
+                                                            $("#Register").validate({
+
+                                                                rules: {
+                                                                    password: {
+                                                                        required: true,
+                                                                        minlength: 5
+                                                                    },
+                                                                    confirm_password: {
+                                                                        required: true,
+                                                                        minlength: 5,
+                                                                        equalTo: "#password"
+                                                                    },
+                                                                    email: {
+                                                                        required: true,
+                                                                        email: true
+                                                                    },
+                                                                },
+                                                                messages: {
+
+                                                                    password: {
+                                                                        required: 'Vui lòng nhập mật khẩu',
+                                                                        minlength: 'Vui lòng nhập ít nhất 5 kí tự'
+                                                                    },
+                                                                    confirm_password: {
+                                                                        required: 'Vui lòng nhập mật khẩu',
+                                                                        minlength: 'Vui lòng nhập ít nhất 5 kí tự',
+                                                                        equalTo: 'Mật khẩu không trùng'
+                                                                    },
+                                                                    email: {
+                                                                        required: "Please provide a password",
+                                                                        minlength: "Your password must be at least 5 characters long",
+                                                                        equalTo: "Please enter the same password as above"
+                                                                    },
+                                                                    submitHandler: function (form) {
+                                                                        form.submit();
+                                                                    }
+                                                                }
+                                                            });
+                                                        });
+                                                    </script>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="user_box_register user_box_link">
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">Đăng ký</a>
+
+                                        <div class="dropdown-menu" id="formRegister">
+                                            <div class="row">
+                                                <div class="container-fluid">
+                                                    @using (Html.BeginForm("Register", "UserLogin", FormMethod.Post, new { id = "Register" }))
+
+                                                    {
+                                                        @Html.AntiForgeryToken()
+                                                        <div class="form-group">
+                                                            <label class="" style="font-weight:bold">Email</label>
+                                                            <input class="form-control" name="email" id="email" type="text">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="" style="font-weight:bold">Password</label>
+                                                            <input class="form-control" name="password" id="password" type="password">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="" style="font-weight:bold">Confirm Password</label>
+                                                            <input class="form-control" name="password" id="password" type="password">
+                                                            <br class="">
+                                                        </div>
+                                                        <button type="submit" id="btnLogin" class="btn btn-success btn-sm">
+                                                            Đăng ký
+                                                        </button>
+                                                    }
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                }
+
                             </div>
                         </div>
                     </div>
@@ -47,12 +307,12 @@
                         <div class="col main_nav_col d-flex flex-row align-items-center justify-content-start">
                             <div class="logo_container">
                                 <div class="logo" style="background-image: url('../../Content/travelix/images/logo.png'); background-repeat: no-repeat">@Html.ActionLink("toptravel", "Index", "Home")</div>
-                               
+
                             </div>
                             <div class="main_nav_container ml-auto">
                                 <ul class="main_nav_list">
-                                    <li class="main_nav_item">@Html.ActionLink("Trang chủ","Index","Home")</li>
-                                    <li class="main_nav_item">@Html.ActionLink("Du lịch trong nước", "SearchTour","Search",new{label="Du lịch trong nước"},null)</li>
+                                    <li class="main_nav_item">@Html.ActionLink("Trang chủ", "Index", "Home")</li>
+                                    <li class="main_nav_item">@Html.ActionLink("Du lịch trong nước", "SearchTour", "Search", new { label = "Du lịch trong nước" }, null)</li>
                                     <li class="main_nav_item">@Html.ActionLink("Du lịch nước ngoài", "SearchTour", "Search", new { label = "Du lịch nước ngoài" }, null)</li>
                                     <li class="main_nav_item"><a href="blog.html">Tin tức</a></li>
                                     <li class="main_nav_item"><a href="contact.html">Liên hệ</a></li>
@@ -82,7 +342,7 @@
                                 <div class="logo_container footer_logo">
                                     <div class="logo"><a href="#"><img src="/Content/travelix/images/logo.png" alt="">toptravel</a></div>
                                 </div>
-                                <p class="footer_about_text">Luôn mang đến cho bạn những trải nghiệm tốt nhất <br/> cho người dùng trên các tour du lịch thú vị. </p>
+                                <p class="footer_about_text">Luôn mang đến cho bạn những trải nghiệm tốt nhất <br /> cho người dùng trên các tour du lịch thú vị. </p>
                                 <ul class="footer_social_list">
                                     <li class="footer_social_item"><a href="#"><i class="fa fa-pinterest"></i></a></li>
                                     <li class="footer_social_item"><a href="#"><i class="fa fa-facebook-f"></i></a></li>
@@ -105,7 +365,7 @@
                                         <div>
                                             <div class="contact_info_icon"><img src="/Content/travelix/images/placeholder.svg" alt=""></div>
                                         </div>
-                                        <div class="contact_info_text">@Html.Action("GetContact","Home",new{ colunm = "Address"})</div>
+                                        <div class="contact_info_text">@Html.Action("GetContact", "Home", new { colunm = "Address" })</div>
                                     </li>
                                     <li class="contact_info_item d-flex flex-row">
                                         <div>
@@ -141,12 +401,12 @@
         </footer>
 
 
-        
+
         @Scripts.Render("~/bundles/bootstrap")
         @Scripts.Render("~/bundles/travelix")
-       
-       
-    
+
+
+
     </div>
 </body>
 </html>

@@ -29,6 +29,7 @@ namespace TopTravel
         public Nullable<int> Status { get; set; }
         public Nullable<int> UserID { get; set; }
         public Nullable<System.DateTime> DateCreated { get; set; }
+        public string PaymentCode { get; set; }
     
         public virtual Tour Tour { get; set; }
         public virtual User User { get; set; }

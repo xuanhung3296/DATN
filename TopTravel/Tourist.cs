@@ -15,7 +15,7 @@ namespace TopTravel
     public partial class Tourist
     {
         public int TouristID { get; set; }
-        public int BookTourID { get; set; }
+        public Nullable<int> BookTourID { get; set; }
         public string Name { get; set; }
         public Nullable<System.DateTime> Birthday { get; set; }
         public string Gender { get; set; }
