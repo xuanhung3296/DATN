@@ -4,9 +4,10 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="7092a6edf81843c5b12afadff8ca8d17" Name="Diagram1">
+      <Diagram DiagramId="38f49850e5b84967bce6f1b8103bfd1e" Name="Diagram1">
         <EntityTypeShape EntityType="BookingModel.Banner" Width="1.5" PointX="7.75" PointY="0.875" IsExpanded="true" />
         <EntityTypeShape EntityType="BookingModel.BookTour" Width="1.5" PointX="5.25" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="BookingModel.Comment" Width="1.5" PointX="8.25" PointY="3.375" IsExpanded="true" />
         <EntityTypeShape EntityType="BookingModel.Contact" Width="1.5" PointX="9.75" PointY="6.875" IsExpanded="true" />
         <EntityTypeShape EntityType="BookingModel.Feedback" Width="1.5" PointX="10.75" PointY="0.875" IsExpanded="true" />
         <EntityTypeShape EntityType="BookingModel.Role" Width="1.5" PointX="0.75" PointY="9.75" IsExpanded="true" />
@@ -15,15 +16,14 @@
         <EntityTypeShape EntityType="BookingModel.TourLabel" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="BookingModel.TourType" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="BookingModel.User" Width="1.5" PointX="3" PointY="8.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="BookingModel.Comment" Width="1.5" PointX="8.25" PointY="3.5" IsExpanded="true" />
         <AssociationConnector Association="BookingModel.FK_BookTour_Tour" ManuallyRouted="false" />
         <AssociationConnector Association="BookingModel.FK_BookTour_User" ManuallyRouted="false" />
         <AssociationConnector Association="BookingModel.FK_Tourist_BookTour" ManuallyRouted="false" />
-        <AssociationConnector Association="BookingModel.FK_User_Roll" ManuallyRouted="false" />
         <AssociationConnector Association="BookingModel.FK_Comment_Tour" ManuallyRouted="false" />
+        <AssociationConnector Association="BookingModel.FK_Comment_User" ManuallyRouted="false" />
+        <AssociationConnector Association="BookingModel.FK_User_Roll" ManuallyRouted="false" />
         <AssociationConnector Association="BookingModel.FK_Tour_TourLabel" ManuallyRouted="false" />
         <AssociationConnector Association="BookingModel.FK_Tour_TourType" ManuallyRouted="false" />
-        <AssociationConnector Association="BookingModel.FK_Comment_User" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -1,16 +1,40 @@
-﻿@model Tour
+﻿@using TopTravel.Models
+@model TourViewModel
 @section csslib
 {
     @Styles.Render("~/Content/travelix/single")
 }
+<head>
+    @*<link href="~/Content/theme_detail.css" rel="stylesheet" />*@
+    <style>
+        .logo a {
+            padding-left:50px;
+        }
 
+        .comment-wrapper .panel-body {
+            max-height: 650px;
+            overflow: auto;
+        }
+
+        .comment-wrapper .media-list .media img {
+            width: 64px;
+            height: 64px;
+            border: 2px solid #e5e7e8;
+        }
+
+        .comment-wrapper .media-list .media {
+            border-bottom: 1px dashed #efefef;
+            margin-bottom: 25px;
+        }
+    </style>
+</head>
 
 <div class="home">
     <div class="home_background">
         <img style="width: 100%;height: 465px;" src="/Content/travelix/images/single_background.jpg" />
     </div>
     <div class="home_content">
-        <div class="home_title">the offers</div>
+        <div class="home_title">Giới thiệu về Tour</div>
     </div>
 </div>
 
@@ -33,17 +57,17 @@
                         <!-- Title -->
                         <div class="hotel_title_container d-flex flex-lg-row flex-column">
                             <div class="hotel_title_content">
-                                <div class="hotel_title" style="color: #fa9e1b; font-size: 36">@Model.TourName</div>
+                                <div class="hotel_title" style="color: #fa9e1b; font-size: 36">@Model.Tour.TourName</div>
                                 <div class="hotel_location col-lg-12">
-                                    Nơi khởi hành : @Model.Departure <br />
-                                    Số ngày : @Model.Duration          <br />
-                                    Ngày khởi hành : @Model.StartDate.Value.ToString("dd/MM/yyyy") <br />
-                                    Số chỗ còn nhận : @Model.SeatAvailability
+                                    Nơi khởi hành: @Model.Tour.Departure <br />
+                                    Số ngày: @Model.Tour.Duration          <br />
+                                    Ngày khởi hành: @Model.Tour.StartDate.Value.ToString("dd/MM/yyyy") <br />
+                                    Số chỗ còn nhận: @Model.Tour.SeatAvailability
 
                                 </div>
                             </div>
                             <div class="hotel_title_button ml-lg-auto text-lg-right">
-                                <div class="button book_button trans_200"><a href="#">book<span></span><span></span><span></span></a></div>
+                                <div class="button book_button trans_200">@Html.ActionLink("Book", "Index", "Booking", new { id = Model.Tour.TourID }, null)<span></span><span></span><span></span></div>
                                 <div class="hotel_map_link_container">
                                     <div class="hotel_map_link">See Location on Map</div>
                                 </div>
@@ -53,129 +77,17 @@
                         <!-- Listing Image -->
 
                         <div class="hotel_image">
-                            <img src="@Model.Image" alt="">
-                            <div class="offer_name"><a href="#">@Model.TourLabel.TourLabelName</a></div>
+                            <img src="@Model.Tour.Image" alt="">
+                            <div class="offer_name"><a href="#">@Model.Tour.TourLabel.TourLabelName</a></div>
                             <div class="hotel_review_container d-flex flex-column align-items-center justify-content-center">
                                 <div class="hotel_review">
                                     <div class="hotel_review_content">
                                         <div class="hotel_review_title">Chỉ từ</div>
                                     </div>
-                                    <div class="hotel_review_rating text-center">@string.Format("{0:0,0}", @Model.ListedPrice)đ</div>
+                                    <div class="hotel_review_rating text-center">@string.Format("{0:0,0}", @Model.Tour.ListedPrice)đ</div>
                                 </div>
                             </div>
                         </div>
-
-                        <!-- Hotel Gallery -->
-                        <!-- Hotel Info Text -->
-
-                        <div class="hotel_info_text">
-                            <h2 style="color: #fa9e1b; text-transform: uppercase">Chương trình tour</h2>
-                            @Html.Raw(@Model.TourProgram)
-                            <hr />
-
-                            <h2 style="color: #fa9e1b; text-transform: uppercase">Chi tiết tour</h2>
-                            @Html.Raw(@Model.TourDetail)
-                            <!-- Hotel Info Tags -->
-
-
-                        </div>
-
-                        <!-- Rooms -->
-
-                        <div class="rooms">
-                            <div class="reviews_title" style="margin-bottom: 60px">Related Tours</div>
-                            <!-- Room -->
-
-
-                            @foreach (var item in ViewBag.Relate)
-                            {
-                                <div class="room">
-                                    <div class="row">
-                                        <div class="col-lg-2">
-                                            <div class="room_image"><img src="@item.Image"></div>
-                                        </div>
-                                        <div class="col-lg-7">
-                                            <div class="room_content">
-                                                <div class="room_title">@item.TourName</div>
-                                                <div class="room_price">@string.Format("{0:0,0}", @Model.ListedPrice)đ</div>
-                                                <div class="room_text"> Ngày khởi hành : @item.StartDate.ToString("dd/MM/yyyy")</div>
-                                                <div class="room_extra">  Số chỗ còn nhận : @item.SeatAvailability</div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-3 text-lg-right">
-                                            <div class="room_button">
-                                                <div class="button book_button trans_200"><a href="#">book<span></span><span></span><span></span></a></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            }
-                            <!-- Room -->
-
-
-
-                        </div>
-
-                        <!-- Reviews -->
-
-                        <div class="reviews">
-                            <div class="reviews_title">Comment</div>
-                            <div class="reviews_container">
-
-                                <!-- Review -->
-                                <div class="review">
-                                    <div class="row">
-                                        <div class="col-lg-1">
-                                            <div class="review_image">
-                                                <img src="/Content/travelix/images/review_1.jpg">
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-11">
-                                            <div class="review_content">
-                                                <div class="review_title_container">
-                                                    <div class="review_title">"We loved the services"</div>
-                                                    <div class="review_rating">9.5</div>
-                                                </div>
-                                                <div class="review_text">
-                                                    <p>Tetur adipiscing elit. Nullam eu convallis tortor. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus quis vulputate eros, iaculis consequat nisl. Nunc et suscipit urna. Integer elementum orci eu vehicula pretium. Donec bibendum tristique condimentum.</p>
-                                                </div>
-                                                <div class="review_name">Christinne Smith</div>
-                                                <div class="review_date">12 November 2017</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- Review -->
-                                <div class="review">
-                                    <div class="row">
-                                        <div class="col-lg-1">
-                                            <div class="review_image">
-                                                <img src="/Content/travelix/images/review_2.jpg" alt="Image by Andrew Robles">
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-11">
-                                            <div class="review_content">
-                                                <div class="review_title_container">
-                                                    <div class="review_title">"Nice staff and great location"</div>
-                                                    <div class="review_rating">9.5</div>
-                                                </div>
-                                                <div class="review_text">
-                                                    <p>Tetur adipiscing elit. Nullam eu convallis tortor. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus quis vulputate eros, iaculis consequat nisl. Nunc et suscipit urna. Integer elementum orci eu vehicula pretium. Donec bibendum tristique condimentum.</p>
-                                                </div>
-                                                <div class="review_name">Christinne Smith</div>
-                                                <div class="review_date">12 November 2017</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-
-                        <!-- Location on Map -->
-
                         <div class="location_on_map">
                             <div class="location_on_map_title">location on map</div>
 
@@ -237,13 +149,145 @@
                                         }
                                         </script>
                                         <script async defer
-                                                src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAsMGLXmmX66ONC6BrJcP_x9GW5yxa3KQ8&callback=initMap">
+                                                src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAoR0SCfD6eK10dwKmm6-2BJc8R7-622w0&callback=initMap&sensor=false">
                                         </script>
                                     </div>
                                 </div>
                             </div>
 
                         </div>
+                        <!-- Hotel Gallery -->
+                        <!-- Hotel Info Text -->
+
+                        <div class="hotel_info_text">
+                            <h2 style="color: #fa9e1b; text-transform: uppercase">Chương trình tour</h2>
+                            @Html.Raw(@Model.Tour.TourProgram)
+                            <hr />
+
+                            <h2 style="color: #fa9e1b; text-transform: uppercase">Chi tiết tour</h2>
+                            @Html.Raw(@Model.Tour.TourDetail)
+                            <!-- Hotel Info Tags -->
+
+
+                        </div>
+
+                        <!-- Rooms -->
+
+                        <div class="rooms">
+                            <div class="reviews_title" style="margin-bottom: 60px">Related Tours</div>
+                            <!-- Room -->
+
+
+                            @foreach (var item in ViewBag.Relate)
+                            {
+                                <div class="room">
+                                    <div class="row">
+                                        <div class="col-lg-2">
+                                            <div class="room_image"><img src="@item.Image"></div>
+                                        </div>
+                                        <div class="col-lg-7">
+                                            <div class="room_content">
+                                                <div class="room_title">@item.TourName</div>
+                                                <div class="room_price">@string.Format("{0:0,0}", @Model.Tour.ListedPrice)đ</div>
+                                                <div class="room_text"> Ngày khởi hành : @item.StartDate.ToString("dd/MM/yyyy")</div>
+                                                <div class="room_extra">  Số chỗ còn nhận : @item.SeatAvailability</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3 text-lg-right">
+                                            <div class="room_button">
+                                                <div class="button book_button trans_200">@Html.ActionLink("Book", "Index", "Tour", new { id = item.TourID }, null)<span></span><span></span></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            }
+                            <!-- Room -->
+
+
+
+                        </div>
+
+                        <!-- Reviews -->
+
+                        <div class="reviews">
+                            <div class="reviews_title">Comment</div>
+                            <div class="reviews_container">
+
+                                <div class="row bootstrap snippets">
+                                    <div class="col-md-12 col-md-offset-2 col-sm-12">
+                                        <div class="comment-wrapper">
+                                            <div class="panel panel-info">
+                                                <div class="panel-body">
+                                                    @if (Session["Email"] != null)
+                                                    {
+
+                                                        using (Html.BeginForm("Comment", "Tour"))
+                                                        {
+                                                            <input type="text" hidden="hidden" name="id" id="id" value="@Model.Tour.TourID" />
+                                                            <textarea class="form-control" name="comment" id="comment" placeholder="write a comment..." rows="3" onchange="check()"></textarea>
+                                                            <br>
+                                                            <input type="submit" class="btn btn-info pull-right" id="submit_Com" value="Comment">
+
+
+                                                        }
+                                                        <script>
+                                                            if (document.getElementById("comment").value == '') {
+
+                                                                document.getElementById("submit_Com").disabled = true
+                                                            }
+                                                            function check() {
+                                                                if (document.getElementById("comment").value == '') {
+
+                                                                    document.getElementById("submit_Com").disabled = true
+                                                                } else {
+                                                                    document.getElementById("submit_Com").disabled = false
+                                                                }
+                                                            }
+
+                                                        </script>
+
+                                                    }
+
+                                                    <br />
+                                                    <br />
+                                                    <hr />
+                                                    <ul class="media-list">
+                                                        @foreach (var item in Model.listComment)
+                                                        {
+                                                            <li class="media">
+                                                                <a href="#" class="pull-left">
+                                                                    <img src="https://bootdey.com/img/Content/user_1.jpg" alt="" class="img-circle">
+                                                                </a>
+                                                                <div class="media-body">
+                                                                    <span class="text-muted pull-right">
+                                                                        <small class="text-muted">@item.DateCreated</small>
+                                                                    </span>
+                                                                    <strong class="text-success">@item.User.Email</strong>
+                                                                    <p>
+                                                                        @item.CommentContent
+                                                                    </p>
+                                                                </div>
+                                                            </li>
+                                                        }
+
+
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+                        <!-- Location on Map -->
+
+
                     </div>
                 </div>
             </div>

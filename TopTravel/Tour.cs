@@ -18,6 +18,7 @@ namespace TopTravel
         public Tour()
         {
             this.BookTours = new HashSet<BookTour>();
+            this.Comments = new HashSet<Comment>();
         }
     
         public int TourID { get; set; }
@@ -43,7 +44,8 @@ namespace TopTravel
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BookTour> BookTours { get; set; }
-        public virtual Comment Comment { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Comment> Comments { get; set; }
         public virtual TourLabel TourLabel { get; set; }
         public virtual TourType TourType { get; set; }
     }

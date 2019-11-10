@@ -7,36 +7,117 @@
     @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/jqueryval")
+
     <link href="~/Content/themes/base/jquery-ui.min.css" rel="stylesheet" />
     <script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
+
     <style type="text/css">
-        .dropdown-menu {
-            position: absolute;
-            top: 100%;
-            left: 0;
-            z-index: 1000;
-            display: none;
-            float: left;
-            min-width: 160px;
-            padding: 5px 0;
-            margin: 2px 0 0;
-            font-size: 14px;
-            text-align: left;
-            list-style: none;
+
+        .fa, .far, .fas {
+            font-family: Font Awesome\ 5 Free;
+        }
+
+        .fade.in {
+            opacity: 1;
+        }
+
+        .close {
+            float: right;
+            font-size: 21px;
+            font-weight: 700;
+            line-height: 1;
+            color: #000;
+            text-shadow: 0 1px 0 #fff;
+            filter: alpha(opacity=20);
+            opacity: .2;
+        }
+
+        .modal-body {
+            position: relative;
+            padding: 15px;
+        }
+
+        .modal-dialog input {
+            outline: 0;
+            background: #f2f2f2;
+            width: 100%;
+            border: 0;
+            box-sizing: border-box;
+        }
+
+        .modal-dialog {
+            width: 900px;
+            margin: 30px auto;
+        }
+
+            .modal-dialog .input-container {
+                display: flex;
+                width: 100%;
+                background: #f2f2f2;
+                height: 40px;
+            }
+
+        .mg-bot15 {
+            margin-bottom: 15px;
+        }
+
+        .modal-dialog .icon {
+            padding: 13px;
+            color: #717171;
+            max-height: 40px;
+            text-align: center;
+        }
+
+        .fa, .fas {
+            font-weight: 900;
+        }
+
+        .modal-header {
+            padding: 15px;
+            border-bottom: 1px solid #e5e5e5;
+        }
+
+        .modal-dialog .modal-title {
+            text-transform: uppercase;
+            font-weight: bold;
+            font-size: 15px;
+        }
+
+        .modal-content {
+            position: relative;
             background-color: #fff;
             -webkit-background-clip: padding-box;
             background-clip: padding-box;
-            border: 1px solid #ccc;
-            border: 1px solid rgba(0,0,0,.15);
-            border-radius: 4px;
-            -webkit-box-shadow: 0 6px 12px rgba(0,0,0,.175);
-            box-shadow: 0 6px 12px rgba(0,0,0,.175);
+            border: 1px solid #999;
+            border: 1px solid rgba(0,0,0,.2);
+            border-radius: 6px;
+            outline: 0;
+            -webkit-box-shadow: 0 3px 9px rgba(0,0,0,.5);
+            box-shadow: 0 3px 9px rgba(0,0,0,.5);
         }
 
-        label.error {
+        .modal-dialog .btn-default {
+            background: linear-gradient(to right,#141354,#141354);
+            color: #fff;
+            border: initial !important;
+            font-weight: bold;
+        }
+
+        button.close {
+            -webkit-appearance: none;
+            padding: 0;
+            cursor: pointer;
+            background: 0 0;
+            border: 0;
+        }
+
+
+        .error {
+            color: #cc0033;
             display: inline-block;
-            color: red;
-            width: 200px;
+            font-size: 12px;
+            line-height: 15px;
+            margin: 5px 0 0;
         }
 
         .container-fluid {
@@ -45,86 +126,6 @@
             margin-right: auto;
             margin-left: auto;
         }
-
-        #formLogin {
-            position: absolute;
-            padding: 15px;
-            min-width: 300px;
-            font-size: 12px;
-        }
-
-            #formLogin .form-group {
-                margin-bottom: 5px;
-            }
-
-            #formLogin .form-control {
-                display: block;
-                width: 100%;
-                height: 32px !important;
-                padding: 6px 12px;
-                font-size: 14px;
-                line-height: 1.42857143;
-                color: #555;
-                background-color: #fff;
-                background-image: none;
-                border: 1px solid #ccc;
-                border-radius: 4px;
-                -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
-                box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
-                -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
-                -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
-                transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
-            }
-
-            #formLogin button {
-                background-color: #141354;
-                font-weight: 700;
-                color: #fff;
-                text-transform: uppercase;
-                border-radius: 25px;
-                cursor: pointer;
-                width: 100%;
-            }
-
-        #formRegister {
-            position: absolute;
-            padding: 15px;
-            min-width: 300px;
-            font-size: 12px;
-        }
-
-            #formRegister .form-group {
-                margin-bottom: 5px;
-            }
-
-            #formRegister .form-control {
-                display: block;
-                width: 100%;
-                height: 32px !important;
-                padding: 6px 12px;
-                font-size: 14px;
-                line-height: 1.42857143;
-                color: #555;
-                background-color: #fff;
-                background-image: none;
-                border: 1px solid #ccc;
-                border-radius: 4px;
-                -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
-                box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
-                -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
-                -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
-                transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
-            }
-
-            #formRegister button {
-                background-color: #141354;
-                font-weight: 700;
-                color: #fff;
-                text-transform: uppercase;
-                border-radius: 25px;
-                cursor: pointer;
-                width: 100%;
-            }
     </style>
     @RenderSection("csslib", required: false)
     @RenderSection("scripts", required: false)
@@ -148,147 +149,24 @@
                                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">@Session["Email"]</a>
                                         <!-- Dropdown - User Information -->
                                         <div class="dropdown-menu " aria-labelledby="userDropdown">
-                                            @Html.ActionLink("Profile", "getProfile", "UserLogin", new { id = @Session["UserID"] }, new { @class = "dropdown-item", @style = "color:black; font-size:13px;" })
+                                            @Html.ActionLink("Lịch sử đặt tour", "getProfile", "UserLogin", new { id = @Session["UserID"] }, new { @class = "dropdown-item", @style = "color:black; font-size:13px;" })
                                             <div class="dropdown-divider"></div>
-                                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal" style="color:black; font-size:13px;">
-                                                Logout
-                                            </a>
+                                            <a class="dropdown-item" href="#" data-target="#doimatkhau" data-toggle="modal" style="color:black; font-size:13px;">Thay đổi mật khẩu</a>
+                                            <div class="dropdown-divider"></div>
+                                            <a class="dropdown-item" href="#" data-target="#doithongtin" data-toggle="modal" style="color:black; font-size:13px;">Thay đổi thông tin</a>
+                                            <div class="dropdown-divider"></div>
+                                            <a class="dropdown-item" href="#" data-target="#dangxuat" data-toggle="modal" style="color:black; font-size:13px;">Đăng Xuất</a>
                                         </div>
                                     </div>
                                 }
                                 else
                                 {
                                     <div class="user_box_login user_box_link">
-                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">Đăng nhập</a>
-
-                                        <div class="dropdown-menu" id="formLogin">
-                                            <div class="row">
-                                                <div class="container-fluid">
-                                                    @using (Html.BeginForm("Login", "UserLogin"))
-                                                    {
-                                                        <div class="form-group">
-                                                            <label class="" style="font-weight:bold">Email</label>
-                                                            <input class="form-control" name="email" id="email" type="text" required>
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label class="" style="font-weight:bold">Password</label>
-                                                            <input class="form-control" name="password" id="password" type="password" required>
-                                                            <br class="">
-                                                        </div>
-                                                        <button type="submit" id="btnLogin" class="btn btn-success btn-sm">
-                                                            Đăng nhập
-                                                        </button>
-                                                    }
-                                                    <script type="text/javascript">
-                                                        window.preventAccordion = function (e) {
-                                                            e.stopPropagation();
-                                                        }
-                                                        $(document).ready(function () {
-
-                                                            //Khi bàn phím được nhấn và thả ra thì sẽ chạy phương thức này
-                                                            $("#Login").validate({
-
-                                                                rules: {
-                                                                    password: {
-                                                                        required: true,
-                                                                        minlength: 5
-                                                                    },
-                                                                    email: {
-                                                                        required: true,
-                                                                        email: true
-                                                                    },
-                                                                },
-                                                                messages: {
-
-                                                                    password: {
-                                                                        required: 'Vui lòng nhập mật khẩu',
-                                                                        minlength: 'Vui lòng nhập ít nhất 5 kí tự'
-                                                                    },
-                                                                    email: {
-                                                                        required: "Please provide a password",
-                                                                        minlength: "Your password must be at least 5 characters long",
-                                                                        equalTo: "Please enter the same password as above"
-                                                                    },
-                                                                    submitHandler: function (form) {
-                                                                        form.submit();
-                                                                    }
-                                                                }
-                                                            });
-                                                            $("#Register").validate({
-
-                                                                rules: {
-                                                                    password: {
-                                                                        required: true,
-                                                                        minlength: 5
-                                                                    },
-                                                                    confirm_password: {
-                                                                        required: true,
-                                                                        minlength: 5,
-                                                                        equalTo: "#password"
-                                                                    },
-                                                                    email: {
-                                                                        required: true,
-                                                                        email: true
-                                                                    },
-                                                                },
-                                                                messages: {
-
-                                                                    password: {
-                                                                        required: 'Vui lòng nhập mật khẩu',
-                                                                        minlength: 'Vui lòng nhập ít nhất 5 kí tự'
-                                                                    },
-                                                                    confirm_password: {
-                                                                        required: 'Vui lòng nhập mật khẩu',
-                                                                        minlength: 'Vui lòng nhập ít nhất 5 kí tự',
-                                                                        equalTo: 'Mật khẩu không trùng'
-                                                                    },
-                                                                    email: {
-                                                                        required: "Please provide a password",
-                                                                        minlength: "Your password must be at least 5 characters long",
-                                                                        equalTo: "Please enter the same password as above"
-                                                                    },
-                                                                    submitHandler: function (form) {
-                                                                        form.submit();
-                                                                    }
-                                                                }
-                                                            });
-                                                        });
-                                                    </script>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        <a href="#" data-target="#dangnhap" data-toggle="modal">Đăng nhập</a>
                                     </div>
                                     <div class="user_box_register user_box_link">
-                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">Đăng ký</a>
+                                        <a href="#" data-target="#dangky" data-toggle="modal">Đăng ký</a>
 
-                                        <div class="dropdown-menu" id="formRegister">
-                                            <div class="row">
-                                                <div class="container-fluid">
-                                                    @using (Html.BeginForm("Register", "UserLogin", FormMethod.Post, new { id = "Register" }))
-
-                                                    {
-                                                        @Html.AntiForgeryToken()
-                                                        <div class="form-group">
-                                                            <label class="" style="font-weight:bold">Email</label>
-                                                            <input class="form-control" name="email" id="email" type="text">
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label class="" style="font-weight:bold">Password</label>
-                                                            <input class="form-control" name="password" id="password" type="password">
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label class="" style="font-weight:bold">Confirm Password</label>
-                                                            <input class="form-control" name="password" id="password" type="password">
-                                                            <br class="">
-                                                        </div>
-                                                        <button type="submit" id="btnLogin" class="btn btn-success btn-sm">
-                                                            Đăng ký
-                                                        </button>
-                                                    }
-                                                </div>
-                                            </div>
-
-                                        </div>
                                     </div>
 
                                 }
@@ -314,8 +192,7 @@
                                     <li class="main_nav_item">@Html.ActionLink("Trang chủ", "Index", "Home")</li>
                                     <li class="main_nav_item">@Html.ActionLink("Du lịch trong nước", "SearchTour", "Search", new { label = "Du lịch trong nước" }, null)</li>
                                     <li class="main_nav_item">@Html.ActionLink("Du lịch nước ngoài", "SearchTour", "Search", new { label = "Du lịch nước ngoài" }, null)</li>
-                                    <li class="main_nav_item"><a href="blog.html">Tin tức</a></li>
-                                    <li class="main_nav_item"><a href="contact.html">Liên hệ</a></li>
+
                                 </ul>
                             </div>
 
@@ -402,11 +279,420 @@
 
 
 
-        @Scripts.Render("~/bundles/bootstrap")
+
         @Scripts.Render("~/bundles/travelix")
 
 
 
+
     </div>
+    <div id="dangnhap" class="modal fade" role="dialog" style="display: none;">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">ĐĂNG NHẬP</h4>
+                    <button type="button" class="close" data-dismiss="modal">×</button>
+
+                </div>
+                <div class="modal-body">
+
+                    @using (Html.BeginForm("Login", "UserLogin"))
+                    {
+                        <div class="col-md-12 mg-bot15">
+                            <div class="input-container">
+                                <i class="fa fa-envelope-square icon"></i>
+                                <input class="input-field" name="email" id="email" type="text" placeholder="Email" required>
+                            </div>
+                        </div>
+                        <div class="col-md-12 mg-bot15">
+                            <div class="input-container">
+                                <i class="fa fa-key icon"></i>
+                                <input class="input-field" name="password" id="password" type="password" placeholder="Password" required>
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-12">
+                            <div>
+                                Bạn chưa có tài khoản? <a href="#" data-toggle="modal" data-target="#dangky">Đăng ký ngay hoàn toàn miễn phí</a><br>
+                                Quên mật khẩu? <a href="#" data-toggle="modal" data-target="#laymatkhau">Lấy lại mật khẩu</a>
+                            </div>
+                        </div>
+
+
+                        <script type="text/javascript">
+                            window.preventAccordion = function (e) {
+                                e.stopPropagation();
+                            };
+
+
+                            //Khi bàn phím được nhấn và thả ra thì sẽ chạy phương thức này
+                            $("#Login").validate({
+
+                                rules: {
+                                    password: {
+                                        required: true,
+                                        minlength: 5
+                                    },
+                                    email: {
+                                        required: true,
+                                        email: true
+                                    },
+                                },
+                                messages: {
+
+                                    password: {
+                                        required: 'Vui lòng nhập mật khẩu',
+                                        minlength: 'Vui lòng nhập ít nhất 5 kí tự'
+                                    },
+                                    email: {
+                                        required: "Vui lòng nhập Email!",
+                                        email: "Email không tồn tại!",
+                                    },
+                                },
+                                submitHandler: function (form) {
+                                    form.submit();
+                                }
+
+                            })
+
+                        </script>
+
+
+                        <div class="modal-footer">
+                            <button class="btn btn-md btn-default" type="submit">Đăng nhập&nbsp;&nbsp;<i class="fa fa-sign-in-alt" aria-hidden="true"></i></button>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="dangky" class="modal fade" role="dialog" style="display: none;">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">ĐĂNG KÝ THÀNH VIÊN</h4>
+                    <button type="button" class="close" data-dismiss="modal">×</button>
+                </div>
+                <div class="modal-body">
+                    @using (Html.BeginForm("Register", "UserLogin", FormMethod.Post, new { id = "Register" }))
+
+                    {
+                        @Html.AntiForgeryToken()
+                        <div class="row">
+                            <div class="col-md-12 mg-bot15">
+                                <div class="input-container">
+                                    <i class="fa fa-envelope-square icon"></i>
+                                    <input class="input-field" id="email" name="email" placeholder="Email" type="email" required>
+                                </div>
+                            </div>
+                            <div class="col-md-12 mg-bot15">
+                                <div class="input-container">
+                                    <i class="fa fa-key icon"></i>
+                                    <input class="input-field" id="password" name="password" placeholder="Mật khẩu" type="password" required>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="input-container">
+                                    <i class="fa fa-key icon"></i>
+                                    <input class="input-field" id="confirm" name="confirm" placeholder="Xác nhận lại mật khẩu" type="password" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button class="btn btn-md btn-default" type="submit">Đăng ký&nbsp;&nbsp;<i class="fas fa-sign-in-alt" aria-hidden="true"></i></button>
+                        </div>
+
+                    }
+                </div>
+
+                <script>
+
+                    $("#Register").validate({
+
+                        rules: {
+                            password: {
+                                required: true,
+                                minlength: 6
+                            },
+                            confirm: {
+                                required: true,
+                                minlength: 6,
+                                equalTo: "#password"
+                            },
+                            email: {
+                                required: true,
+                                email: true
+                            },
+                        },
+                        messages: {
+
+                            password: {
+                                required: 'Vui lòng nhập mật khẩu',
+                                minlength: 'Vui lòng nhập ít nhất 5 kí tự'
+                            },
+                            confirm_password: {
+                                required: 'Vui lòng nhập mật khẩu',
+                                minlength: 'Vui lòng nhập ít nhất 5 kí tự',
+                                equalTo: 'Mật khẩu không trùng'
+                            },
+                            email: {
+                                required: "Vui lòng nhập Email!",
+                                email: "Email không tồn tại!"
+                            },
+                        },
+                        submitHandler: function (form) {
+                            form.submit();
+
+                        }
+                    })
+
+                </script>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <div id="laymatkhau" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">QUÊN MẬT KHẨU?</h4>
+                    <button type="button" class="close" data-dismiss="modal">×</button>
+                </div>
+                <div class="modal-body">
+                    @using (Html.BeginForm("ResetPassword", "UserLogin"))
+                    {
+                        <div class="row">
+                            <div class="col-md-12 mg-bot15">
+                                <div class="input-container">
+                                    <i class="fas fa-envelope-square icon"></i>
+                                    <input class="input-field" id="email" name="email" placeholder="Email" type="email" required>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="modal-footer">
+                            <button class="btn btn-md btn-default" type="submit">Lấy lại mật khẩu&nbsp;&nbsp;<i class="fa fa-sign-in-alt" aria-hidden="true"></i></button>
+                        </div>
+                    }
+
+
+                    <script type="text/javascript">
+                        window.preventAccordion = function (e) {
+                            e.stopPropagation();
+                        };
+
+                        //Khi bàn phím được nhấn và thả ra thì sẽ chạy phương thức này
+                        $("#ResetPassword").validate({
+
+                            rules: {
+
+                                email: {
+                                    required: true,
+                                    email: true
+                                },
+                            },
+                            messages: {
+                                email: {
+                                    required: "Vui lòng nhập Email!",
+                                    email: "Email không tồn tại!"
+                                },
+                            },
+                            submitHandler: function (form) {
+                                form.submit();
+                            }
+
+                        })
+
+                    </script>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="doimatkhau" class="modal fade" role="dialog" style="display: none;">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">ĐỔI MẬT KHẨU</h4>
+                    <button type="button" class="close" data-dismiss="modal">×</button>
+                </div>
+                <div class="modal-body">
+                    @using (Html.BeginForm("changePassword", "UserLogin", FormMethod.Post, new { id = "changePassword" }))
+
+                    {
+                        @Html.AntiForgeryToken()
+                        <div class="row">
+                            <div class="col-md-12 mg-bot15">
+                                <div class="input-container">
+                                    <i class="fa fa-key icon"></i>
+                                    <input class="input-field" id="newPass" name="newPass" placeholder="Mật khẩu mới" type="password" required>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="input-container">
+                                    <i class="fa fa-key icon"></i>
+                                    <input class="input-field" id="confirm_password" name="confirm_password" placeholder="Xác nhận lại mật khẩu" type="password" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button class="btn btn-md btn-default" type="submit">Đổi mật khẩu&nbsp;&nbsp;<i class="fas fa-sign-in-alt" aria-hidden="true"></i></button>
+                        </div>
+                    }
+                </div>
+
+                <script>
+
+                    $("#changePassword").validate({
+
+                        rules: {
+                            newPass: {
+                                required: true,
+                                minlength: 5
+                            },
+                            confirm_password: {
+                                required: true,
+                                minlength: 5,
+                                equalTo: "#newPass"
+                            },
+                        },
+                        messages: {
+
+                            newPass: {
+                                required: 'Vui lòng nhập mật khẩu',
+                                minlength: 'Vui lòng nhập ít nhất 5 kí tự'
+                            },
+                            confirm_password: {
+                                required: 'Vui lòng nhập mật khẩu',
+                                minlength: 'Vui lòng nhập ít nhất 5 kí tự',
+                                equalTo: 'Mật khẩu không trùng'
+                            },
+
+                        },
+                        submitHandler: function (form) {
+                            form.submit();
+                        }
+                    })
+
+
+                </script>
+            </div>
+        </div>
+    </div>
+
+    <div id="dangxuat" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Đăng xuất</h4>
+                    <button type="button" class="close" data-dismiss="modal">×</button>
+                </div>
+                <div class="modal-body">
+                    @using (Html.BeginForm("Logout", "UserLogin"))
+                    {
+                        <div class="row">
+                            <div class="col-md-12 mg-bot15">
+                                <h3> Bạn có chắc là muốn đăng xuất chứ ? </h3>
+                            </div>
+                        </div>
+
+
+                        <div class="modal-footer">
+                            <button class="btn btn-md btn-default" type="submit">Đăng xuất&nbsp;&nbsp;<i class="fa fa-sign-in-alt" aria-hidden="true"></i></button>
+                        </div>
+                    }
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="doithongtin" class="modal fade" role="dialog" style="display: none;">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">ĐỔI THÔNG TIN</h4>
+                    <button type="button" class="close" data-dismiss="modal">×</button>
+                </div>
+                <div class="modal-body">
+                    @using (Html.BeginForm("changeInfo", "UserLogin", FormMethod.Post, new { id = "changeInfo" }))
+
+                    {
+                        @Html.AntiForgeryToken()
+                    <div class="row">
+                        <div class="col-md-12 mg-bot15">
+                            <div class="input-container">
+                                <i class="fa fa-key icon"></i>
+                                
+                                <input class="input-field" id="name" name="name" placeholder="Họ và tên" type="text" value="@Session["Name"]" required>
+                            </div>
+                        </div>
+                        <div class="col-md-12 mg-bot15">
+                            <div class="input-container">
+                                <i class="fa fa-key icon"></i>
+                                <input class="input-field" id="address" name="address" placeholder="Địa chỉ" value="@Session["Address"]" type="text" required>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="input-container">
+                                <i class="fa fa-key icon"></i>
+                                <input class="input-field" id="address" name="phone" placeholder="Số điện thoại" value="@Session["Phone"]" type="text" required>
+                            </div>
+                        </div>
+                    </div>
+
+                        <div class="modal-footer">
+                            <button class="btn btn-md btn-default" type="submit">Đổi mật khẩu&nbsp;&nbsp;<i class="fas fa-sign-in-alt" aria-hidden="true"></i></button>
+                        </div>
+                        <script>
+                            /**/
+                            if (@Session["Name"]!=null) {
+                                $("#name").val(@Session["Name"])
+                            }
+                        </script>
+                    }
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div id="thongbao" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">THÔNG BÁO</h4>
+                    <button type="button" class="close" data-dismiss="modal">×</button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12 mg-bot15">
+                            <p> @ViewData["Notification"] </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+
+             var mess =  @Html.Raw(Json.Encode(ViewData["Notification"]));
+
+            if (mess != null&& mess!= "") {
+                $('#thongbao').modal('show');
+                setTimeout(function () { $('#thongbao').modal('hide'); }, 4000);
+            }
+
+
+
+    </script>
+
 </body>
 </html>

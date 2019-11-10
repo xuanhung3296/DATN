@@ -23,13 +23,12 @@
     <Property Name="DateCreated" Type="date" />
     <Property Name="PaymentCode" Type="nvarchar" MaxLength="50" />
   </EntityType>
-  <!--Errors Found During Generation:
-warning 6002: The table/view 'Booking.dbo.Comment' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="Comment">
     <Key>
-      <PropertyRef Name="TourID" />
+      <PropertyRef Name="CommentID" />
     </Key>
-    <Property Name="TourID" Type="int" Nullable="false" />
+    <Property Name="CommentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TourID" Type="int" />
     <Property Name="CommentContent" Type="nvarchar(max)" />
     <Property Name="DateCreated" Type="date" />
     <Property Name="Status" Type="int" />
@@ -171,8 +170,8 @@ warning 6002: The table/view 'Booking.dbo.Comment' does not have a primary key d
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Comment_Tour">
-    <End Role="Tour" Type="Self.Tour" Multiplicity="1" />
-    <End Role="Comment" Type="Self.Comment" Multiplicity="0..1" />
+    <End Role="Tour" Type="Self.Tour" Multiplicity="0..1" />
+    <End Role="Comment" Type="Self.Comment" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Tour">
         <PropertyRef Name="TourID" />
@@ -245,6 +244,7 @@ warning 6002: The table/view 'Booking.dbo.Comment' does not have a primary key d
   <EntityContainer Name="BookingModelStoreContainer">
     <EntitySet Name="Banner" EntityType="Self.Banner" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="BookTour" EntityType="Self.BookTour" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Comment" EntityType="Self.Comment" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Contact" EntityType="Self.Contact" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Feedback" EntityType="Self.Feedback" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
@@ -253,15 +253,6 @@ warning 6002: The table/view 'Booking.dbo.Comment' does not have a primary key d
     <EntitySet Name="TourLabel" EntityType="Self.TourLabel" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TourType" EntityType="Self.TourType" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="Comment" EntityType="Self.Comment" store:Type="Tables" store:Schema="dbo">
-      <DefiningQuery>SELECT 
-    [Comment].[TourID] AS [TourID], 
-    [Comment].[CommentContent] AS [CommentContent], 
-    [Comment].[DateCreated] AS [DateCreated], 
-    [Comment].[Status] AS [Status], 
-    [Comment].[UserID] AS [UserID]
-    FROM [dbo].[Comment] AS [Comment]</DefiningQuery>
-    </EntitySet>
     <AssociationSet Name="FK_BookTour_Tour" Association="Self.FK_BookTour_Tour">
       <End Role="Tour" EntitySet="Tour" />
       <End Role="BookTour" EntitySet="BookTour" />

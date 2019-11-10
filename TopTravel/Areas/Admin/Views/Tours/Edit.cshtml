@@ -5,7 +5,9 @@
 }
 
 <h1 class="h3 mb-2 text-gray-800">Edit</h1>
-
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/jqueryui")
+@Styles.Render("~/Content/jqueryui")
 
 @using (Html.BeginForm())
 {
@@ -62,8 +64,15 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.StartDate, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.StartDate, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.StartDate, "", new { @class = "text-danger" })
+                    @Html.TextBoxFor(model => model.StartDate, "{0:MM/dd/yyyy}", new {@type="date", @class = "form-control ", @id = "date" })
+
+                    @*<script>
+                      var datepick =   $("#date").datepicker({
+                            //,required: true
+                            dateFormat: 'dd-mm-yy'
+                        });
+                        $("#date").val(datepick)
+                    </script>*@
                 </div>
             </div>
 
@@ -131,8 +140,8 @@
                 @Html.LabelFor(model => model.TourDetail, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     @Html.TextAreaFor(model => model.TourDetail, new { @id = "FullTourDetail", @class = "form-control", @rows = "200" })
-                    <script>  
-                        CKEDITOR.replace("FullTourDetail");  
+                    <script>
+                        CKEDITOR.replace("FullTourDetail");
                     </script>
                     @Html.ValidationMessageFor(model => model.TourDetail, "", new { @class = "text-danger" })
                 </div>

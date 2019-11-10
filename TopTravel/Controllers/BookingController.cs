@@ -12,7 +12,7 @@ namespace TopTravel.Controllers
     {
         private BookingEntities db = new BookingEntities();
         // GET: Booking
-        public ActionResult Index(int id)
+        public ActionResult Index(int id , string mess="")
         {
 
 
@@ -39,6 +39,7 @@ namespace TopTravel.Controllers
             ViewBag.BabyPrice = treNhoPrice;
             ViewBag.BabePrice = emBePrice;
             ViewBag.Bonus = phuThu;
+            ViewData["Notification"] = mess;
             return View(tour);
         }
 
@@ -61,12 +62,12 @@ namespace TopTravel.Controllers
             ViewBag.NumberBabe = numberBabe;
             ViewBag.Guest = guests;
             ViewBag.ID = id;
-            string check = EmailAction.SendMail(user.Email, user.BookingCode);
+            ////string check = EmailAction.SendMail(user.Email, user.BookingCode);
            
-            if (check.Equals("Success") != true)
-            {
-                return View("Error");
-            }
+            //if (check.Equals("Success") != true)
+            //{
+            //    return View("Error");
+            //}
          
             ViewBag.TourType = tour.TourType.TourTypeName;
 
@@ -86,8 +87,8 @@ namespace TopTravel.Controllers
             }
             else
             {
-                ViewData["Notification"] = "Quá số chỗ còn lại";
-                return View(tour);
+                ViewData["Notification"] = "Quá số chỗ còn lại!";
+                return RedirectToAction("Index", new { id = ID  , mess = ViewData["Notification"] });
             }
            
         }
@@ -115,10 +116,36 @@ namespace TopTravel.Controllers
               
                 if (CheckUser(form.User.Email))
                 {
+                    var pass = Common.RandomString.Generate(6);
+                    form.User.Password = Common.Encrypt.Encode(pass);
+                    form.User.RoleID = 2;
                     db.Users.Add(form.User);
+                    var result = db.SaveChanges();
+                    if (result == 1) 
+                    {
+                        System.Net.Mail.MailMessage m = new System.Net.Mail.MailMessage();
+                        m.From = new System.Net.Mail.MailAddress("xuanhung3296@gmail.com");
+                        m.To.Add(form.User.Email);
+                        m.Subject = "Xác nhận đăng ký ";
+                        m.Body = string.Format("Cảm ơn bạn đã đến với TopTravel, Mật khẩu cho lần đầu đăng nhập của bạn là : {1} </BR> " +
+                            "Hãy thay đổi sau khi đăng nhập.</BR> Click vào link để Active cho tài khoản của bạn:<a href=\"{0}\"title =\"User Email Confirm\">Click here to Active your account</a>",
+                            Url.Action("ConfirmEmail", "UserLogin",
+                           new { Token = form.User.ActiveCode, Email = form.User.Email }, Request.Url.Scheme), pass);
+                        m.IsBodyHtml = true;
+                        System.Net.Mail.SmtpClient smtp = new System.Net.Mail.SmtpClient();
+                        smtp.Host = "smtp.gmail.com";
+                        smtp.UseDefaultCredentials = false;
+                        smtp.Credentials = new System.Net.NetworkCredential("xuanhung3296@gmail.com", "03021996");
+                        smtp.EnableSsl = true;
+                        smtp.Send(m);
+                        
+                    }
                 }
-              
 
+                var user = db.Users.FirstOrDefault(u => u.Email.Equals(form.User.Email));
+                user.Name = form.User.Name;
+                user.Phone = form.User.Phone;
+                user.Address = form.User.Address;
                 BookTour newBooking = new BookTour();
                 newBooking.Amount = float.Parse(total);
                 newBooking.UserID = db.Users.FirstOrDefault(x => x.Email.Equals(form.User.Email)).UserID;
@@ -135,7 +162,7 @@ namespace TopTravel.Controllers
 
 
                 var tour = db.Tours.FirstOrDefault(u => u.TourID.Equals(newBooking.TourID));
-                tour.SeatAvailability = tour.TotalSeat - newBooking.NumberOfAdult - newBooking.NumberOfChildrent;
+                tour.SeatAvailability = tour.SeatAvailability - newBooking.NumberOfAdult - newBooking.NumberOfChildrent;
                 db.SaveChanges();
                 
                 int bookTourID = newBooking.BookTourID; // Your Identity column ID
@@ -146,8 +173,9 @@ namespace TopTravel.Controllers
                     db.Tourists.Add(item);
                     
                 }
-                db.SaveChanges(); 
-
+                db.SaveChanges();
+                ViewData["Notification"] = "Bạn đã book Tour thành công! <BR/> Hãy check mã thanh toán ở Email";
+                return RedirectToAction("Index", "Home", new { mess= ViewData["Notification"]});
             }
             return View("Error");
         }

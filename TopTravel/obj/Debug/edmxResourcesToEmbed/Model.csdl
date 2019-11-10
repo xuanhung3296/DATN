@@ -26,6 +26,19 @@
     <NavigationProperty Name="User" Relationship="Self.FK_BookTour_User" FromRole="BookTour" ToRole="User" />
     <NavigationProperty Name="Tourists" Relationship="Self.FK_Tourist_BookTour" FromRole="BookTour" ToRole="Tourist" />
   </EntityType>
+  <EntityType Name="Comment">
+    <Key>
+      <PropertyRef Name="CommentID" />
+    </Key>
+    <Property Name="CommentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TourID" Type="Int32" />
+    <Property Name="CommentContent" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="DateCreated" Type="DateTime" Precision="0" />
+    <Property Name="Status" Type="Int32" />
+    <Property Name="UserID" Type="Int32" />
+    <NavigationProperty Name="Tour" Relationship="Self.FK_Comment_Tour" FromRole="Comment" ToRole="Tour" />
+    <NavigationProperty Name="User" Relationship="Self.FK_Comment_User" FromRole="Comment" ToRole="User" />
+  </EntityType>
   <EntityType Name="Contact">
     <Key>
       <PropertyRef Name="ID" />
@@ -88,7 +101,7 @@
     <Property Name="OnHomePage" Type="Boolean" />
     <Property Name="Status" Type="Int32" />
     <NavigationProperty Name="BookTours" Relationship="Self.FK_BookTour_Tour" FromRole="Tour" ToRole="BookTour" />
-    <NavigationProperty Name="Comment" Relationship="Self.FK_Comment_Tour" FromRole="Tour" ToRole="Comment" />
+    <NavigationProperty Name="Comments" Relationship="Self.FK_Comment_Tour" FromRole="Tour" ToRole="Comment" />
     <NavigationProperty Name="TourLabel" Relationship="Self.FK_Tour_TourLabel" FromRole="Tour" ToRole="TourLabel" />
     <NavigationProperty Name="TourType" Relationship="Self.FK_Tour_TourType" FromRole="Tour" ToRole="TourType" />
   </EntityType>
@@ -145,20 +158,8 @@
     <Property Name="ActiveCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="BookingCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="BookTours" Relationship="Self.FK_BookTour_User" FromRole="User" ToRole="BookTour" />
-    <NavigationProperty Name="Role" Relationship="Self.FK_User_Roll" FromRole="User" ToRole="Role" />
     <NavigationProperty Name="Comments" Relationship="Self.FK_Comment_User" FromRole="User" ToRole="Comment" />
-  </EntityType>
-  <EntityType Name="Comment">
-    <Key>
-      <PropertyRef Name="TourID" />
-    </Key>
-    <Property Name="TourID" Type="Int32" Nullable="false" />
-    <Property Name="CommentContent" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="DateCreated" Type="DateTime" Precision="0" />
-    <Property Name="Status" Type="Int32" />
-    <Property Name="UserID" Type="Int32" />
-    <NavigationProperty Name="Tour" Relationship="Self.FK_Comment_Tour" FromRole="Comment" ToRole="Tour" />
-    <NavigationProperty Name="User" Relationship="Self.FK_Comment_User" FromRole="Comment" ToRole="User" />
+    <NavigationProperty Name="Role" Relationship="Self.FK_User_Roll" FromRole="User" ToRole="Role" />
   </EntityType>
   <Association Name="FK_BookTour_Tour">
     <End Role="Tour" Type="Self.Tour" Multiplicity="1" />
@@ -196,6 +197,30 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Comment_Tour">
+    <End Role="Tour" Type="Self.Tour" Multiplicity="0..1" />
+    <End Role="Comment" Type="Self.Comment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tour">
+        <PropertyRef Name="TourID" />
+      </Principal>
+      <Dependent Role="Comment">
+        <PropertyRef Name="TourID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Comment_User">
+    <End Role="User" Type="Self.User" Multiplicity="0..1" />
+    <End Role="Comment" Type="Self.Comment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="Comment">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_User_Roll">
     <End Role="Role" Type="Self.Role" Multiplicity="0..1" />
     <End Role="User" Type="Self.User" Multiplicity="*" />
@@ -205,18 +230,6 @@
       </Principal>
       <Dependent Role="User">
         <PropertyRef Name="RoleID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Comment_Tour">
-    <End Role="Tour" Type="Self.Tour" Multiplicity="1" />
-    <End Role="Comment" Type="Self.Comment" Multiplicity="0..1" />
-    <ReferentialConstraint>
-      <Principal Role="Tour">
-        <PropertyRef Name="TourID" />
-      </Principal>
-      <Dependent Role="Comment">
-        <PropertyRef Name="TourID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -244,21 +257,10 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Comment_User">
-    <End Role="User" Type="Self.User" Multiplicity="0..1" />
-    <End Role="Comment" Type="Self.Comment" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="User">
-        <PropertyRef Name="UserID" />
-      </Principal>
-      <Dependent Role="Comment">
-        <PropertyRef Name="UserID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <EntityContainer Name="BookingEntities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="Banners" EntityType="Self.Banner" />
     <EntitySet Name="BookTours" EntityType="Self.BookTour" />
+    <EntitySet Name="Comments" EntityType="Self.Comment" />
     <EntitySet Name="Contacts" EntityType="Self.Contact" />
     <EntitySet Name="Feedbacks" EntityType="Self.Feedback" />
     <EntitySet Name="Roles" EntityType="Self.Role" />
@@ -267,7 +269,6 @@
     <EntitySet Name="TourLabels" EntityType="Self.TourLabel" />
     <EntitySet Name="TourTypes" EntityType="Self.TourType" />
     <EntitySet Name="Users" EntityType="Self.User" />
-    <EntitySet Name="Comments" EntityType="Self.Comment" />
     <AssociationSet Name="FK_BookTour_Tour" Association="Self.FK_BookTour_Tour">
       <End Role="Tour" EntitySet="Tours" />
       <End Role="BookTour" EntitySet="BookTours" />
@@ -280,13 +281,17 @@
       <End Role="BookTour" EntitySet="BookTours" />
       <End Role="Tourist" EntitySet="Tourists" />
     </AssociationSet>
-    <AssociationSet Name="FK_User_Roll" Association="Self.FK_User_Roll">
-      <End Role="Role" EntitySet="Roles" />
-      <End Role="User" EntitySet="Users" />
-    </AssociationSet>
     <AssociationSet Name="FK_Comment_Tour" Association="Self.FK_Comment_Tour">
       <End Role="Tour" EntitySet="Tours" />
       <End Role="Comment" EntitySet="Comments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Comment_User" Association="Self.FK_Comment_User">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Comment" EntitySet="Comments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_Roll" Association="Self.FK_User_Roll">
+      <End Role="Role" EntitySet="Roles" />
+      <End Role="User" EntitySet="Users" />
     </AssociationSet>
     <AssociationSet Name="FK_Tour_TourLabel" Association="Self.FK_Tour_TourLabel">
       <End Role="TourLabel" EntitySet="TourLabels" />
@@ -295,10 +300,6 @@
     <AssociationSet Name="FK_Tour_TourType" Association="Self.FK_Tour_TourType">
       <End Role="TourType" EntitySet="TourTypes" />
       <End Role="Tour" EntitySet="Tours" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Comment_User" Association="Self.FK_Comment_User">
-      <End Role="User" EntitySet="Users" />
-      <End Role="Comment" EntitySet="Comments" />
     </AssociationSet>
   </EntityContainer>
 </Schema>

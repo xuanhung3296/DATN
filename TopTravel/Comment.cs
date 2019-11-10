@@ -14,7 +14,8 @@ namespace TopTravel
     
     public partial class Comment
     {
-        public int TourID { get; set; }
+        public int CommentID { get; set; }
+        public Nullable<int> TourID { get; set; }
         public string CommentContent { get; set; }
         public Nullable<System.DateTime> DateCreated { get; set; }
         public Nullable<int> Status { get; set; }

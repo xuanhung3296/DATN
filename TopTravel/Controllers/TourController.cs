@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using TopTravel.Models;
 
 namespace TopTravel.Controllers
 {
@@ -48,11 +49,32 @@ namespace TopTravel.Controllers
         {
             var ID = Convert.ToInt32(id);
             var tour = db.Tours.FirstOrDefault(u => u.TourID.Equals(ID));
+            var comments = db.Comments.Where(u => u.TourID == ID).Take(5).ToList();
 
+            TourViewModel tourViewModel = new TourViewModel();
+            tourViewModel.Tour = tour;
+            tourViewModel.listComment = comments;
             ViewBag.Departure = utf8Convert1(tour.Departure);
             ViewBag.Destination = utf8Convert1(tour.Destination);
             ViewBag.Relate = db.Tours.Where(u => u.SeatAvailability != 0).OrderByDescending(u => u.StartDate).Take(2);
-            return View(tour);
+            return View(tourViewModel);
         }
+
+
+        public ActionResult Comment(string id , string comment)
+        {
+            var tourID = Convert.ToInt32(id);
+            Comment newComment = new Comment();
+            newComment.CommentContent = comment;
+            newComment.TourID = tourID;
+            newComment.UserID = Convert.ToInt32(Session["UserID"].ToString());
+            newComment.DateCreated = DateTime.Now;
+            db.Comments.Add(newComment);
+            db.SaveChanges();
+            return RedirectToAction("Index",new { id = id });
+        
+        }
+
+    
     }
 }

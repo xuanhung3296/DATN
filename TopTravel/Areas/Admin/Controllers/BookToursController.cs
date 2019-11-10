@@ -37,7 +37,7 @@ namespace TopTravel.Areas.Admin.Controllers
                            select s;
             if (!String.IsNullOrEmpty(searchString))
             {
-                bookTours = bookTours.Where(s => s.Tour.TourName.Contains(searchString) || s.User.Name.Contains(searchString) || s.PaymentMethod.Contains(searchString) || s.Amount.ToString().Contains(searchString));
+                bookTours = bookTours.Where(s => s.Tour.TourName.Contains(searchString) || s.User.Name.Contains(searchString) || s.PaymentMethod.Contains(searchString) || s.User.UserID.ToString().Contains(searchString) || s.User.Email.ToString().Contains(searchString));
             }
 
             bookTours = bookTours.OrderBy(s => s.BookTourID);
@@ -102,7 +102,7 @@ namespace TopTravel.Areas.Admin.Controllers
                 return HttpNotFound();
             }
             ViewBag.TourID = new SelectList(db.Tours, "TourID", "TourName", bookTour.TourID);
-            ViewBag.UserID = new SelectList(db.Users, "UserID", "Name", bookTour.UserID);
+            ViewBag.UserID = new SelectList(db.Users, "UserID", "Email", bookTour.UserID);
             return View(bookTour);
         }
 
@@ -157,6 +157,27 @@ namespace TopTravel.Areas.Admin.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+
+        public ActionResult Payment(int id)
+        {
+            BookTour bookTour = db.BookTours.Find(id);
+            bookTour.Status = 2;
+            db.SaveChanges();
+            System.Net.Mail.MailMessage m = new System.Net.Mail.MailMessage();
+            m.From = new System.Net.Mail.MailAddress("xuanhung3296@gmail.com");
+            m.To.Add(bookTour.User.Email);
+            m.Subject = "Xác nhận thanh toán";
+            m.Body = string.Format("Bạn đã thanh toán cho Tour {0} thành công. Chúc bạn có một chuyến đi vui vẻ", bookTour.Tour.TourName);
+            m.IsBodyHtml = true;
+            System.Net.Mail.SmtpClient smtp = new System.Net.Mail.SmtpClient();
+            smtp.Host = "smtp.gmail.com";
+            smtp.UseDefaultCredentials = false;
+            smtp.Credentials = new System.Net.NetworkCredential("xuanhung3296@gmail.com", "03021996");
+            smtp.EnableSsl = true;
+            smtp.Send(m);
+            return RedirectToAction("Index");
         }
     }
 }

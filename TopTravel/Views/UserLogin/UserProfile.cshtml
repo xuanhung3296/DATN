@@ -12,45 +12,7 @@
     @Scripts.Render("~/bundles/jqueryui")
     @Scripts.Render("~/bundles/travelix/search")
 }
-<head>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-    <script>
-        let bookTourID
 
-
-        function getID(id) {
-            bookTourID = id
-            document.getElementById("Modal").style.display = "block";
-        }
-
-        function closeModal(){
-            document.getElementById("Modal").style.display = "none";
-        }
-
-        function reload() {
-            $.get({
-                url: '/UserLogin/getProfile',
-                data: { id: @Session["UserID"], page: 1 }
-            });
-
-        }
-
-        function cancel() {
-            $.ajax({
-                type: "POST",
-                url: '/UserLogin/cancelBooking',
-                data: { id: bookTourID },
-                success: function (data) {
-                    reload();
-                    closeModal();
-
-                }
-            })
-
-        }
-
-    </script>
-</head>
 <div class="home">
     <div class="home">
         <div class="home_background">
@@ -88,22 +50,38 @@
                                     <div class="offers_content">
                                         <h3 style="font-size: 24px;font-weight: 550;color: #2d2c2c;">@item.Tour.TourName</h3>
                                         <div>
+                                            @{
+                                                switch (item.BookTour.Status)
+                                                {
+                                                    case 1: <p style="color:orange; text-transform:uppercase ;font-weight: bold;">Chờ thanh toán</p>
+                                                        break;
+                                                    case 2: <p style="color:green ; text-transform:uppercase ;font-weight: bold;">Đã thanh toán</p>
+                                                        break;
+                                                    case 3: <p style="color:red ; text-transform:uppercase ;font-weight: bold;">Đã hủy</p>
+                                                        break;
+
+                                                }
+
+                                            }
                                             <p class="offers_text">Số lượng chỗ đã đặt: </p>
                                             @item.BookTour.NumberOfAdult Người lớn
                                             <br />
                                             @item.BookTour.NumberOfChildrent Trẻ em
-                                            <p class="offers_text"> Tổng tiền @string.Format("{0:0,0}", @item.BookTour.Amount)đ</p>
-                                            <p> Status : @item.BookTour.Status</p>
+                                            <p class="offers_text"> Tổng tiền: @string.Format("{0:0,0}", @item.BookTour.Amount)đ</p>                                    
                                         </div>
                                         <p class="offers_text">
                                             Nơi khởi hành : @item.Tour.Departure <br />
                                             Ngày khởi hành : @item.Tour.StartDate.Value.ToString("dd/MM/yyyy") <br />
                                         </p>
                                         <div class="offers_link">
-
+                                            @Html.ActionLink("Chi tiết", "getDetail", new { id = item.BookTour.BookTourID }, new {
+                                           @style = "color: darkblue;font-size:20px;text-transform:uppercase ;font-weight: bold;"})
                                         </div>
-                                        @Html.ActionLink("Chi tiết", "getDetail", new { id = item.BookTour.BookTourID })
-                                        <button type="button" class="btn btn-danger btn-sm" onclick="getID(@item.BookTour.BookTourID)">Hủy Tour</button>
+                                        @if (item.BookTour.Status != 3)
+                                        {
+                                            <button type="button" style="margin-top:20px;" class="btn btn-danger btn-sm" onclick="getID(@item.BookTour.BookTourID)" data-toggle="modal" data-target="Modal">Hủy Tour</button>
+                                        }
+
                                     </div>
                                 </div>
 
@@ -118,16 +96,15 @@
                     <div class="modal " id="Modal" role="dialog">
                         <div class="modal-dialog">
                             <div class="modal-content">
-                                <div class="modal-header" style="color: #fff;background-color: steelblue; display:block">
+                                <div class="modal-header" style="color::red;display:block">
                                     <button type="button" class="close" data-dismiss="modal" onclick="closeModal()">&times;</button>
                                     <h4 class="modal-title">Thông báo</h4>
                                 </div>
                                 <div class="modal-body">
                                     <p> Bạn chắc chắn muốn hủy Tour này không ?</p>
                                 </div>
-                                <div class="modal-footer">
-                                    <button id="confirm" type="button" class="btn btn-danger btn-sm" onclick="cancel()">Hủy Tour</button>
-                                    <button type="button" class="btn btn-default btn-sm" data-dismiss="modal" onclick="closeModal()">Close</button>
+                                <div class="modal-footer" id="huy">
+
                                 </div>
                             </div>
                         </div>
@@ -136,7 +113,38 @@
                     <!-- The Modal -->
                     <!-- Offers Item -->
 
+                    <script>
+                        var bookTourID
 
+
+                        function getID(id) {
+                            var bookTourID = id
+                            document.getElementById("Modal").style.display = "block";
+                            var link = '<a href="/UserLogin/cancelBooking/' + id + '">Hủy tour</a>';
+                            $("#huy").append(link);
+                        }
+
+
+
+
+                        function closeModal() {
+                            document.getElementById("Modal").style.display = "none";
+                        }
+
+
+                        function cancel() {
+                            $.ajax({
+                                type: "POST",
+                                url: '/UserLogin/cancelBooking',
+                                data: { id: bookTourID },
+                                success: function (data) {
+                                    closeModal();
+                                }
+                            })
+
+                        }
+
+                    </script>
 
                 </div>
             </div>

@@ -29,6 +29,7 @@ namespace TopTravel
     
         public virtual DbSet<Banner> Banners { get; set; }
         public virtual DbSet<BookTour> BookTours { get; set; }
+        public virtual DbSet<Comment> Comments { get; set; }
         public virtual DbSet<Contact> Contacts { get; set; }
         public virtual DbSet<Feedback> Feedbacks { get; set; }
         public virtual DbSet<Role> Roles { get; set; }
@@ -37,7 +38,6 @@ namespace TopTravel
         public virtual DbSet<TourLabel> TourLabels { get; set; }
         public virtual DbSet<TourType> TourTypes { get; set; }
         public virtual DbSet<User> Users { get; set; }
-        public virtual DbSet<Comment> Comments { get; set; }
 
         public bool userIsValid(User user)
         {

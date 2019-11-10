@@ -11,7 +11,7 @@ namespace TopTravel.Controllers
     public class HomeController : Controller
     {
         private BookingEntities db = new BookingEntities();
-        public ActionResult Index()
+        public ActionResult Index(string mess="")
         {
             //----Bannners---------
             var banners = new List<string>();
@@ -48,6 +48,8 @@ namespace TopTravel.Controllers
 
             ViewBag.listFeedback = listFeedback;
 
+
+            ViewData["Notification"] = mess;
             return View();
         }
 
@@ -114,7 +116,7 @@ namespace TopTravel.Controllers
 
         public bool checkUser()
         {
-            var listUser = db.Users.Where(u => u.DateCreated < DateTime.Now.AddDays(-7) && u.IsActive == false).ToList();
+            var listUser = db.Users.Where(u => u.DateCreated < DateTime.Now.AddDays(-7) && u.IsActive == false && u.RoleID==2).ToList();
             foreach (var item in listUser)
             {
                 db.Users.Remove(item);
@@ -134,6 +136,11 @@ namespace TopTravel.Controllers
             }
             db.SaveChanges();
             return true;
+        }
+        public JsonResult GetList(string name)
+        {
+            var list = db.Tours.Select(x => x.Departure).ToList();
+            return Json(list, JsonRequestBehavior.AllowGet);
         }
     }
 }

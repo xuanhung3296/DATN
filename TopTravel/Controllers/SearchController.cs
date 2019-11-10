@@ -36,7 +36,7 @@ namespace TopTravel.Controllers
             return View(lastResult.ToPagedList(pageNumber, pageSize));
         }
 
-        public ActionResult SearchTour(string label , string destination , string departure , string price , string startDate, int? page)
+        public ActionResult SearchTour(string label , string destination , string departure , string seat , string startDate, int? page)
         {
 
             var tourTypes = new List<string>();
@@ -56,26 +56,30 @@ namespace TopTravel.Controllers
             ViewBag.Destination = destination;
             ViewBag.Departure = departure;
             ViewBag.StartDate = startDate;
-            ViewBag.Price = price;
-           
-            
+            ViewBag.Price = seat;
+            var seatInt = 0;
+            if (!String.IsNullOrEmpty(seat))
+            {
+                seatInt = Convert.ToInt32(seat);
+            }
+          
             var result = new List<Tour>();
             if (!String.IsNullOrEmpty(label))
             {
-                var tempTours = db.Tours.Where(u => u.TourLabel.TourLabelName.Contains(label)|| u.TourType.TourTypeName.Contains(label));
+                var tempTours = db.Tours.Where(u => u.TourLabel.TourLabelName.ToLower().Contains(label.ToLower())|| u.TourType.TourTypeName.Contains(label.ToLower()));
                 if (!String.IsNullOrEmpty(destination))
                 {
-                     tempTours = tempTours.Where(u => u.Destination.Contains(destination));
+                     tempTours = tempTours.Where(u => u.Destination.ToLower().Contains(destination.ToLower()));
                     if (!String.IsNullOrEmpty(departure))
                     {
-                        tempTours = tempTours.Where(u => u.Departure.Contains(departure));
+                        tempTours = tempTours.Where(u => u.Departure.ToLower().Contains(departure.ToLower()));
                         if (!String.IsNullOrEmpty(startDate))
                         {
                             DateTime startDateTemp = Convert.ToDateTime(startDate);
                             tempTours = tempTours.Where(u => Equals(u.StartDate, startDateTemp) == true);
-                            if (!String.IsNullOrEmpty(price))
+                            if (!String.IsNullOrEmpty(seat))
                             {
-                                tempTours = tempTours.Where(u =>u.Price.ToString().Contains(price));
+                                tempTours = tempTours.Where(u =>u.SeatAvailability >=  seatInt);
                                 result = tempTours.ToList();
                             }
                             else
@@ -85,9 +89,9 @@ namespace TopTravel.Controllers
                         }
                         else
                         {
-                            if (!String.IsNullOrEmpty(price))
+                            if (!String.IsNullOrEmpty(seat))
                             {
-                                tempTours = tempTours.Where(u => u.Price.ToString().Contains(price));
+                                tempTours = tempTours.Where(u => u.SeatAvailability >=  seatInt);
                                 result = tempTours.ToList();
                             }
                             else
@@ -102,9 +106,9 @@ namespace TopTravel.Controllers
                         {
                             DateTime startDateTemp = Convert.ToDateTime(startDate);
                             tempTours = tempTours.Where(u => Equals(u.StartDate, startDateTemp) == true);
-                            if (!String.IsNullOrEmpty(price))
+                            if (!String.IsNullOrEmpty(seat))
                             {
-                                tempTours = tempTours.Where(u => u.Price.ToString().Contains(price));
+                                tempTours = tempTours.Where(u => u.SeatAvailability >=  seatInt);
                                 result = tempTours.ToList();
                             }
                             else
@@ -114,9 +118,9 @@ namespace TopTravel.Controllers
                         }
                         else
                         {
-                            if (!String.IsNullOrEmpty(price))
+                            if (!String.IsNullOrEmpty(seat))
                             {
-                                tempTours = tempTours.Where(u => u.Price.ToString().Contains(price));
+                                tempTours = tempTours.Where(u => u.SeatAvailability >=  seatInt);
                                 result = tempTours.ToList();
                             }
                             else
@@ -130,14 +134,14 @@ namespace TopTravel.Controllers
                 {
                     if (!String.IsNullOrEmpty(departure))
                     {
-                        tempTours = tempTours.Where(u => u.Departure.Contains(departure));
+                        tempTours = tempTours.Where(u => u.Departure.ToLower().Contains(departure.ToLower()));
                         if (!String.IsNullOrEmpty(startDate))
                         {
                             DateTime startDateTemp = Convert.ToDateTime(startDate);
                             tempTours = tempTours.Where(u => Equals(u.StartDate, startDateTemp) == true);
-                            if (!String.IsNullOrEmpty(price))
+                            if (!String.IsNullOrEmpty(seat))
                             {
-                                tempTours = tempTours.Where(u => u.Price.ToString().Contains(price));
+                                tempTours = tempTours.Where(u => u.SeatAvailability >=  seatInt);
                                 result = tempTours.ToList();
                             }
                             else
@@ -147,9 +151,9 @@ namespace TopTravel.Controllers
                         }
                         else
                         {
-                            if (!String.IsNullOrEmpty(price))
+                            if (!String.IsNullOrEmpty(seat))
                             {
-                                tempTours = tempTours.Where(u => u.Price.ToString().Contains(price));
+                                tempTours = tempTours.Where(u => u.SeatAvailability >=  seatInt);
                                 result = tempTours.ToList();
                             }
                             else
@@ -164,9 +168,9 @@ namespace TopTravel.Controllers
                         {
                             DateTime startDateTemp = Convert.ToDateTime(startDate);
                             tempTours = tempTours.Where(u => Equals(u.StartDate, startDateTemp) == true);
-                            if (!String.IsNullOrEmpty(price))
+                            if (!String.IsNullOrEmpty(seat))
                             {
-                                tempTours = tempTours.Where(u => u.Price.ToString().Contains(price));
+                                tempTours = tempTours.Where(u => u.SeatAvailability >=  seatInt);
                                 result = tempTours.ToList();
                             }
                             else
@@ -176,9 +180,9 @@ namespace TopTravel.Controllers
                         }
                         else
                         {
-                            if (!String.IsNullOrEmpty(price))
+                            if (!String.IsNullOrEmpty(seat))
                             {
-                                tempTours = tempTours.Where(u => u.Price.ToString().Contains(price));
+                                tempTours = tempTours.Where(u => u.SeatAvailability >=  seatInt);
                                 result = tempTours.ToList();
                             }
                             else
@@ -193,17 +197,17 @@ namespace TopTravel.Controllers
             {
                 if (!String.IsNullOrEmpty(destination))
                 {
-                   var tempTours = db.Tours.Where(u => u.Destination.Contains(destination));
+                   var tempTours = db.Tours.Where(u => u.Destination.ToLower().Contains(destination.ToLower()));
                     if (!String.IsNullOrEmpty(departure))
                     {
-                        tempTours = tempTours.Where(u => u.Departure.Contains(departure));
+                        tempTours = tempTours.Where(u => u.Departure.ToLower().Contains(departure.ToLower()));
                         if (!String.IsNullOrEmpty(startDate))
                         {
                             DateTime startDateTemp = Convert.ToDateTime(startDate);
                             tempTours = tempTours.Where(u => Equals(u.StartDate, startDateTemp) == true);
-                            if (!String.IsNullOrEmpty(price))
+                            if (!String.IsNullOrEmpty(seat))
                             {
-                                tempTours = tempTours.Where(u => u.Price.ToString().Contains(price));
+                                tempTours = tempTours.Where(u => u.SeatAvailability >=  seatInt);
                                 result = tempTours.ToList();
                             }
                             else
@@ -213,9 +217,9 @@ namespace TopTravel.Controllers
                         }
                         else
                         {
-                            if (!String.IsNullOrEmpty(price))
+                            if (!String.IsNullOrEmpty(seat))
                             {
-                                tempTours = tempTours.Where(u => u.Price.ToString().Contains(price));
+                                tempTours = tempTours.Where(u => u.SeatAvailability >=  seatInt);
                                 result = tempTours.ToList();
                             }
                             else
@@ -230,9 +234,9 @@ namespace TopTravel.Controllers
                         {
                             DateTime startDateTemp = Convert.ToDateTime(startDate);
                             tempTours = tempTours.Where(u => Equals(u.StartDate, startDateTemp) == true);
-                            if (!String.IsNullOrEmpty(price))
+                            if (!String.IsNullOrEmpty(seat))
                             {
-                                tempTours = tempTours.Where(u => u.Price.ToString().Contains(price));
+                                tempTours = tempTours.Where(u => u.SeatAvailability >=  seatInt);
                                 result = tempTours.ToList();
                             }
                             else
@@ -242,9 +246,9 @@ namespace TopTravel.Controllers
                         }
                         else
                         {
-                            if (!String.IsNullOrEmpty(price))
+                            if (!String.IsNullOrEmpty(seat))
                             {
-                                tempTours = tempTours.Where(u => u.Price.ToString().Contains(price));
+                                tempTours = tempTours.Where(u => u.SeatAvailability >=  seatInt);
                                 result = tempTours.ToList();
                             }
                             else
@@ -258,14 +262,14 @@ namespace TopTravel.Controllers
                 {
                     if (!String.IsNullOrEmpty(departure))
                     {
-                       var tempTours = db.Tours.Where(u => u.Departure.Contains(departure));
+                       var tempTours = db.Tours.Where(u => u.Departure.ToLower().Contains(departure.ToLower()));
                         if (!String.IsNullOrEmpty(startDate))
                         {
                             DateTime startDateTemp = Convert.ToDateTime(startDate);
                             tempTours = tempTours.Where(u => Equals(u.StartDate, startDateTemp) == true);
-                            if (!String.IsNullOrEmpty(price))
+                            if (!String.IsNullOrEmpty(seat))
                             {
-                                tempTours = tempTours.Where(u => u.Price.ToString().Contains(price));
+                                tempTours = tempTours.Where(u => u.SeatAvailability >=  seatInt);
                                 result = tempTours.ToList();
                             }
                             else
@@ -275,9 +279,9 @@ namespace TopTravel.Controllers
                         }
                         else
                         {
-                            if (!String.IsNullOrEmpty(price))
+                            if (!String.IsNullOrEmpty(seat))
                             {
-                                tempTours = tempTours.Where(u => u.Price.ToString().Contains(price));
+                                tempTours = tempTours.Where(u => u.SeatAvailability >=  seatInt);
                                 result = tempTours.ToList();
                             }
                             else
@@ -292,9 +296,9 @@ namespace TopTravel.Controllers
                         {
                             DateTime startDateTemp = Convert.ToDateTime(startDate);
                             var tempTours = db.Tours.Where(u => DbFunctions.TruncateTime(u.StartDate) == startDateTemp);
-                            if (!String.IsNullOrEmpty(price))
+                            if (!String.IsNullOrEmpty(seat))
                             {
-                                tempTours = tempTours.Where(u => u.Price.ToString().Contains(price));
+                                tempTours = tempTours.Where(u => u.SeatAvailability >=  seatInt);
                                 result = tempTours.ToList();
                             }
                             else
@@ -304,9 +308,9 @@ namespace TopTravel.Controllers
                         }
                         else
                         {
-                            if (!String.IsNullOrEmpty(price))
+                            if (!String.IsNullOrEmpty(seat))
                             {
-                               var tempTours = db.Tours.Where(u => u.Price.ToString().Contains(price));
+                               var tempTours = db.Tours.Where(u => u.SeatAvailability >=  seatInt);
                                 result = tempTours.ToList();
                             }
                             else
@@ -323,6 +327,14 @@ namespace TopTravel.Controllers
             int pageSize = 5;
             int pageNumber = (page ?? 1);
             return View("Index", lastResult.ToPagedList(pageNumber, pageSize));
+        }
+
+
+        public class City
+        {
+            public int Id { get; set; }
+            public string CityName { get; set; }
+
         }
     }
 }

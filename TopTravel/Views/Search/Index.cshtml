@@ -17,7 +17,7 @@
             <img style="width: 100%;height: 465px;" src="/Content/travelix/images/about_background.jpg" />
         </div>
         <div class="home_content">
-            <div class="home_title">Search</div>
+            <div class="home_title">Tìm kiếm Tour</div>
         </div>
     </div>
 </div>
@@ -57,36 +57,33 @@
                             {
                                 <div class="search_item" style="display:none">
                                     <div>label</div>
-                                    @Html.TextBox("label", (string)ViewBag.Label, new { @class = "destination search_input", @id = "label" })
-                                 </div>
-                                <div class="search_item">
-                                    <div>departure</div>
-                                    @Html.TextBox("departure", (string)ViewBag.Departure, new { @class = "destination search_input" })
+                                    @Html.TextBox("label", (string)ViewBag.Label, new { @class = "destination search_input", @autocomplete = "on" })
+
+                                </div>
+                                <div class="search_item ui-widget">
+                                    <div>Nơi khởi hành</div>
+                                    @Html.TextBox("departure", (string)ViewBag.Departure, new { @class = "destination search_input", @id = "select" })
                                 </div>
                                 <div class="search_item">
-                                    <div>destination</div>
-                                    @Html.TextBox("destination", (string)ViewBag.Destination, new { @class = "destination search_input" })
+                                    <div>Điểm đến</div>
+                                    @Html.TextBox("destination", (string)ViewBag.Destination, new { @class = "destination search_input", @id = "des" })
 
                                 </div>
                                 <div class="search_item">
-                                    <div>check out</div>
-                                    @Html.TextBox("startDate", (string)ViewBag.StartDate, new { @id = "date" })
+                                    <div>Ngày khởi hành</div>
+                                    @Html.TextBox("startDate", (string)ViewBag.StartDate, new { @id = "date", @class = "destination search_input" })
 
                                     <script>
-                                        $("#date").dateDropdowns({
-                                            submitFieldName: 'date',
-                                            submitFormat: "dd/mm/yyyy",
-                                            maxAge: 68
+                                        $("#date").datepicker({
                                             //,required: true
+                                            dateFormat: 'dd-mm-yy'
                                         });
                                     </script>
                                 </div>
-
                                 <div class="search_item">
-                                    <div>price</div>
-                                    @Html.TextBox("price", (string)ViewBag.Price, new { @class = "destination search_input" })
+                                    <div>Số chỗ muốn đặt</div>
+                                    @Html.TextBox("seat", (string)ViewBag.Price, new { @class = "destination search_input", @type = "number", @min = 0, @max = 15 })
                                 </div>
-
 
                                 <button class="button search_button">search<span></span><span></span><span></span></button>
                             }
@@ -144,7 +141,14 @@
                         </div>
                     }
 
-
+                    @if (Model.Count == 0)
+                    {
+                        <div class="offers_item rating_4" style="min-height:300px">
+                            <div class="row">
+                                <h1>Không tìm thấy kết quả nào!</h1>
+                            </div>
+                        </div>
+                    }
                     <!-- Offers Item -->
 
 

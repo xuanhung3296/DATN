@@ -63,47 +63,48 @@
 
             @using (Html.BeginForm("BookTour", "Booking"))
             {
-                <div class="book-info" style="background: #f4f4f4">
-                    <div class="col-xs-12 text-center" style="margin: 40px 0 40px 0">
-                        <span class="title" style="text-transform: uppercase;">Thông tin liên lạc</span>
-                    </div>
-                    <div class="col-xs-12 book-thongtinlienlac">
-                        <div class="row">
-                            <div class="col-md-6 col-sm-12 col-xs-12">
 
-                                <div class="form-group">
-                                    <label>Họ và tên <span style="color: #cd2c24">*</span></label>
-                                    <div>
-                                        @Html.TextBoxFor(model => model.User.Name, new { @class = "form-control input-lg" })
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label>Di động <span style="color: #cd2c24">*</span></label>
-                                    <div>
-                                        @Html.TextBoxFor(model => model.User.Phone, new { @class = "form-control input-lg" })
-                                    </div>
+                <div class="col-xs-12 text-center" style="margin: 40px 0 40px 0">
+                    <span class="title" style="text-transform: uppercase;">Thông tin liên lạc</span>
+                </div>
+
+                <div class="col-xs-12 book-thongtinlienlac">
+                    <div class="row">
+                        <div class="col-md-6 col-sm-12 col-xs-12">
+
+                            <div class="form-group">
+                                <label>Họ và tên <span style="color: #cd2c24">*</span></label>
+                                <div>
+                                    @Html.TextBoxFor(model => model.User.Name, new { @class = "form-control input-lg", @readonly = "true" })
                                 </div>
                             </div>
-                            <div class="col-md-6 col-sm-12 col-xs-12">
-                                <div class="form-group">
-                                    <label>Địa chỉ</label>
-                                    <div>
-                                        @Html.TextBoxFor(model => model.User.Address, new { @class = "form-control input-lg" })
-                                    </div>
+                            <div class="form-group">
+                                <label>Di động <span style="color: #cd2c24">*</span></label>
+                                <div>
+                                    @Html.TextBoxFor(model => model.User.Phone, new { @class = "form-control input-lg", @readonly = "true" })
                                 </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12 col-xs-12">
+                            <div class="form-group">
+                                <label>Địa chỉ</label>
+                                <div>
+                                    @Html.TextBoxFor(model => model.User.Address, new { @class = "form-control input-lg", @readonly = "true" })
+                                </div>
+                            </div>
 
-                                <div class="form-group">
-                                    <label>EMAIL <span style="color: #cd2c24">*</span></label>
-                                    <div>
-                                        @Html.TextBoxFor(model => model.User.Email, new { @class = "form-control input-lg" })
-                                    </div>
-
+                            <div class="form-group">
+                                <label>EMAIL <span style="color: #cd2c24">*</span></label>
+                                <div>
+                                    @Html.TextBoxFor(model => model.User.Email, new { @class = "form-control input-lg", @readonly = "true" })
                                 </div>
 
                             </div>
+
                         </div>
                     </div>
                 </div>
+
                 <div class="col-xs-12">
                     <div id="DanhSachKhach">
                         <div class="text-center" style="margin: 40px 0 40px 0">
@@ -117,7 +118,7 @@
                                 <div class="row">
                                     <div class="col-md-12 col-sm-12 col-xs-12 mg-bot10">
                                         <div>
-                                            <div style="padding: 12px 15px 12px 15px; background: #c50000; color: #FFF">Khách hàng @(i + 1)</div>
+                                            <div style="padding: 12px 15px 12px 15px; background: #141354; color: #FFF">Khách hàng @(i + 1)</div>
                                         </div>
                                         <div style="border: 1px solid #ccc; padding: 15px">
                                             <div class="form-horizontal">
@@ -125,7 +126,7 @@
                                                     <div class="col-lg-3 col-md-8 col-sm-6 col-xs-12 mg-bot10">
                                                         <label class="mg-bot5">Họ và tên (<span class="price">*</span>)</label>
                                                         <div>
-                                                            @Html.TextBoxFor(model => model.ListTourist[i].Name, new { @class = "form-control" })
+                                                            @Html.TextBoxFor(model => model.ListTourist[i].Name, new { @class = "form-control", @readonly = "true" })
                                                         </div>
                                                     </div>
                                                     <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 mg-bot10">
@@ -135,7 +136,7 @@
                                                             {
                                                                 new SelectListItem {Text = "Nam", Value = "Nam",},
                                                                 new SelectListItem {Text = "Nữ", Value = "Nữ"},
-                                                            }, Model.ListTourist[i].Gender, new {@class = "form-control"})
+                                                            }, Model.ListTourist[i].Gender, new {@class = "form-control", @readonly = "true" })
 
 
                                                         </div>
@@ -143,96 +144,28 @@
                                                     <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 mg-bot10">
                                                         <label class="mg-bot5">Ngày sinh (<span class="price">*</span>)</label>
                                                         <div>
-                                                            @Html.EditorFor(model => model.ListTourist[i].Birthday, new { htmlAttributes = new { @class = "form-control date-picker" } })
-                                                            <script type="text/javascript">
-                                                                $(function () {
-                                                                    $(".date-picker").datepicker({
-                                                                        dateFormat: 'dd-M-yy'
-                                                                    });
-
-                                                                });
-
-                                                            </script>
+                                                            @Html.TextBoxFor(model => model.ListTourist[i].Birthday, "{0:d MMM yyyy}", new { @class = "form-control", @readonly = "true" })
                                                         </div>
                                                     </div>
 
                                                     <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 mg-bot10">
                                                         <label class="mg-bot5">Loại khách</label>
-                                                        <div>
-                                                            @{
-                                                                if (i < Convert.ToInt32(@ViewBag.NumberAdult))
-                                                                {
+                                                        @Html.TextBoxFor(model => model.ListTourist[i].TouristType, new { @class = "form-control", @id = "TouristType_" + i, @readonly = "true" })
 
-                                                                    @Html.DropDownListFor(model => model.ListTourist[i].TouristType, new List<SelectListItem>
-                                                                                                                    {
-                                                                                                                        new SelectListItem {Text = "Người lớn", Value = "Người lớn", Selected = true},
-                                                                                                                        new SelectListItem {Text = "Trẻ em", Value = "Trẻ em"},
-                                                                                                                    }, Model.ListTourist[i].TouristType, new {@class = "form-control", @id = "TouristType_" + i})
-                                                                }
-                                                                else
-                                                                {
-
-                                                                    @Html.DropDownListFor(model => model.ListTourist[i].TouristType, new List<SelectListItem>
-                                                                                                                    {
-                                                                                                                        new SelectListItem {Text = "Người lớn", Value = "Người lớn"},
-                                                                                                                        new SelectListItem {Text = "Trẻ em", Value = "Trẻ em", Selected = true},
-                                                                                                                    }, Model.ListTourist[i].TouristType, new {@class = "form-control", @id = "TouristType_" + i})
-                                                                }
-
-                                                            }
-
-                                                        </div>
                                                     </div>
-
-                                                </div>
-                                                @if (ViewBag.TourType == "Du lịch nước ngoài")
-                                                {
-                                                    <div class="row mg-bot10">
-                                                        <div class="col-lg-3 col-md-8 col-sm-6 col-xs-12 mg-bot10">
-                                                            <label class="mg-bot5">Số hộ chiếu (<span class="price">*</span>)</label>
-                                                            <div>
-                                                                @Html.TextBoxFor(model => model.ListTourist[i].Passport, new { @class = "form-control" })
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 mg-bot10">
-                                                            <label class="mg-bot5">Ngày hết hạn (<span class="price">*</span>)</label>
-                                                            <div>
-                                                                @Html.EditorFor(model => model.ListTourist[i].ExpiredDate, new { htmlAttributes = new { @class = "form-control date-picker" } })
-                                                                <script type="text/javascript">
-                                                                    $(function () {
-                                                                        $(".date-picker").datepicker({
-                                                                            dateFormat: 'dd-M-yy'
-                                                                        });
-
-                                                                    });
-
-                                                                </script>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-lg-3 col-md-8 col-sm-6 col-xs-12 mg-bot10">
-                                                            <label class="mg-bot5">Quốc tịch(<span class="price">*</span>)</label>
-                                                            <div>
-                                                                @Html.TextBoxFor(model => model.ListTourist[i].Nationality, new { @class = "form-control" })
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-lg-3 col-md-8 col-sm-6 col-xs-12 mg-bot10">
-
-                                                        </div>
-                                                    </div>
-                                                }
+                                                </div>      
 
                                                 <div class="row" style="padding: 15px 0 0px 0; border-top: 1px solid #ccc; margin-top: 15px;">
                                                     <div class="col-md-12 col-sm-12 text-right">
-                                                        Trị giá:<span style="color: #cd2c24; font-weight: bold; font-size: 16px; padding-top: 18px" id="price_@i"></span> đ
+                                                        Trị giá: <span style="color: #cd2c24; font-weight: bold; font-size: 16px; padding-top: 18px" id="price_@i"></span> đ
                                                         <input class="form-control" disabled="disabled" id="price0" name="price0" type="hidden" />
                                                     </div>
                                                     <script>
                                                         var touristType = $('#TouristType_@i').val();
                                                         if (touristType === "Người lớn") {
-                                                            $('#price_@i').text(@ViewBag.AdultPrice);
+                                                            $('#price_@i').text(parseFloat(@ViewBag.AdultPrice).toLocaleString());
                                                         } else {
-                                                            $('#price_@i').text(@ViewBag.ChildrenPrice);
+                                                            $('#price_@i').text(parseFloat(@ViewBag.ChildrenPrice).toLocaleString());
                                                         }
                                                     </script>
                                                 </div>
@@ -249,32 +182,33 @@
                     </div>
 
                 </div>
-                <div class="col-xs-12" id="divTongTien">
-                    <div class="row" style="margin-top: 30px">
-                        <div class="col-xs-12">
-                            <div style="text-align: left; padding: 10px 15px 10px 15px; background: #ddd">
-                                <span style="font-weight: bold; font-size: 14px; margin-right: 10px; text-transform: uppercase">Tổng cộng:</span>
-                                @Html.TextBox("Total", null, new { @id = "Total", @hidden = "hidden" })
-                                <span style="color: #cd2c24; font-weight: bold; font-size: 20px; float: right;" id="spanTotal">đ</span>
-                            </div>
+                <div class="col-xs-12" id="divTongTien" style="margin-bottom:20px;">
+
+                    <div style="text-align: left; padding: 10px 15px 10px 15px; background: #ddd">
+                        <span style="font-weight: bold; font-size: 14px; margin-right: 10px; text-transform: uppercase">Tổng cộng: </span>
+                        @Html.TextBox("Total", null, new { @id = "Total", @hidden = "hidden" })
+                        <span style="color: #cd2c24; font-weight: bold; font-size: 20px; float: right;" id="spanTotal"></span>
+                    </div>
 
 
-                            <script>
+                    <script>
 
                                 var sum = 0;
                                 for (var i = 0; i < @Model.ListTourist.Count; i++)
                                 {
                                     var price = $('#price_' + i).text();
-                                    sum = sum + parseFloat(price);
-                                }
-                                $('#spanTotal').text(sum);
+                            sum = sum + parseFloat(price.replace(",", "").replace(",", ""));
+                        }
+                        $('#spanTotal').text(parseFloat(sum).toLocaleString() + 'đ');
+
+
                                 $('#Total').val(sum);
-                            </script>
-                        </div>
-                    </div>
+                    </script>
+
+
                 </div>
 
-    
+
                 <style type="text/css">
                     .card_active {
                         border: 1px solid #a66b01;
@@ -284,8 +218,8 @@
                         opacity: 0.5;
                     }
                 </style>
-    
-        
+
+
             }
 
         </div>

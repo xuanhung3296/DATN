@@ -975,7 +975,7 @@ section
     animation: fadeEffect 1s;
     padding-left: 54px;
     padding-right: 47px;
-    margin-top: -25px;
+    margin-top: -60px;
 }
 .search_panel.active
 {
@@ -1090,7 +1090,7 @@ section
 	border: none;
 	outline: none;
 	cursor: pointer;
-	margin-top: 40px;
+	margin-top: -5px;
 }
 .search_button:hover
 {
